@@ -1,1 +1,1 @@
-# node-in-action
+# javascript-in-action
