@@ -44,9 +44,12 @@ class Color {
 }
 
 class ColorWithAlpha extends Color {
-
+    constructor(r = 0, g = 0, b = 0, a = 1) {
+        super(r, g, b)
+        this.a = a
+    }
 }
 
 // Usage
-let c = new ColorWithAlpha(30, 144, 255);
+let c = new ColorWithAlpha(30, 144, 255, 1);
 console.log(String(c));
