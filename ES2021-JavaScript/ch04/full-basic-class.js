@@ -43,8 +43,10 @@ class Color {
     }
 }
 
+class ColorWithAlpha extends Color {
+
+}
+
 // Usage
-let c = new Color(30, 144, 255);
-console.log(String(c));           // "rgb(30, 144, 255)"
-c = Color.fromCSS("00A");
-console.log(String(c));           // "rgb(0, 0, 170)"
+let c = new ColorWithAlpha(30, 144, 255);
+console.log(String(c));
