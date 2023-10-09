@@ -26,6 +26,14 @@ class Color {
         return this.rgb;
     }
 
+    brightness() {
+        return Math.sqrt(
+            (this.r * this.r * 0.299) +
+            (this.g * this.g * 0.587) +
+            (this.b * this.b * 0.114)
+        )
+    }    
+
     static fromCSS(css) {
         const match = /^#?([0-9a-f]{3}|[0-9a-f]{6});?$/i.exec(css);
         if (!match) {
@@ -48,8 +56,28 @@ class ColorWithAlpha extends Color {
         super(r, g, b)
         this.a = a
     }
+
+    toString() {
+        return "rgba(" + this.r + ", " + this.g + ", " + this.b + ", " + this.a + ")"
+    }
+
+    brightness(bgColor) {
+        let result = super.brightness() * this.a
+        if (bgColor && this.a !== 1) {
+            result = (result + (bgColor.brightness() * (1 - this.a))) / 2
+        }
+        return result
+    }
 }
 
-// Usage
-let c = new ColorWithAlpha(30, 144, 255, 1);
-console.log(String(c));
+const ca = new ColorWithAlpha(169, 169, 169);
+console.log(String(ca));
+console.log(ca.brightness())
+
+ca.a = 0.5;
+console.log(String(ca))
+console.log(ca.brightness())
+
+const blue = new ColorWithAlpha(0, 0, 255);
+console.log(String(blue))
+console.log(ca.brightness(blue))
