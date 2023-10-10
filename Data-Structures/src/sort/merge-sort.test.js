@@ -37,14 +37,14 @@ describe('merge sort', () => {
     if (arr.length <= 1) {
       return arr;
     }
-    let mid = Math.floor(arr.length / 2);
-    let left = mergeSort(arr.slice(0, mid));
-    let right = mergeSort(arr.slice(mid));
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
 
     return run(left, right);
   };
 
-  context('부분 정렬이 주어졌을 때 ', () => {
+  test('부분 정렬이 주어졌을 때 ', () => {
     it('오름차순으로 정렬한다', () => {
       expect(
         mergeSort([10, 24, 76, 73, 72, 1, 9]),
