@@ -42,13 +42,25 @@ class SinglyLinkedList {
         }
         return current
     }
+
+    shift() {
+        if(!this.head) return undefined
+        let current_head = this.head
+        this.head = current_head.next
+        this.length--
+        if(this.length === 0) {
+            this.tail = null
+        }
+        return current_head
+    }
 }
 
 const list = new SinglyLinkedList()
 list.push('Hello')
 list.push('Hi')
 list.push('!')
-list.pop()
-list.pop()
+list.push('1')
+
+console.log(list.shift())
 
 console.log(list)
