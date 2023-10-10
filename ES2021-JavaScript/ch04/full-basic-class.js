@@ -81,3 +81,7 @@ console.log(ca.brightness())
 const blue = new ColorWithAlpha(0, 0, 255);
 console.log(String(blue))
 console.log(ca.brightness(blue))
+
+const color = Color.fromCSS('#1E90FF');
+console.log(color.toString())
+console.log(color instanceof ColorWithAlpha)
