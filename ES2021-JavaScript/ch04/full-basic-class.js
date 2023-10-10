@@ -68,6 +68,12 @@ class ColorWithAlpha extends Color {
         }
         return result
     }
+
+    static fromCSS(css, a = 1) {
+        const result = super.fromCSS(css)
+        result.a = a
+        return result
+    }
 }
 
 const ca = new ColorWithAlpha(169, 169, 169);
@@ -85,3 +91,6 @@ console.log(ca.brightness(blue))
 const color = Color.fromCSS('#1E90FF');
 console.log(color.toString())
 console.log(color instanceof ColorWithAlpha)
+
+const coa = ColorWithAlpha.fromCSS('#1E90FF', 0.5)
+console.log(coa.toString())
