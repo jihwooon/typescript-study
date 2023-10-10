@@ -66,6 +66,17 @@ class SinglyLinkedList {
         this.length++
         return this
     }
+
+    get(index) {
+      if(index < 0 || index >= this.length) return null
+      let count = 0;
+      let current = this.head;
+      while(count != index) {
+        current = current.next
+        count++
+      }
+      return current
+    }
 }
 
 const list = new SinglyLinkedList()
@@ -74,5 +85,6 @@ list.push('Hi')
 list.push('!')
 list.push('1')
 list.unshift('first')
+console.log(list.get(5))
 
 console.log(list)
