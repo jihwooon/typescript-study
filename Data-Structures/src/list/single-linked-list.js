@@ -87,6 +87,17 @@ class SinglyLinkedList {
     foundNode.data = val;
     return true;
   }
+
+  indexOf(val) {
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      if (val === current.data) {
+        return i;
+      }
+      current = current.next;
+    }
+    return -1;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -95,5 +106,4 @@ list.push('Hi');
 list.push('!');
 list.push('1');
 list.set(1, 'change');
-
-console.log(list);
+list.indexOf('!');
