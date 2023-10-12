@@ -34,6 +34,16 @@ class Color {
     );
   }
 
+  halfBright() {
+    const Ctor = (this && this.constructor && this[Symbol.species]) || Color;
+
+    return new Ctor(
+      Math.round(this.r / 2),
+      Math.round(this.g / 2),
+      Math.round(this.b / 2),
+    );
+  }
+
   static fromCSS(css) {
     const match = /^#?([0-9a-f]{3}|[0-9a-f]{6});?$/i.exec(css);
     if (!match) {
@@ -76,6 +86,20 @@ class ColorWithAlpha extends Color {
   }
 }
 
+class ColorSubclass extends Color {
+  static fromCSS(css) {
+    return Color.fromCSS(css);
+  }
+
+  halfBright() {
+    return new Color(
+      Math.round(this.r / 2),
+      Math.round(this.g / 2),
+      Math.round(this.b / 2),
+    );
+  }
+}
+
 const ca = new ColorWithAlpha(169, 169, 169);
 console.log(String(ca));
 console.log(ca.brightness());
@@ -91,6 +115,13 @@ console.log(ca.brightness(blue));
 const color = Color.fromCSS('#1E90FF');
 console.log(color.toString());
 console.log(color instanceof ColorWithAlpha);
+console.log(color.halfBright());
 
 const coa = ColorWithAlpha.fromCSS('#1E90FF', 0.5);
 console.log(coa.toString());
+
+const color2 = new Color(169, 169, 169);
+console.log(color2.halfBright());
+
+const colorsub = new ColorSubclass();
+console.log(colorsub.halfBright());
