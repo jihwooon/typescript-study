@@ -94,6 +94,14 @@ class DoublyLinkedList {
       return currentTail;
     }
   }
+
+  set(index, val) {
+    const foundNode = this.get(index);
+    if (!foundNode) return false;
+
+    foundNode.val = val;
+    return true;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -104,6 +112,7 @@ list.push(4);
 list.pop();
 list.shift();
 list.unshift(0);
-console.log(list.get(2));
+list.get(2);
+list.set(2, 5);
 
 console.log(list);
