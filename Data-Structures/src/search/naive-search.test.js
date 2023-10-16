@@ -10,13 +10,13 @@ describe('naive search', () => {
     return count;
   };
 
-  test('배열과 검색 할 인덱스가 주어지고 인덱스 값이 존재하면', () => {
+  describe('배열과 검색 할 인덱스가 주어지고 인덱스 값이 존재하면', () => {
     it('존재한 인덱스 수를 반환한다 ', () => {
       expect(run('lorie loled', 'lol')).toBe(1);
     });
   });
 
-  test('배열과 검색 할 인덱스가 주어지고 인덱스 값이 존재하지 않으면', () => {
+  describe('배열과 검색 할 인덱스가 주어지고 인덱스 값이 존재하지 않으면', () => {
     it('0를 반환한다 ', () => {
       expect(run('lorie loled', 'lolw')).toBe(0);
     });

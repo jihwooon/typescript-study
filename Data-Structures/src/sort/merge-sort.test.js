@@ -44,7 +44,7 @@ describe('merge sort', () => {
     return run(left, right);
   };
 
-  test('부분 정렬이 주어졌을 때 ', () => {
+  describe('부분 정렬이 주어졌을 때 ', () => {
     it('오름차순으로 정렬한다', () => {
       expect(
         mergeSort([10, 24, 76, 73, 72, 1, 9]),
