@@ -1,16 +1,12 @@
 import './Expenses.css'
 import { ExpenseItem } from './ExpenseItem'
 
-export const Expenses = (props) => {
+export const Expenses = ({ items }) => {
 
     return (
         <div className='expenses'>
-            {props.items.map(((items) =>
-                <ExpenseItem
-                    title={items.title}
-                    amount={items.amount}
-                    date={items.date}
-                />
+            {items.map(((items, i) =>
+                <ExpenseItem key={i} {...items} />
             ))}
         </div>
     );
