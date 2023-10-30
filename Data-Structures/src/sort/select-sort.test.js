@@ -22,7 +22,7 @@ describe('select sort', () => {
     return arr;
   };
 
-  test('배열 내 최소값을 찾을 때 ', () => {
+  describe('배열 내 최소값을 찾을 때 ', () => {
     it('내림차순으로 정렬을 한다', () => {
       expect(run([34, 22, 10, 19, 17])).toStrictEqual([
         10, 17, 19, 22, 34,
