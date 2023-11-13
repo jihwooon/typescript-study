@@ -58,14 +58,14 @@ class BinarySearchTree {
     const visited = [];
     const queue = [];
 
-    queue.push(node);
+    queue[queue.length] = node;
 
     while (queue.length) {
       node = queue.shift();
       visited.push(node);
 
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
+      if (node.left) queue[queue.length] = node.left;
+      if (node.right) queue[queue.length] = node.right;
     }
 
     return visited;
