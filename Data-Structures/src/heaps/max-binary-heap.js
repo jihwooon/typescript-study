@@ -39,13 +39,12 @@ class MaxBinaryHeap {
       let rightChildIdx = 2 * idx + 2;
       let leftChild;
       let rightChild;
-      let swap = null
+      let swap = null;
 
-
-      if (leftChildIdx < length) { 
+      if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
         if (leftChild > element) {
-          swap = leftChildIdx; 
+          swap = leftChildIdx;
         }
       }
 
@@ -68,4 +67,3 @@ let heap = new MaxBinaryHeap();
 heap.insert(55);
 
 console.log(heap.extractMax());
-
