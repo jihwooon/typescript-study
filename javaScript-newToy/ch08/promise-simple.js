@@ -13,10 +13,10 @@ const promise = new Promise((resolve, reject) => {
 // 2. Consumer: then, catch, finally
 promise
   .then((value) => {
-  console.log(value);
+    console.log(value);
   })
   .catch((error) => {
-  console.log(error);
+    console.log(error);
   })
   .finally(() => {
     console.log('finally');
@@ -30,12 +30,10 @@ const fetchNumber = new Promise((resolve) => {
 fetchNumber
   .then((num) => num * 2)
   .then((num) => num * 3)
-  .then((num) => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(num - 1), 1000);
-    });
-  })
-.then(num => console.log(num));
+  .then((num) => new Promise((resolve) => {
+    setTimeout(() => resolve(num - 1), 1000);
+  }))
+  .then((num) => console.log(num));
 
 // 4. Error Handling
 const getHen = () => new Promise((resolve) => {
