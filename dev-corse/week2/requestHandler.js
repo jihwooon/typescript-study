@@ -1,5 +1,10 @@
+const mariadb = require('./database/connect/mariadb')
+
 const main = (response) => {
   console.log('main')
+  mariadb.query("SELECT * FROM product", (err, rows) => {
+    console.log(rows)
+  })
 
   response.writeHead(200, { 'Content-Type': 'text/html' })
   response.write('Hello Node.js')
