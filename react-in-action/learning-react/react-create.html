@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>순수 리액트 예제</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.14.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js"></script>
+
+  <script>
+    const items = [
+      "연어 900 그램",
+      "신선한 로즈마리 5가지",
+      "올리브 오일 2 테이블 스푼",
+      "작은 레몬 2 조각",
+      "코셔 소금 1 티스푼",
+      "다진 마늘 4 쪽"
+    ]
+
+    const run = () => {
+      return React.createElement(
+        "ul",
+        null,
+        "Recipe",
+        items.map((inedient, i) =>
+          React.createElement("li", {key: i}, inedient),
+        )
+      )
+    }
+
+    ReactDOM.render(React.createElement(run),
+      document.getElementById('root')
+    );
+  </script>
+</body>
+
+</html>
