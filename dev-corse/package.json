@@ -12,6 +12,7 @@
     "eslint": "^8.54.0"
   },
   "dependencies": {
+    "figlet": "^1.7.0",
     "mysql": "^2.18.1"
   }
 }
