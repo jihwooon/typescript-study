@@ -1,19 +1,34 @@
-import express, { NextFunction, RequestHandler, Response } from 'express'
+/**
+ * CommonJS / ESModule
+ * const express = require('express')
+ * import * as express from 'express'
+ */
+import express, { ErrorRequestHandler, RequestHandler } from 'express'
 
-// express => Application
+// module.export = e 
 const app = express();
 const port = 3000
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const middleware: RequestHandler<{ paramType: string }, { message: string }, { bodyType: number }, { queryType: boolean }, { localType: unknown }> = (req, res, next) => {
+  req.params.paramType,
+  req.body.bodyType;
+  req.query.queryType;
+  res.locals.localType;
+  res.json({
+    message: 'hello',
+  })
+};
 
-app.get('/foo', (req, res, next) => {
-  res.send('bar')
-})
+app.use('/', middleware)
+
+const errorMiddleware: ErrorRequestHandler = (err: Error, req, res, next) => {
+  console.log(err.status)
+}
+
+app.use(errorMiddleware)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
