@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { getClient } from "../queryClient";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil';
 import Gnb from './gnb';
 const { worker } = await import('../mocks/browser')
 
@@ -14,10 +15,12 @@ const Layout: React.FC = () => {
   const queryClient = getClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={'loading...'}>
-        <Gnb />
-        <Outlet />
-      </Suspense>
+      <RecoilRoot >
+        <Suspense fallback={'loading...'}>
+          <Gnb />
+          <Outlet />
+        </Suspense>
+      </RecoilRoot >
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
