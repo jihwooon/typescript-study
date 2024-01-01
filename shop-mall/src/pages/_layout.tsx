@@ -4,6 +4,11 @@ import { getClient } from "../queryClient";
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClientProvider } from 'react-query'
 import Gnb from './gnb';
+const { worker } = await import('../mocks/browser')
+
+if (import.meta.env.DEV) {
+  worker.start()
+}
 
 const Layout: React.FC = () => {
   const queryClient = getClient();
