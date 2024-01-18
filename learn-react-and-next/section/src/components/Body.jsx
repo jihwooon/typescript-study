@@ -1,27 +1,36 @@
+import { useState } from 'react';
 import './Body.css';
-import Button from './Button';
 
 function Body() {
-
-  // 전개 연산자
-  const buttonProps = {
-    text: '버튼',
-    color: 'red',
-    a:1,
-    b:2,
-    c:3
-  }
+  const [light, setLight] = useState("OFF")
 
   return (
     <div className='body'>
-      <h1>BODY</h1>
-      <Button {...buttonProps}>
-        <div>버튼</div>
-      </Button>
-      <Button text={"2번 버튼"}/>
-      <Button text={"3번 버튼"}/>
+     <Lightbulb light={light}/>
+     <StaticLightbulb/>
+     <button onClick={() => setLight("ON")}>버튼1</button>
+     <button onClick={() => setLight("OFF")}>버튼2</button>
     </div>
   );
 }
+
+const StaticLightbulb = () => {
+  return (
+    <div style={{backgroundColor: "gray"}}>OFF</div>
+  )
+}
+
+const Lightbulb = ({ light }) => {
+  return (
+    <>
+       {light === 'ON' ?(
+        <div style={{backgroundColor: "orange"}}>ON</div>
+      ) : (
+        <div style={{backgroundColor: "gray"}}>OFF</div>
+      )}
+    </>
+  )
+}
+
 
 export default Body
