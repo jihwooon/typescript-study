@@ -1,8 +1,10 @@
+import './Body.css';
+
 function Body() {
   return (
-    <body>
+    <div className='body'>
       <h1>BODY</h1>
-    </body>
+    </div>
   );
 }
 
