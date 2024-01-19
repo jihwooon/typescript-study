@@ -1,36 +1,61 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './Body.css';
 
 function Body() {
-  const [light, setLight] = useState("OFF")
+  const [state, setState] = useState({
+    name: "",
+    gender: "",
+    bio: "",
+  });
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const nameRef = useRef()
+
+  const onSubmit = () => {
+    if (state.name === "") {
+      nameRef.current.focus();
+      return
+    }
+    alert(`${state.name}님 회원 가입에 축하합니다.`)
+  }
 
   return (
     <div className='body'>
-     <Lightbulb light={light}/>
-     <StaticLightbulb/>
-     <button onClick={() => setLight("ON")}>버튼1</button>
-     <button onClick={() => setLight("OFF")}>버튼2</button>
+      <div>
+        <input
+        ref={nameRef}
+        name={"name"}
+        value={state.name}
+        onChange={onChange}
+        />
+      </div>
+      <div>
+        <select
+          name={"gender"}
+          value={state.gender}
+          onChange={onChange}>
+          <option value="">밝히지 않음</option>
+          <option value="female">여성</option>
+          <option value="male">남성</option>
+        </select>
+      </div>
+      <div>
+        <textarea
+        name={"bio"}
+        value={state.bio}
+        onChange={onChange}/>
+      </div>
+      <div>
+        <button onClick={onSubmit}>완료</button>
+      </div>
     </div>
-  );
-}
-
-const StaticLightbulb = () => {
-  return (
-    <div style={{backgroundColor: "gray"}}>OFF</div>
   )
 }
-
-const Lightbulb = ({ light }) => {
-  return (
-    <>
-       {light === 'ON' ?(
-        <div style={{backgroundColor: "orange"}}>ON</div>
-      ) : (
-        <div style={{backgroundColor: "gray"}}>OFF</div>
-      )}
-    </>
-  )
-}
-
 
 export default Body
