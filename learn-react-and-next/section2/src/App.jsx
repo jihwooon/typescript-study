@@ -1,30 +1,19 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Viewer from "./components/Viewer"
 import Controller from './components/Controller'
 import Even from './components/Even'
 
 import './App.css'
+import useUpdate from "./components/hooks/useUpdate"
+import useInput from "./components/hooks/useInput"
 
 function App() {
   const [count, setCount] = useState(0)
-  const [text, setText] = useState("")
-  const isMountRef = useRef(false)
+  const [text, onChangeText] = useInput()
 
-  /**
-   *  1. 마운트 (탄생)
-   *  2. 업데이트 (변화, 리렌더)
-   *  3. 언마운트 (죽음) 
-   */
-
-  /* 업데이트 */
-  useEffect(() => {
-    if (!isMountRef.current) {
-      isMountRef.current = true;
-      return;
-    }
-    console.log("업데이트")
-
-  }, [count, text])
+  useUpdate(() => {
+    console.log("App 변경")
+  });
 
   /* 마운트 */
   useEffect(() => {
@@ -36,19 +25,15 @@ function App() {
     console.log(`카운트 : ${count}`);
   }
 
-  const onClickText = (e) => {
-    setText(e.target.value)
-  }
-
   return (
     <div className="App">
       <h1>Simple Counter</h1>
       <section>
-        <input value={text} onChange={onClickText} />
+        <input value={text} onChange={onChangeText} />
       </section>
       <section>
         <Viewer count={count} />
-        {count % 2 === 0 && <Even/>}
+        {count % 2 === 0 && <Even />}
       </section>
       <section>
         <Controller onClickButton={onClickButton} />

@@ -1,4 +1,10 @@
+import useUpdate from "./hooks/useUpdate";
+
 const Controller = ({ onClickButton }) => {
+
+  useUpdate(() => {
+    console.log("Controller 변경")
+  });
   return (
     <div>
       <button
