@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
-import B from './exam/B.jsx'
+import App from './App'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <App />
-  <B/>
+  <App />
 )

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useReducer, useRef } from 'react'
 import './App.css'
 import Header from './components/Header'
 import TodoEditor from './components/TodoEditor'
@@ -25,38 +25,52 @@ const mockData = [
   },
 ]
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CREATE": {
+      return [...state, action.data]
+    }
+    case "UPDATE": {
+      return state.map((it) =>
+      it.id === action.data
+        ? {...it, isDone : !it.isDone}
+        : it
+      );
+    }
+    case "DELETE": {
+      return state.filter((it) => it.id !== action.data);
+    }
+  }
+}
 
 function App() {
-  const [todos, setTodos] = useState(mockData)
+  const [todos, dispatch] = useReducer(reducer, mockData)
   const isRef = useRef(3)
 
   const onCreate = (content) => {
-    const newTodo = {
-      id : isRef.current++,
-      isDone : false,
-      content,
-      createDate : new Date().getTime()
-    }
-
-    setTodos(
-      [ ...todos, newTodo]
-    )
+    dispatch({
+      type: "CREATE",
+      data: {
+        id : isRef.current++,
+        isDone : false,
+        content,
+        createDate : new Date().getTime()
+      },
+    })
   }
 
   const onUpdate = (targetId) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === targetId
-        ? { ...todo, isDone: !todo.isDone }
-        : todo
-      )
-    );
+    dispatch({
+      type: "UPDATE",
+      data: targetId,
+    })
   }
 
   const onDelete = (targetId) => {
-    setTodos(
-      todos.filter((todo) => todo.id !== targetId)
-    )
+    dispatch({
+      type: "DELETE",
+      data: targetId,
+    })
   }
 
   return (
