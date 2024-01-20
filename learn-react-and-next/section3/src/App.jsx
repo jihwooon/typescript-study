@@ -7,13 +7,13 @@ import TodoList from './components/TodoList'
 const mockData = [
   {
     id: 0,
-    isDone: true,
+    isDone: false,
     content: "React 공부하기",
     createDate: new Date().getTime(),
   },
   {
     id: 1,
-    isDone: true,
+    isDone: false,
     content: "빨래 널기",
     createDate: new Date().getTime(),
   },
@@ -43,12 +43,21 @@ function App() {
     )
   }
 
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId
+        ? { ...todo, isDone: !todo.isDone }
+        : todo
+      )
+    );
+  }
 
   return (
     <div className='App'>
       <Header />
       <TodoEditor onCreate={onCreate}/>
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} onUpdate={onUpdate}/>
     </div>
   )
 }
