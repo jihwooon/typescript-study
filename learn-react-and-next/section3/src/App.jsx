@@ -1,9 +1,10 @@
-import { useReducer, useRef, useCallback } from 'react'
+import { useCallback, useReducer, useRef } from 'react'
 import './App.css'
 
+import { TodoContext } from './TodoContext'
+import OptimizedHeaderComponent from './components/Header'
 import TodoEditor from './components/TodoEditor'
 import TodoList from './components/TodoList'
-import OptimizedHeaderComponent from './components/Header'
 
 const mockData = [
   {
@@ -77,8 +78,17 @@ function App() {
   return (
     <div className='App'>
       <OptimizedHeaderComponent />
-      <TodoEditor onCreate={onCreate}/>
-      <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete}/>
+      <TodoContext.Provider value={
+        {
+          todos,
+          onCreate,
+          onUpdate,
+          onDelete
+        }
+      }>
+        <TodoEditor onCreate={onCreate}/>
+        <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete}/>
+      </TodoContext.Provider>
     </div>
   )
 }
