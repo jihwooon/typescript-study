@@ -49,6 +49,7 @@ module.exports = {
     'arrow-spacing': ['error', { before: true, after: true }],
     "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off"
   },
 };
