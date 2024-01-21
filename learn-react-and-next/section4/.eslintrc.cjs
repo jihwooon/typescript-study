@@ -50,6 +50,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off",
     "react/button-has-type": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "import/prefer-default-export": "off"
   },
 };
