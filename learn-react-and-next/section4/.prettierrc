@@ -6,7 +6,7 @@
   "singleQuote": true,
   "endOfLine": "auto",
   "trailingComma": "all",
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "bracketSpacing": true,
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,

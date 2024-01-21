@@ -51,6 +51,9 @@ module.exports = {
     "object-curly-newline": "off",
     "react/button-has-type": "off",
     "react/jsx-one-expression-per-line": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/alt-text": "off"
   },
 };

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchCountries } from '../api';
+import CountryList from '../components/CountryList';
+import Searchbar from '../components/Searchbar';
+import style from './Home.module.css';
 
 function Home() {
   const [countries, setCountries] = useState([]);
@@ -14,7 +17,12 @@ function Home() {
     setInitData();
   }, []);
 
-  return <div>Home</div>;
+  return (
+    <div className={style.container}>
+      <Searchbar />
+      <CountryList countries={countries} />
+    </div>
+  );
 }
 
 export default Home;
