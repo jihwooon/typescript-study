@@ -1,25 +1,18 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    jest: true,
-  },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: [
-    'react',
-    'react-hooks',
-    '@typescript-eslint',
-  ],
+  root: true,
+  env: { browser: true, es2020: true },
   extends: [
     'airbnb',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:react/jsx-runtime',
+    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
   ],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.js'],
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  settings: { react: { version: '18.2' } },
+  plugins: ['react-refresh'],
   settings: {
     'import/resolver': {
       node: {
@@ -28,6 +21,12 @@ module.exports = {
     },
   },
   rules: {
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
     indent: ['error', 2],
     'no-trailing-spaces': 'error',
     curly: 'error',
@@ -48,23 +47,13 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'key-spacing': ['error', { mode: 'strict' }],
     'arrow-spacing': ['error', { before: true, after: true }],
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: [
-        '**/*.test.js',
-        '**/*.test.jsx',
-        '**/*.test.ts',
-        '**/*.test.tsx',
-      ],
-    }],
-    'import/extensions': ['error', 'ignorePackages', {
-      js: 'never',
-      jsx: 'never',
-      ts: 'never',
-      tsx: 'never',
-    }],
-    'react/jsx-filename-extension': [2, {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    }],
-    'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
+    "import/no-extraneous-dependencies": "off",
+    "object-curly-newline": "off",
+    "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/alt-text": "off"
   },
 };

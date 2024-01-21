@@ -1,0 +1,21 @@
+{
+  "editor.rulers": [
+    {
+      "column": 80,
+      "color": "#f5870a"
+    },
+    100, // <- a ruler in the default color or as customized (with "editorRuler.foreground") at column 100
+    {
+      "column": 120,
+      "color": "#9f0af5"
+    }
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": false,
+  "files.trimTrailingWhitespace": true,
+  "editor.insertSpaces": false,
+  "editor.tabSize": 2,
+}
