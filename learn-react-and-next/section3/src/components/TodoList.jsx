@@ -1,10 +1,10 @@
 import { useState, useMemo, useContext } from 'react';
 import TodoItem from './TodoItem';
 import './TodoList.css';
-import { TodoContext } from '../TodoContext';
+import { TodoStateContext } from '../TodoContext';
 
 const TodoList = () => {
-	const { todos, onUpdate, onDelete } = useContext(TodoContext)
+	const todos = useContext(TodoStateContext)
 
 	const [search, setSearch] = useState("")
 
@@ -52,8 +52,6 @@ const TodoList = () => {
 		{filterTodos().map((todo, i) => (
 			<TodoItem
 			key={i} {...todo}
-			onUpdate={onUpdate}
-			onDelete={onDelete}
 			/>
 		))}
 	</div>
