@@ -4,16 +4,16 @@ import './App.css'
 function App() {
   const [disabled, setDisabled] = useState(false)
   const [buttonColor, setButtonColor] = useState("medium-violet-red");
-  const newButtonColor = buttonColor === "medium-violet-red" ? "midnight-blue" : "medium-violet-red";
+  const nextColorClass = buttonColor === "medium-violet-red" ? "midnight-blue" : "medium-violet-red";
 
   return (
     <div className='medium-violet-red'>
       <button
         className={buttonColor}
-        onClick={() => setButtonColor(newButtonColor)}
+        onClick={() => setButtonColor(nextColorClass)}
         disabled={disabled}
       >
-        Change to {newButtonColor}
+        Change to {nextColorClass}
       </button>
       <br />
       <input

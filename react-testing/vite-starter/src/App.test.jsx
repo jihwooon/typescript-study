@@ -56,6 +56,7 @@ test('checkbox enable', () => {
     // 체크박스를 다시 클릭 시 버튼이 활성화
     fireEvent.click(checkboxElement)
     expect(buttonElement).toBeEnabled();
+    expect(buttonElement).toHaveClass('medium-violet-red');
 })
 
 describe('kebabCaseToTileCase', () => {
