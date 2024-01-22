@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Button from './components/Button';
 
 function App() {
   const [disabled, setDisabled] = useState(false)
-  const [buttonColor, setButtonColor] = useState("red");
-  const newButtonColor = buttonColor === "red" ? "blue" : "red";
+  const [buttonColor, setButtonColor] = useState("medium-violet-red");
+  const newButtonColor = buttonColor === "medium-violet-red" ? "midnight-blue" : "medium-violet-red";
 
   return (
-    <div className='red'>
+    <div className='medium-violet-red'>
       <button
         className={buttonColor}
         onClick={() => setButtonColor(newButtonColor)}
