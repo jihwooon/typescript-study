@@ -1,5 +1,6 @@
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { describe } from 'vitest';
 import SummaryForm from './SummaryForm'
@@ -22,7 +23,9 @@ describe('SummaryForm', () => {
     });
 
     describe('체크박스에 체크 된 경우', () => {
-        test('버튼은 활성화 되어야 한다.', () => {
+        test('버튼은 활성화 되어야 한다.', async () => {
+            const user = userEvent.setup();
+
             render(<SummaryForm />);
 
             const checkedBox = screen.getByRole('checkbox', {
@@ -32,10 +35,10 @@ describe('SummaryForm', () => {
                 name: /Confirm order/i
             })
 
-            fireEvent.click(checkedBox)
+            await user.click(checkedBox)
             expect(button).toBeEnabled()
 
-            fireEvent.click(checkedBox)
+            await user.click(checkedBox)
             expect(button).toBeDisabled()
         })
     })
