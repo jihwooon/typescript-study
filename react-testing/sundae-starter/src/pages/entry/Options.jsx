@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import ScoopOption from './ScoopOption';
 import { Row } from 'react-bootstrap';
 import AlterBanner from '../common/AlterBanner';
+import { pricePerItem } from '../../constants/index';
+import { formatCurrency } from '../../utilities/index';
+import { useOrderDetails } from '../../context/OrderDetail';
 
 export default function Options({ optionType }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false);
+  const { totals } = useOrderDetails();
 
   useEffect(() => {
     axios
@@ -15,11 +19,12 @@ export default function Options({ optionType }) {
       .catch((error) => setError(true));
   }, [optionType]);
 
-  const ItemComponent = optionType === 'scoops' ? ScoopOption : null;
-
   if (error) {
     return <AlterBanner />;
   }
+
+  const ItemComponent = optionType === 'scoops' ? ScoopOption : null;
+  const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
 
   const optionItems = items.map((item) => (
     <ItemComponent
@@ -29,5 +34,14 @@ export default function Options({ optionType }) {
     />
   ));
 
-  return <Row>{optionItems}</Row>;
+  return (
+    <>
+      <h2>{title}</h2>
+      <p>{formatCurrency(pricePerItem[optionType])}</p>
+      <p>
+        {title} total: {formatCurrency(totals[optionType])}
+      </p>
+      <Row>{optionItems}</Row>
+    </>
+  );
 }

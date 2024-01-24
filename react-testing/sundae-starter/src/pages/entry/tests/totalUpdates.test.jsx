@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library.utils';
 import { describe, expect, test } from 'vitest';
 import Options from '../Options';
 import userEvent from '@testing-library/user-event';
@@ -8,8 +8,10 @@ describe('totalUpdates', () => {
     const user = userEvent.setup();
     render(<Options optionType="scoops" />);
 
-    const scoopSubtotal = screen.getByText('Scoops total: $', { exact: false });
-    expect(scoopSubtotal).toHaveContext('0.00');
+    const scoopsSubtotal = screen.getByText('Scoops total: $', {
+      exact: false,
+    });
+    expect(scoopsSubtotal).toHaveTextContent('0.00');
 
     const vanillaInput = await screen.findByRole('spinbutton', {
       name: 'Vanilla',
@@ -17,8 +19,7 @@ describe('totalUpdates', () => {
 
     await user.clear(vanillaInput);
     await user.type(vanillaInput, '1');
-
-    expect(scoopSubtotal).toHaveContext('2.00');
+    expect(scoopsSubtotal).toHaveTextContent('2.00');
 
     const chocolateInput = await screen.findByRole('spinbutton', {
       name: 'Chocolate',
@@ -26,6 +27,6 @@ describe('totalUpdates', () => {
 
     await user.clear(chocolateInput);
     await user.type(chocolateInput, '2');
-    expect(scoopSubtotal).toHaveTextContent('6.00');
+    expect(scoopsSubtotal).toHaveTextContent('6.00');
   });
 });

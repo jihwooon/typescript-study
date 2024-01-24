@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library.utils';
 import { server } from '../../../mocks/server';
 import OrderEntry from '../OrderEntry';
 
@@ -15,8 +15,7 @@ test('Order response', async () => {
 
   render(<OrderEntry />);
 
-  await waitFor(async () => {
-    const alerts = await screen.findAllByRole('alert');
-    expect(alerts).toHaveLength(2);
-  });
+  const alerts = await screen.findAllByRole('alert');
+
+  expect(alerts).toHaveLength(2);
 });

@@ -6,7 +6,7 @@ const OrderDetails = createContext();
 export const useOrderDetails = () => {
   const contextValue = useContext(OrderDetails);
 
-  if (contextValue) {
+  if (!contextValue) {
     throw new Error('useOrderDetails must be called from within an ');
   }
 
