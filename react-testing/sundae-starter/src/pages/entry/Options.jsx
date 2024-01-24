@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ScoopOption from './ScoopOption';
+import ToppingOption from './ToppingOption';
 import { Row } from 'react-bootstrap';
 import AlterBanner from '../common/AlterBanner';
 import { pricePerItem } from '../../constants/index';
@@ -23,7 +24,7 @@ export default function Options({ optionType }) {
     return <AlterBanner />;
   }
 
-  const ItemComponent = optionType === 'scoops' ? ScoopOption : null;
+  const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;
   const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
 
   const optionItems = items.map((item) => (
