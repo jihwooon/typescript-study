@@ -14,10 +14,15 @@ export default function Options({ optionType }) {
   const { totals } = useOrderDetails();
 
   useEffect(() => {
+    const controller = new AbortController();
     axios
-      .get(`http://localhost:3030/${optionType}`)
+      .get(`http://localhost:3030/${optionType}`, { signal: controller.signal })
       .then((response) => setItems(response.data))
       .catch((error) => setError(true));
+
+    return () => {
+      controller.abort();
+    };
   }, [optionType]);
 
   if (error) {
@@ -38,7 +43,7 @@ export default function Options({ optionType }) {
   return (
     <>
       <h2>{title}</h2>
-      <p>{formatCurrency(pricePerItem[optionType])}</p>
+      <p>{formatCurrency(pricePerItem[optionType])} each</p>
       <p>
         {title} total: {formatCurrency(totals[optionType])}
       </p>
