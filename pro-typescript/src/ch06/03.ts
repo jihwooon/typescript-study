@@ -1,3 +1,6 @@
+/**
+ * 식별 할 수 있는 유니온
+ */
 interface Bird {
     type: 'bird'
     flyingSpeed: number;
