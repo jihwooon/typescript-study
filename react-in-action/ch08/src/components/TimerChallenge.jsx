@@ -10,7 +10,7 @@ export default function TimerChallenge({ title, targetTime }) {
 
     const handleStart = () => {
         timer.current = setTimeout(() => { setTimeExpired(true) }, targetTime * 1000);
-        dialog.current.showModal();
+        dialog.current.open();
         setTimerStarted(true)
     };
 
