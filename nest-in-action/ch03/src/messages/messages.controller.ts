@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { CreateMessageDto } from './dtos/create-message.dto';
+import { CreateMessageInfo } from './dtos/create-message.interface';
 
 @Controller('messages')
 export class MessagesController {
@@ -8,8 +9,15 @@ export class MessagesController {
     return 'test';
   }
 
-  @Post()
-  createMessage(@Body() body: CreateMessageDto) {
+  @Post('/class')
+  createMessageClass(@Body() body: CreateMessageDto) {
+    console.log(typeof body);
+    console.log(body);
+  }
+
+  @Post('/interface')
+  createMessageInterface(@Body() body: CreateMessageInfo) {
+    console.log(typeof body);
     console.log(body);
   }
 
