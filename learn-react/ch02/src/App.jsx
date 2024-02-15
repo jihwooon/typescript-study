@@ -20,12 +20,16 @@ function App() {
     setData([newItem, ...data])
   }
 
+  const onRemove = (targeId) => {
+    const newDiaryList = data.filter((it) => it.id !== targeId)
+    setData(newDiaryList)
+  }
 
   return (
     <div className='App'>
       <h1>Hello World!</h1>
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList dummayList={data} />
+      <DiaryList onRemove={onRemove} dummayList={data} />
     </div>
   )
 }
