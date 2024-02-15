@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -8,6 +8,7 @@ const DiaryEditor = () => {
     author: "",
     content: "",
     emotion: 1,
+    created_date: new Date().getTime()
   })
 
   const handleChangeState = (e) => {
@@ -28,6 +29,7 @@ const DiaryEditor = () => {
       return
     }
 
+    onCreate(state.author, state.content, state.emotion, state.created_date)
     alert("저장 성공")
   }
 
