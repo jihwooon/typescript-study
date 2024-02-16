@@ -3,6 +3,7 @@ import './App.css'
 import DiaryEditor from './DiaryEditor'
 import DiaryList from './DiaryList'
 import LifeCycle from './Lifecycle'
+import OptimizedTest from './OptimizeTest'
 
 function App() {
   const [data, setData] = useState([])
@@ -66,6 +67,7 @@ function App() {
 
   return (
     <div className='App'>
+      <OptimizedTest />
       <h1>Hello World!</h1>
       <LifeCycle />
       <DiaryEditor onCreate={onCreate} />
