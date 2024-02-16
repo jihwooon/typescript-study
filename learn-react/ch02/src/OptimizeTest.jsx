@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const CountA = React.memo(({ count }) => {
   useEffect(() => {
-    console.log(`CountB update - count : ${count}`)
+    console.log(`CountA update - count : ${count}`)
   })
   return <div>{count}</div>
 });
