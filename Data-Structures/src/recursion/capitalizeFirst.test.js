@@ -1,12 +1,18 @@
-const isPalindrome = (str) => {
-  if (str.length === 1) return true;
-  if (str[0] === str[1]) return true;
-  return str[0] === str.slice(-1) ? isPalindrome(str.slice(1, -1)) : false;
+const capitalizeFirst = (arr) => {
+  if (arr.length === 1) {
+    return [arr[0][0].toUpperCase() + arr[0].slice(1)];
+  }
+  const res = capitalizeFirst(arr.slice(0, -1));
+  const str = arr.slice(arr.length - 1)[0][0].toUpperCase() + arr.slice(arr.length - 1)[0].slice(1);
+
+  res.push(str);
+
+  return res;
 };
 
-describe('재귀함수에 합의 값이 주어지면', () => {
-  it('전달된 문자열이 팔린드롬 인 경우 true 를 반환하는 isPalindrome이라는 재귀(recursive) 함수를 작성하라', () => {
-    expect(isPalindrome('tt')).toBe(true);
-    expect(isPalindrome('taoat')).toBe(true);
+describe('capitalizeFirst', () => {
+  it('문자열 배열이 주어지면 배열에 있는 각 문자열의 첫 글자를 대문자로 바꿔주는 함수를 작성하라', () => {
+    expect(capitalizeFirst(['car'])).toStrictEqual(['Car']);
+    expect(capitalizeFirst(['car', 'taco'])).toStrictEqual(['Car', 'Taco']);
   });
 });
