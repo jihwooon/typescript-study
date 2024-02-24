@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { plainToInstance } from 'class-transformer';
 
-export const Serialize = (dto: any) => {
+type ClassConstructor = new (...arg: unknown[]) => object;
+
+export const Serialize = (dto: ClassConstructor) => {
   return UseInterceptors(new SerializeInterceptor(dto));
 };
 

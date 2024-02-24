@@ -24,8 +24,8 @@ export class UsersController {
     return this.usersService.create(body.email, body.password);
   }
 
-  @Serialize(UserDto)
   @Get('/:id')
+  @Serialize(UserDto)
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
