@@ -83,8 +83,8 @@ describe('UsersController', () => {
   it('findAllUsers return ', async () => {
     const [users] = await controller.findAllUser('abcd@gmail.com');
 
-    expect(users).toEqual(1);
     expect(users.email).toEqual('abcd@gmail.com');
+    expect(users.password).toEqual('12345');
   });
 
   it('findUser returns a signle user with the given id', async () => {
