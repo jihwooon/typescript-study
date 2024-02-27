@@ -5,37 +5,58 @@ import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { NotFoundException } from '@nestjs/common';
 
-type FackObjectController<T> = {
+type FakeObjectController<T> = {
   [P in keyof T]?: T[P];
 };
 
 describe('UsersController', () => {
   let controller: UsersController;
-  let fackUsersService: FackObjectController<UsersService>;
-  let fackAuthService: FackObjectController<AuthService>;
+  let fakeUserService: FakeObjectController<UsersService>;
+  let fakeAuthService: FakeObjectController<AuthService>;
 
   beforeEach(async () => {
-    fackUsersService = {
-      findOne: (id: number) => {
-        return Promise.resolve({
-          id,
-          email: 'abcd@gmail.com',
-          password: '12345',
-        } as User);
+    const users: User[] = [
+      {
+        id: 1,
+        email: 'abcd@gmail.com',
+        password: '12345',
+      } as User,
+    ];
+
+    fakeUserService = {
+      findOne: (id: number): Promise<User> => {
+        const [filteredUsers] = users.filter((user) => user.id === id);
+        return Promise.resolve(filteredUsers);
       },
       find: (email: string) => {
-        return Promise.resolve([{ id: 1, email, password: '12345' } as User]);
+        const filterEmail = users.filter((user) => user.email === email);
+        return Promise.resolve(filterEmail);
       },
-      // remove: (id: number) => {
-      //   return promise.resolve();
-      // },
-      // update: () => {},
+      remove: (id: number) => {
+        const index = users.findIndex((user) => user.id === id);
+        if (index !== -1) {
+          const [user] = users.splice(index, 1);
+          return Promise.resolve(user);
+        }
+        return Promise.resolve(null);
+      },
+      update: (id: number, newData: Partial<User>) => {
+        const index = users.findIndex((user) => user.id === id);
+        if (index !== -1) {
+          users[index] = { ...users[index], ...newData } as User;
+          return Promise.resolve(users[index]);
+        }
+        return Promise.resolve(null);
+      },
     };
-    fackAuthService = {
+
+    fakeAuthService = {
       signin: (email: string, password: string) => {
         return Promise.resolve({ id: 1, email, password } as User);
       },
-      // signup: () => {},
+      signup: (email: string, password: string) => {
+        return Promise.resolve({ id: 1, email, password } as User);
+      },
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -43,11 +64,11 @@ describe('UsersController', () => {
       providers: [
         {
           provide: UsersService,
-          useValue: fackUsersService,
+          useValue: fakeUserService,
         },
         {
           provide: AuthService,
-          useValue: fackAuthService,
+          useValue: fakeAuthService,
         },
       ],
     }).compile();
@@ -60,10 +81,10 @@ describe('UsersController', () => {
   });
 
   it('findAllUsers return ', async () => {
-    const users = await controller.findAllUser('abcd@gmail.com');
+    const [users] = await controller.findAllUser('abcd@gmail.com');
 
-    expect(users.length).toEqual(1);
-    expect(users[0].email).toEqual('abcd@gmail.com');
+    expect(users).toEqual(1);
+    expect(users.email).toEqual('abcd@gmail.com');
   });
 
   it('findUser returns a signle user with the given id', async () => {
@@ -77,7 +98,7 @@ describe('UsersController', () => {
   });
 
   it('findUSer throws an error if user with gicen id', async () => {
-    fackUsersService.findOne = () => null;
+    fakeUserService.findOne = () => null;
     await expect(controller.findUser('2')).rejects.toThrow(NotFoundException);
   });
 
@@ -90,5 +111,34 @@ describe('UsersController', () => {
 
     expect(user.id).toEqual(1);
     expect(session.userId).toEqual(1);
+  });
+
+  it('signup updates session object and returns user', async () => {
+    const session = { userId: -10 };
+    const user = await controller.createUser(
+      { email: 'abcd@gmail.com', password: '12345' },
+      session,
+    );
+
+    expect(user.email).toEqual('abcd@gmail.com');
+    expect(user.password).toEqual('12345');
+    expect(user.id).toEqual(1);
+  });
+
+  it('remove returns user', async () => {
+    const user = await controller.removeUser('1');
+
+    expect(user.email).toEqual('abcd@gmail.com');
+    expect(user.password).toEqual('12345');
+  });
+
+  it('update returns user', async () => {
+    const user = await controller.updateUser('1', {
+      email: 'abcd2@gmail.com',
+      password: '123456',
+    });
+
+    expect(user.email).toEqual('abcd2@gmail.com');
+    expect(user.password).toEqual('123456');
   });
 });
