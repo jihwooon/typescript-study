@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
-import { setupApp } from '../src/setup-app';
 
 describe('Authentication System', () => {
   let app: INestApplication;
@@ -13,12 +12,11 @@ describe('Authentication System', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    setupApp(app);
     await app.init();
   });
 
   it('handles a signup request', () => {
-    const email = 'asdlkjq432@gmail.com';
+    const email = 'asdlkjq43232@gmail.com';
     const password = '12345';
 
     return request(app.getHttpServer())
