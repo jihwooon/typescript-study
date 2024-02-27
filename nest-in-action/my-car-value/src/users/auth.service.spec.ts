@@ -4,14 +4,9 @@ import { UsersService } from './users.service';
 import { User } from './user.entity';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
-type FakeObject<T> = {
-  [P in keyof T]?: T[P];
-};
-
 describe('AuthService', () => {
   let service: AuthService;
-
-  let fakeUsersService: FakeObject<UsersService>;
+  let fakeUsersService: Partial<UsersService>;
 
   beforeEach(async () => {
     const users: User[] = [];
