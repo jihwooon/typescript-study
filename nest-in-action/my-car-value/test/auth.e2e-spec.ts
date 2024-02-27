@@ -29,4 +29,23 @@ describe('Authentication System', () => {
         expect(email).toEqual(email);
       });
   });
+
+  it('signup as a new user then get hte currently logged in user', async () => {
+    const email = 'asdlkjq43232@gmail.com';
+    const password = '12345';
+
+    const res = await request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({ email, password })
+      .expect(201);
+
+    const cookie = res.get('Set-Cookie');
+
+    const { body } = await request(app.getHttpServer())
+      .get('/auth/whoamI')
+      .set('Cookie', cookie)
+      .expect(200);
+
+    expect(body.email).toEqual(email);
+  });
 });
