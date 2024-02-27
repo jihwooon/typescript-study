@@ -58,25 +58,21 @@ describe('AuthService', () => {
   });
 
   it('throws an error if user signs up with email that is in use', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([{ id: 1, email: 'a', password: '1' } as User]);
+    await service.signup('asdf@gmail.con', 'wrongpassword');
 
-    expect(service.signup('asdf@gmail.con', 'asdf')).rejects.toThrow(
+    expect(service.signup('asdf@gmail.con', '12345')).rejects.toThrow(
       BadRequestException,
     );
   });
 
   it('throw if signin is called with an unsed email', async () => {
-    expect(service.signin('abcde@gmail.com', 'asdf')).rejects.toThrow(
+    expect(service.signin('abcde@gmail.com', '12345')).rejects.toThrow(
       NotFoundException,
     );
   });
 
   it('throws if an invalid password is provided', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        { id: 1, email: 'abcdefgh@gmail.com', password: '1' } as User,
-      ]);
+    await service.signup('asdf@gmail.com', '12345');
 
     expect(service.signin('asdf@gmail.com', 'asdf')).rejects.toThrow(
       BadRequestException,
