@@ -32,7 +32,9 @@ describe('UsersController', () => {
       // update: () => {},
     };
     fackAuthService = {
-      // signin: () => {},
+      signin: (email: string, password: string) => {
+        return Promise.resolve({ id: 1, email, password } as User);
+      },
       // signup: () => {},
     };
 
@@ -77,5 +79,16 @@ describe('UsersController', () => {
   it('findUSer throws an error if user with gicen id', async () => {
     fackUsersService.findOne = () => null;
     await expect(controller.findUser('2')).rejects.toThrow(NotFoundException);
+  });
+
+  it('signin updates session object and returns user', async () => {
+    const session = { userId: -10 };
+    const user = await controller.signin(
+      { email: 'abcd@gmail.com', password: '12345' },
+      session,
+    );
+
+    expect(user.id).toEqual(1);
+    expect(session.userId).toEqual(1);
   });
 });
