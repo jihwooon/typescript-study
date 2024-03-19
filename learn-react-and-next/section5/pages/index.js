@@ -1,9 +1,9 @@
+import { fetchCountries } from '@/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Home() {
-  const code = "KOR";
-
+export default function Home({ countries }) {
+  const code = "KOR"
   const router = useRouter()
 
   const onClick = () => {
@@ -25,7 +25,23 @@ export default function Home() {
           pathname: "/country/[code]",
           query: { code: code},
         }}>{code} 페이지 이동</Link>
-      </div>
+     </div>
+     <div>
+        {countries.map((country) => (
+          <div key={country.code}>{country.commonName}</div>
+        ))}
+     </div>
     </>
   );
+}
+
+export const getServerSideProps = async () => {
+
+  const countries = await fetchCountries()
+
+  return {
+    props: {
+      countries
+    },
+  }
 }
