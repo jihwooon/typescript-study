@@ -6,6 +6,14 @@ export default function Country({ country }) {
   const router = useRouter();
   const code = router.query.code;
 
+  if (router.isFallback) {
+    return <div>Loading ...</div>
+  }
+
+  if (!country) {
+    return <div>존재하지 않는 국가입니다.</div>
+  }
+
   return (
     <div>
       {country.commonName} {country.officialName}
@@ -21,13 +29,12 @@ export const getStaticPaths = async () => {
       { params: { code: "ABW" } },
       { params: { code: "KOR" } },
     ],
-    fallback: false,
+    fallback: true,
   };
 };
 
 export const getStaticProps = async (context) => {
   const { code } = context.params;
-  console.log(code)
 
   let country = null;
   if (code) {
