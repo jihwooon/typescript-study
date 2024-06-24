@@ -22,8 +22,8 @@ import { AuthGuard } from '../guards/auth.guard';
 @Controller('auth')
 export class UsersController {
   constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
   ) {}
 
   @Get('/whoamI')
