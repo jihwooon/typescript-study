@@ -1,4 +1,3 @@
-// 무방향 그래프
 class Graph {
   constructor() {
     this.adjacencyList = {};
