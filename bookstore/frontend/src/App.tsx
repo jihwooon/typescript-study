@@ -1,8 +1,18 @@
+import { ThemeProvider } from "styled-components";
 import Layout from "./components/layout/Layout";
-import Detail from "./pages/Detail";
+import Home from "./pages/Home";
+import { GlobalStyle } from "./style/global";
+import { dark, light } from "./style/theme";
 
 const App = () => {
-  return <Layout children={<Detail />} />;
+  return (
+    <ThemeProvider theme={light}>
+      <GlobalStyle themeName="dark" />
+      <Layout>
+        <Home />
+      </Layout>
+    </ThemeProvider>
+  );
 };
 
 export default App;
