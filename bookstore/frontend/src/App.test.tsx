@@ -8,7 +8,7 @@ test("App contains correct heading", () => {
 
   expect(headingElement).toBeInTheDocument();
 
-  const countElement = screen.getByText("count: 10,000");
+  const titleElement = screen.getByText(/제목 테스트/i);
 
-  expect(countElement).toBeInTheDocument();
+  expect(titleElement).toBeInTheDocument();
 });
