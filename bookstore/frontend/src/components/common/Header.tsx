@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import logo from "../../assert/images/logo.png";
 import { FaRegUser, FaSignInAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CATEGORY = [
   {
@@ -31,13 +32,13 @@ const Header = () => {
         <ul>
           {CATEGORY.map((item) => (
             <li key={item.id}>
-              <a
-                href={
+              <Link
+                to={
                   item.id === null ? "/books" : `/books?category_id=${item.id}`
                 }
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -45,16 +46,16 @@ const Header = () => {
       <nav className="auth">
         <ul>
           <li>
-            <a href="/login">
+            <Link to="/login">
               <FaSignInAlt />
               로그인
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/login">
+            <Link to="/login">
               <FaRegUser />
               회원가입
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -110,6 +111,7 @@ const HeaderStyle = styled.header`
           display: flex;
           align-items: center;
           line-height: 1;
+          color: ${({ theme }) => theme.color.text};
 
           svg {
             margin-right: 6px;
