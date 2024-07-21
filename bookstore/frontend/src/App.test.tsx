@@ -8,7 +8,11 @@ test("App contains correct heading", () => {
 
   expect(headingElement).toBeInTheDocument();
 
-  const titleElement = screen.getByText(/제목 테스트/i);
+  const loginElement = screen.getByText(/로그인/i);
 
-  expect(titleElement).toBeInTheDocument();
+  expect(loginElement).toBeInTheDocument();
+
+  const signupElement = screen.getByText(/회원가입/i);
+
+  expect(signupElement).toBeInTheDocument();
 });
