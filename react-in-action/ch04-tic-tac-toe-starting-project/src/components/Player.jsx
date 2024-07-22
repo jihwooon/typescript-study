@@ -4,11 +4,11 @@ export default function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
-    return setIsEditing(true);
+    return setIsEditing(!isEditing);
   };
 
   const playerName = <span className="player-name">{name}</span>;
-  const inputText = <input type="text" required />;
+  const inputText = <input type="text" required value={name} />;
 
   return (
     <li>
@@ -16,7 +16,7 @@ export default function Player({ name, symbol }) {
         {isEditing ? inputText : playerName}
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={handleEditClick}>Edit</button>
+      <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
     </li>
   );
 }
