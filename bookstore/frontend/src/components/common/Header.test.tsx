@@ -50,7 +50,7 @@ describe("Header 컴포넌트", () => {
       expect(loginLink).toBeInTheDocument();
       expect(signupLink).toBeInTheDocument();
       expect(loginLink).toHaveAttribute("href", "/login");
-      expect(signupLink).toHaveAttribute("href", "/login");
+      expect(signupLink).toHaveAttribute("href", "/signup");
     });
   });
 
