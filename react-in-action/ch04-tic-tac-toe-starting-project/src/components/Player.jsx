@@ -4,7 +4,7 @@ export default function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
-    return setIsEditing(!isEditing);
+    return setIsEditing((editing) => !editing); // 상태 변경을 함수로 해야 한다.
   };
 
   const playerName = <span className="player-name">{name}</span>;
