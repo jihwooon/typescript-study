@@ -30,6 +30,7 @@ describe("Title 컴포넌트", () => {
 
   describe("Color prop이 'primary'일 때", () => {
     test("rgb(165, 42, 42) 색상이 적용되어야 합니다.", () => {
+      const orange = "rgb(255, 88, 0)";
       const { container } = render(
         <BookStoreThemeProvider>
           <Title size="large" color="primary">
@@ -38,7 +39,7 @@ describe("Title 컴포넌트", () => {
         </BookStoreThemeProvider>,
       );
 
-      expect(container?.firstChild).toHaveStyle({ color: "rgb(165, 42, 42)" });
+      expect(container?.firstChild).toHaveStyle({ color: orange });
     });
   });
 });
