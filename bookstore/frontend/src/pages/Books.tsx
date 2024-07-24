@@ -11,10 +11,10 @@ const Books = () => {
     <>
       <Title size="large">도서 검색 결과</Title>
       <BooksStyle>
-        <BooksList />
-        <BooksEmpty />
         <BooksFilter />
         <BooksSwitcher />
+        <BooksList />
+        <BooksEmpty />
         <Pagination />
       </BooksStyle>
     </>
