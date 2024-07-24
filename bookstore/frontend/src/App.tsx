@@ -1,7 +1,6 @@
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Error from "./components/common/Error";
-import ThemeSwitcher from "./components/header/ThemeSwitcher";
 import { BookStoreThemeProvider } from "./context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup";
@@ -56,7 +55,6 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <BookStoreThemeProvider>
-      <ThemeSwitcher />
       <RouterProvider router={router} />
     </BookStoreThemeProvider>
   );
