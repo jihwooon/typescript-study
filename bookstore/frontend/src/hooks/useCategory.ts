@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import { Category } from "../models/category.model";
 import { fetchCategory } from "../api/category.api";
 import { useLocation } from "react-router-dom";
+import { QUERYSTRING } from "../constants/querystring";
 
 export const useCategory = () => {
   const location = useLocation();
   const [category, setCategory] = useState<Category[]>([]);
 
-  console.log(location.search);
-
   const setActive = () => {
     const params = new URLSearchParams(location.search);
-    if (params.get("category_id")) {
+    if (params.get(QUERYSTRING.CATEGORY_ID)) {
       setCategory((prev) => {
         return prev.map((item) => {
           return {
             ...item,
-            isActive: item.id === Number(params.get("category_id")),
+            isActive: item.id === Number(params.get(QUERYSTRING.CATEGORY_ID)),
           };
         });
       });

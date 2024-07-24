@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "../common/Button";
 import { useSearchParams } from "react-router-dom";
+import { QUERYSTRING } from "../../constants/querystring";
 
 const CATEGORY = [
   {
@@ -28,23 +29,23 @@ const BooksFilter = () => {
     const newSearchParams = new URLSearchParams(searchParams);
 
     if (id === null) {
-      newSearchParams.delete("category_id");
+      newSearchParams.delete(QUERYSTRING.CATEGORY_ID);
     } else {
-      newSearchParams.set("category_id", id.toString());
+      newSearchParams.set(QUERYSTRING.CATEGORY_ID, id.toString());
     }
 
     setSearchParams(newSearchParams);
   };
 
-  const currentCategory = searchParams.get("category_id");
+  const currentCategory = searchParams.get(QUERYSTRING.CATEGORY_ID);
 
   const handleNews = () => {
     const newSearchParams = new URLSearchParams(searchParams);
 
-    if (newSearchParams.get("news")) {
-      newSearchParams.delete("news");
+    if (newSearchParams.get(QUERYSTRING.NEWS)) {
+      newSearchParams.delete(QUERYSTRING.NEWS);
     } else {
-      newSearchParams.set("news", "true");
+      newSearchParams.set(QUERYSTRING.NEWS, "true");
     }
   };
 
