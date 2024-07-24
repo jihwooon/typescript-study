@@ -1,12 +1,12 @@
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Error from "./components/common/Error";
-import ThemeSwitcher from "./components/header/ThemeSwitcher";
 import { BookStoreThemeProvider } from "./context/themeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
+import Books from "./pages/Books";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     path: "/books",
     element: (
       <Layout>
-        <div>도서 목록</div>
+        <Books />
       </Layout>
     ),
   },
@@ -55,7 +55,6 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <BookStoreThemeProvider>
-      <ThemeSwitcher />
       <RouterProvider router={router} />
     </BookStoreThemeProvider>
   );

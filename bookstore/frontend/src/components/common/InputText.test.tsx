@@ -1,21 +1,23 @@
-import { describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import InputText from "./InputText";
 import { BookStoreThemeProvider } from "../../context/themeContext";
 import React from "react";
 
 describe("InputText 컴포넌트", () => {
+  beforeEach(() => {
+    render(
+      <BookStoreThemeProvider>
+        <InputText placeholder="여기로 입력하세요" />
+      </BookStoreThemeProvider>,
+    );
+  });
+
   describe("placeholder 텍스트가 주어지면", () => {
     test("렌더링이 되어야 합니다.", () => {
-      render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
+      const inputElement = screen.getByPlaceholderText("여기로 입력하세요");
 
-      expect(
-        screen.getByPlaceholderText("여기로 입력하세요"),
-      ).toBeInTheDocument();
+      expect(inputElement).toBeInTheDocument();
     });
   });
 
@@ -36,50 +38,33 @@ describe("InputText 컴포넌트", () => {
   describe("기본 텍스트 색상이 주어지면", () => {
     test("검정색으로 렌더링되어야 합니다.", () => {
       const black = "rgb(0, 0, 0)";
+      const inputElement = screen.getByRole("textbox");
 
-      const { container } = render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
-
-      expect(container?.firstChild).toHaveStyle({ color: black });
+      expect(inputElement).toHaveStyle({ color: black });
     });
   });
 
   describe("기본 padding이 주어지면", () => {
     test("'0.25rem 0.75rem'으로 설정되어야 합니다.", () => {
-      const { container } = render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
+      const inputElement = screen.getByRole("textbox");
 
-      expect(container?.firstChild).toHaveStyle({ padding: "0.25rem 0.75rem" });
+      expect(inputElement).toHaveStyle({ padding: "0.25rem 0.75rem" });
     });
   });
 
   describe("기본 border가 주어지면", () => {
     test("'1px solid grey'로 설정되어야 합니다.", () => {
-      const { container } = render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
+      const inputElement = screen.getByRole("textbox");
 
-      expect(container?.firstChild).toHaveStyle({ border: "1px solid grey" });
+      expect(inputElement).toHaveStyle({ border: "1px solid grey" });
     });
   });
 
   describe("기본 font-size가 주어지면", () => {
     test("'1rem'으로 설정되어야 합니다.", () => {
-      const { container } = render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
+      const inputElement = screen.getByRole("textbox");
 
-      expect(container?.firstChild).toHaveStyle({
+      expect(inputElement).toHaveStyle({
         "font-size": "1rem",
       });
     });
@@ -87,13 +72,9 @@ describe("InputText 컴포넌트", () => {
 
   describe("기본 line-height가 주어지면", () => {
     test("'1.5'로 설정되어야 합니다", () => {
-      const { container } = render(
-        <BookStoreThemeProvider>
-          <InputText placeholder="여기로 입력하세요" />
-        </BookStoreThemeProvider>,
-      );
+      const inputElement = screen.getByRole("textbox");
 
-      expect(container?.firstChild).toHaveStyle({
+      expect(inputElement).toHaveStyle({
         "line-height": "1.5",
       });
     });
