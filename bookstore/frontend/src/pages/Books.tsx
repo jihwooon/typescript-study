@@ -3,9 +3,9 @@ import Title from "../components/common/Title";
 import BooksList from "../components/books/BooksList";
 import BooksEmpty from "../components/books/BooksEmpty";
 import BooksFilter from "../components/books/BooksFilter";
-import BooksSwitcher from "../components/books/BooksSwitcher";
 import Pagination from "../components/books/Pageination";
 import { useBooks } from "../hooks/useBooks";
+import BooksViewSwitcher from "../components/books/BooksViewSwitcher";
 
 const Books = () => {
   const { books, pagination, isEmpty } = useBooks();
@@ -15,7 +15,7 @@ const Books = () => {
       <Title size="large">도서 검색 결과</Title>
       <BooksStyle>
         <BooksFilter />
-        <BooksSwitcher />
+        <BooksViewSwitcher />
         {books.length > 0 && <BooksList books={books} />}
         {books.length === 0 && <BooksEmpty />}
         {!isEmpty && <Pagination />}
