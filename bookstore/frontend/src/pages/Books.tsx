@@ -14,16 +14,31 @@ const Books = () => {
     <>
       <Title size="large">도서 검색 결과</Title>
       <BooksStyle>
-        <BooksFilter />
-        <BooksViewSwitcher />
+        <div className="filter">
+          <BooksFilter />
+          <BooksViewSwitcher />
+        </div>
         {books.length > 0 && <BooksList books={books} />}
         {books.length === 0 && <BooksEmpty />}
-        {!isEmpty && <Pagination />}
+        {!isEmpty && <Pagination pagination={pagination} />}
       </BooksStyle>
     </>
   );
 };
 
-const BooksStyle = styled.div``;
+const BooksStyle = styled.div`
+  dispaly: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+
+  .filter {
+    dispaly: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+`;
 
 export default Books;

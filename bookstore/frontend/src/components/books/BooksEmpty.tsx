@@ -22,7 +22,7 @@ const BooksEmpty = () => {
 const BooksEmptyStyle = styled.div`
   display: flex;
   flex-direction: column;
-  justfiy-content: center;
+  justify-content: center;
   align-items: center;
   gap: 12px;
   padding: 120px 0;
