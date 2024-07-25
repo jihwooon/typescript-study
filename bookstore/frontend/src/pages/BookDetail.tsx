@@ -6,6 +6,7 @@ import Title from "../components/common/Title";
 import { BookDetail as IBookDetail } from "../models/book.model";
 import { foramtNumber, formatDate } from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
+import LikeButton from "../components/book/LikeButton";
 
 const bookInfoList = [
   {
@@ -47,7 +48,7 @@ const bookInfoList = [
 
 const BookDetail = () => {
   const { bookId } = useParams();
-  const { book } = useBook(bookId);
+  const { book, likeToggle } = useBook(bookId);
 
   if (!book) return null;
 
@@ -72,14 +73,20 @@ const BookDetail = () => {
             </dl>
           ))}
           <p className="summary">{book.summary}</p>
-          <div className="like">{book.liked}</div>
+          <div className="like">
+            <LikeButton
+              book={book}
+              onClick={() => {
+                likeToggle;
+              }}
+            ></LikeButton>
+          </div>
           <div className="add-cart">장바구니 넣기</div>
         </div>
       </header>
       <div className="content">
         <Title size="medium">상세 설명</Title>
         <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
-
         <Title size="medium">목차</Title>
         <p className="index">{book.contents}</p>
       </div>
