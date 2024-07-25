@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BookDetail } from "../models/book.model";
 import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
 import { useAuthStore } from "../store/authStore";
-import useAlert from "./useAlert";
+import { useAlert } from "./useAlert";
 import { addCart } from "../api/carts.api";
 
 export const useBook = (bookId: string | undefined) => {
@@ -11,7 +11,7 @@ export const useBook = (bookId: string | undefined) => {
 
   const likeToggle = () => {
     const { isLoggedIn } = useAuthStore();
-    const showAlert = useAlert();
+    const { showAlert } = useAlert();
 
     if (!isLoggedIn) {
       showAlert("로그인이 필요합니다.");

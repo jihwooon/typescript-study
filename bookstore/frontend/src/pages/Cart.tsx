@@ -2,9 +2,24 @@ import styled from "styled-components";
 import Title from "../components/common/Title";
 import CartItem from "../components/cart/CartItem";
 import { useCart } from "../hooks/useCart";
+import { useState } from "react";
 
 const Cart = () => {
-  const { carts } = useCart();
+  const { carts, deleteCartItem } = useCart();
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+
+  const handleCheckItem = (id: number) => {
+    if (checkedItems.includes(id)) {
+      setCheckedItems(checkedItems.filter((item) => item !== id));
+    } else {
+      setCheckedItems([...checkedItems, id]);
+      return;
+    }
+  };
+
+  const handleItemDelete = (id: number) => {
+    deleteCartItem(id);
+  };
 
   return (
     <>
@@ -12,7 +27,13 @@ const Cart = () => {
       <CartStyle>
         <div className="content">
           {carts.map((item) => (
-            <CartItem cart={item} />
+            <CartItem
+              key={item.id}
+              cart={item}
+              checkedItems={checkedItems}
+              onCheck={handleCheckItem}
+              onDelete={handleItemDelete}
+            />
           ))}
         </div>
         <div>summary</div>

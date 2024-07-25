@@ -5,7 +5,7 @@ import InputText from "../components/common/InputText";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { resetRequest } from "../api/auth.api";
-import useAlert from "../hooks/useAlert";
+import { useAlert } from "../hooks/useAlert";
 import { useState } from "react";
 
 export interface ResetPasswordProps {
@@ -15,7 +15,7 @@ export interface ResetPasswordProps {
 
 const ResetPassword = () => {
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
   const [resetRequested, setResetRequested] = useState(false);
 
   const {
