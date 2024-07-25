@@ -8,7 +8,6 @@ import { ViewMode } from "./BooksViewSwitcher";
 
 interface Props {
   books: Book[];
-  view: ViewMode;
 }
 
 const BooksList = ({ books }: Props) => {

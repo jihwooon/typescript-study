@@ -5,7 +5,7 @@ import InputText from "../components/common/InputText";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../api/auth.api";
-import useAlert from "../hooks/useAlert";
+import { useAlert } from "../hooks/useAlert";
 
 export interface SignupProps {
   email: string;
@@ -14,7 +14,7 @@ export interface SignupProps {
 
 const Signup = () => {
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const { showAlert } = useAlert();
 
   const {
     register,
