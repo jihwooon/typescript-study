@@ -6,8 +6,14 @@ import { useMemo, useState } from "react";
 import Empty from "../components/common/Empty";
 import { FaShoppingCart } from "react-icons/fa";
 import CartSummary from "../components/cart/CartSummary";
+import Button from "../components/common/Button";
+import { useAlert } from "../hooks/useAlert";
+import { OrderSheet } from "../models/order.model";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
+  const { showAlert, showConfirm } = useAlert();
   const { carts, deleteCartItem, isEmpty } = useCart();
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
@@ -20,7 +26,7 @@ const Cart = () => {
     }, 0);
   }, [carts, checkedItems]);
 
-  const toalPrice = useMemo(() => {
+  const totalPrice = useMemo(() => {
     return carts.reduce((acc, cart) => {
       if (checkedItems.includes(cart.id)) {
         return acc + cart.price * cart.quantity;
@@ -40,6 +46,26 @@ const Cart = () => {
 
   const handleItemDelete = (id: number) => {
     deleteCartItem(id);
+  };
+
+  const handleOrder = () => {
+    if (checkedItems.length === 0) {
+      showAlert("주문할 상품을 선택해주세요");
+      return;
+    }
+
+    const orderData: Omit<OrderSheet, "delivery"> = {
+      items: checkedItems,
+      totalQuantity,
+      totalPrice,
+      firstBookTitle: carts[0].title,
+    };
+
+    showConfirm("주문 하시겠습니까?", () =>
+      navigate("/order", {
+        state: orderData,
+      }),
+    );
   };
 
   return (
@@ -69,7 +95,10 @@ const Cart = () => {
           ></Empty>
         )}
         <div className="summary">
-          <CartSummary totalQuantity={totalQuantity} totalPrice={toalPrice} />
+          <CartSummary totalQuantity={totalQuantity} totalPrice={totalPrice} />
+          <Button size="large" scheme="primary" onClick={handleOrder}>
+            주문하기
+          </Button>
         </div>
       </CartStyle>
     </>
@@ -91,6 +120,8 @@ const CartStyle = styled.div`
 
   .summary {
     display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 `;
 
