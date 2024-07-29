@@ -7,6 +7,7 @@ import { BookDetail as IBookDetail } from "../models/book.model";
 import { foramtNumber, formatDate } from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
 import LikeButton from "../components/book/LikeButton";
+import BookReview from "@/components/book/BookReview";
 
 const bookInfoList = [
   {
@@ -89,6 +90,8 @@ const BookDetail = () => {
         <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
         <Title size="medium">목차</Title>
         <p className="index">{book.contents}</p>
+        <Title size="medium">리뷰</Title>
+        <BookReview reviews={reviews} />
       </div>
     </BookDetailStyle>
   );
