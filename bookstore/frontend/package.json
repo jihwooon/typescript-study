@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.15",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
@@ -23,9 +24,11 @@
     "react-router-dom": "^6.25.1",
     "sanitize.css": "^13.0.0",
     "styled-components": "^6.1.12",
+    "vite-tsconfig-paths": "^4.3.2",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.51.15",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^18.3.3",
