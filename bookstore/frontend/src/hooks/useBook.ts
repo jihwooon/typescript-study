@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
-import { BookDetail } from "../models/book.model";
+import {
+  BookDetail,
+  BookReviewItem,
+  BookReviewItemWrite,
+} from "../models/book.model";
 import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
 import { useAuthStore } from "../store/authStore";
 import { useAlert } from "./useAlert";
 import { addCart } from "../api/carts.api";
+import { addBookReview, fetchBookReview } from "@/api/review.api";
+import { useToast } from "./useToast";
 
 export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
   const [cartAdded, setCartAdded] = useState(false);
+  const [reviews, setReivew] = useState<BookReviewItem[]>([]);
 
   const likeToggle = () => {
     const { isLoggedIn } = useAuthStore();
     const { showAlert } = useAlert();
+
+    const { showToast } = useToast();
 
     if (!isLoggedIn) {
       showAlert("로그인이 필요합니다.");
@@ -36,8 +45,8 @@ export const useBook = (bookId: string | undefined) => {
           likes: book.likes + 1,
         });
       });
+      showToast("좋아요 성공했어요");
     }
-    return "like";
   };
 
   const addToCart = (quantity: number) => {
@@ -60,7 +69,22 @@ export const useBook = (bookId: string | undefined) => {
     fetchBook(bookId).then((book) => {
       setBook(book);
     });
+
+    fetchBookReview(bookId).then((reviews) => {
+      setReivew(reviews);
+    });
   }, [bookId]);
 
-  return { book, likeToggle, addToCart, cartAdded };
+  const addReview = (data: BookReviewItemWrite) => {
+    if (!book) return;
+
+    addBookReview(book.id.toString(), data).then((res) => {
+      // fetchBookReview(book.id.toString()).then((reviews) => {
+      //   setReivew(reviews);
+      // });
+      showAlert(res.message);
+    });
+  };
+
+  return { book, likeToggle, addToCart, cartAdded, reviews, addReview };
 };
