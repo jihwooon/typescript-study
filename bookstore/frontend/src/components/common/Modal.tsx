@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -9,10 +9,11 @@ interface Props {
 }
 
 const Modal = ({ children, isOpen, onClose }: Props) => {
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleClose = () => {
-    onClose();
+    setIsFadingOut(true);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -39,10 +40,20 @@ const Modal = ({ children, isOpen, onClose }: Props) => {
     };
   }, [isOpen]);
 
+  const handleAnimationEnd = () => {
+    if (isFadingOut) {
+      onClose();
+    }
+  };
+
   return (
     <>
       {isOpen && (
-        <ModelStyle onClick={handleOverlayClick}>
+        <ModelStyle
+          className={isFadingOut ? "fade-out" : "fade-in"}
+          onClick={handleOverlayClick}
+          onAnimationEnd={handleAnimationEnd}
+        >
           <div className="modal-body">
             <div className="modal-contents">
               {children}
@@ -58,6 +69,32 @@ const Modal = ({ children, isOpen, onClose }: Props) => {
 };
 
 const ModelStyle = styled.div`
+  @keyframe fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframe fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  &.fade-in {
+    animation: fade-in 0.3s ease-in-out forwards;
+  }
+
+  &.fade-out {
+    animation: fade-out 0.3s ease-in-out forwards;
+  }
+
   position: fixed;
   top: 0;
   left: 0;
