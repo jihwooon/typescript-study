@@ -9,6 +9,8 @@ import EllipsisBox from "../components/common/EllipsisBox";
 import LikeButton from "../components/book/LikeButton";
 import BookReview from "@/components/book/BookReview";
 import { Tabs, Tab } from "@/components/common/Tabs";
+import { useState } from "react";
+import Modal from "@/components/common/Modal";
 
 const bookInfoList = [
   {
@@ -51,14 +53,17 @@ const bookInfoList = [
 const BookDetail = () => {
   const { bookId } = useParams();
   const { book, likeToggle, reviews, addReview } = useBook(bookId);
+  const [isImageOpen, setIsImgOpen] = useState(false);
 
   if (!book) return null;
 
   return (
     <BookDetailStyle>
       <header className="header">
-        <div className="img">
-          <img src={getImgSrc(book.img)} alt={book.title} />
+        <div className="img" onClick={() => setIsImgOpen(true)}>
+          <Modal isOpen={isImageOpen} onClose={() => setIsImgOpen(false)}>
+            <img src={getImgSrc(book.img)} alt={book.title} />
+          </Modal>
         </div>
         <div className="info">
           <Title size="large" color="text">
