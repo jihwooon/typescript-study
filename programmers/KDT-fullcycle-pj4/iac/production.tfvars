@@ -1,0 +1,7 @@
+db_host = "notes.prgms-fullcycle.com"
+db_port = "3306"
+db_user = "prgms"
+db_passwd = "prgms"
+db_name = "prgms_notes"
+frontend_url = "https://notes.prgms-fullcycle.com"
+backend_url = "https://notes.prgms-fullcycle.com/api"
