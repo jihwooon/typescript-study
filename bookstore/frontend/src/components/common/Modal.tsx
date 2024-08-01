@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
+import { createPortal } from "react-dom";
 
 interface Props {
   children: React.ReactNode;
@@ -46,25 +47,24 @@ const Modal = ({ children, isOpen, onClose }: Props) => {
     }
   };
 
-  return (
-    <>
-      {isOpen && (
-        <ModelStyle
-          className={isFadingOut ? "fade-out" : "fade-in"}
-          onClick={handleOverlayClick}
-          onAnimationEnd={handleAnimationEnd}
-        >
-          <div className="modal-body">
-            <div className="modal-contents">
-              {children}
-              <button className="modal-close" onClick={handleClose}>
-                <FaPlus />
-              </button>
-            </div>
-          </div>
-        </ModelStyle>
-      )}
-    </>
+  if (!isOpen) return null;
+
+  return createPortal(
+    <ModelStyle
+      className={isFadingOut ? "fade-out" : "fade-in"}
+      onClick={handleOverlayClick}
+      onAnimationEnd={handleAnimationEnd}
+    >
+      <div className="modal-body">
+        <div className="modal-contents">
+          {children}
+          <button className="modal-close" onClick={handleClose}>
+            <FaPlus />
+          </button>
+        </div>
+      </div>
+    </ModelStyle>,
+    document.body,
   );
 };
 
