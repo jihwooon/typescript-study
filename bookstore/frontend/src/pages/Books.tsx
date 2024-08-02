@@ -34,7 +34,7 @@ const Books = () => {
 };
 
 const BooksStyle = styled.div`
-  dispaly: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 24px;
