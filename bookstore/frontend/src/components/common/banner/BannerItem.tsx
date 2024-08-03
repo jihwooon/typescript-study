@@ -1,23 +1,23 @@
-import styled from "styled-components";
-import {Banner as IBanner} from "@/models/banner.model.ts";
+import styled from 'styled-components';
+import { Banner as IBanner } from '@/models/banner.model.ts';
 
 interface Props {
-    banner: IBanner;
+  banner: IBanner;
 }
 
 const BannerItem = ({ banner }: Props) => {
-    return (
-        <BannerItemStyle>
-            <div className="img">
-                <img src={banner.image} alt={banner.title}/>
-            </div>
-            <div className="content">
-                <h2>{banner.title}</h2>
-                <p>{banner.description}</p>
-            </div>
-        </BannerItemStyle>
-    );
-}
+  return (
+    <BannerItemStyle>
+      <div className="img">
+        <img src={banner.image} alt={banner.title} />
+      </div>
+      <div className="content">
+        <h2>{banner.title}</h2>
+        <p>{banner.description}</p>
+      </div>
+    </BannerItemStyle>
+  );
+};
 
 const BannerItemStyle = styled.div`
     display: flex;

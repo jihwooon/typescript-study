@@ -1,5 +1,5 @@
-import { requestHandler } from "@/api/http.ts";
+import { requestHandler } from '@/api/http.ts';
 
 export const fetchBanners = async () => {
-   return await requestHandler("get", "/banners")
-}
+  return await requestHandler('get', '/banners');
+};

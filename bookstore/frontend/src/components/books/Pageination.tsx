@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { Pagination as IPagination } from "../../models/pagination.model";
-import Button from "../common/Button";
-import { LIMIT } from "../../constants/pagination";
-import { useSearchParams } from "react-router-dom";
-import { QUERYSTRING } from "../../constants/querystring";
+import styled from 'styled-components';
+import { Pagination as IPagination } from '../../models/pagination.model';
+import Button from '../common/Button';
+import { LIMIT } from '../../constants/pagination';
+import { useSearchParams } from 'react-router-dom';
+import { QUERYSTRING } from '../../constants/querystring';
 
 interface Props {
   pagination: IPagination;
@@ -33,7 +33,7 @@ const Pagination = ({ pagination }: Props) => {
                 <Button
                   key={index}
                   size="small"
-                  scheme={index + 1 === currentPage ? "primary" : "normal"}
+                  scheme={index + 1 === currentPage ? 'primary' : 'normal'}
                   onClick={() => handleClickPage(index + 1)}
                 >
                   {index + 1}

@@ -1,5 +1,5 @@
-import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
-import styled from "styled-components";
+import { FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
+import styled from 'styled-components';
 
 interface Props {
   isChecked: boolean;
@@ -8,9 +8,7 @@ interface Props {
 
 const CheckIconButton = ({ isChecked, onClick }: Props) => {
   return (
-    <CheckIconButtonStyle onClick={onClick}>
-      {isChecked ? <FaRegCheckCircle /> : <FaRegCircle />}
-    </CheckIconButtonStyle>
+    <CheckIconButtonStyle onClick={onClick}>{isChecked ? <FaRegCheckCircle /> : <FaRegCircle />}</CheckIconButtonStyle>
   );
 };
 

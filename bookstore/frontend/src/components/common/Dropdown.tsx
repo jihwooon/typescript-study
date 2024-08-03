@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 interface Props {
   children?: React.ReactNode;
@@ -13,18 +13,15 @@ const Dropdown = ({ children, toggleButton, isOpen = false }: Props) => {
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     }
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [dropdownRef]);
 
@@ -54,8 +51,7 @@ const DropdownStyle = styled.div<DeropStyleProps>`
     svg {
       width: 30px;
       height: 30px;
-      fill: ${({ theme, $open }) =>
-        $open ? theme.color.primary : theme.color.text};
+      fill: ${({ theme, $open }) => ($open ? theme.color.primary : theme.color.text)};
     }
   }
 

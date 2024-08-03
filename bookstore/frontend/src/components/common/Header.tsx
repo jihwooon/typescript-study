@@ -1,27 +1,27 @@
-import { styled } from "styled-components";
-import logo from "../../assert/images/logo.png";
-import { FaRegSun, FaRegUser, FaSignInAlt, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useAuthStore } from "../../store/authStore";
-import Dropdown from "./Dropdown";
-import ThemeSwitcher from "../header/ThemeSwitcher";
+import { styled } from 'styled-components';
+import logo from '../../assert/images/logo.png';
+import { FaRegSun, FaRegUser, FaSignInAlt, FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useAuthStore } from '../../store/authStore';
+import Dropdown from './Dropdown';
+import ThemeSwitcher from '../header/ThemeSwitcher';
 
 const CATEGORY = [
   {
     id: null,
-    name: "전체",
+    name: '전체',
   },
   {
     id: 0,
-    name: "동화",
+    name: '동화',
   },
   {
     id: 1,
-    name: "소설",
+    name: '소설',
   },
   {
     id: 2,
-    name: "사회",
+    name: '사회',
   },
 ];
 
@@ -37,13 +37,7 @@ const Header = () => {
         <ul>
           {CATEGORY.map((item) => (
             <li key={item.id}>
-              <Link
-                to={
-                  item.id === null ? "/books" : `/books?category_id=${item.id}`
-                }
-              >
-                {item.name}
-              </Link>
+              <Link to={item.id === null ? '/books' : `/books?category_id=${item.id}`}>{item.name}</Link>
             </li>
           ))}
         </ul>

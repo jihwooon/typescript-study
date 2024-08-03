@@ -1,6 +1,6 @@
-import create from "zustand";
+import create from 'zustand';
 
-export type ToastType = "info" | "error";
+export type ToastType = 'info' | 'error';
 
 export interface ToastItem {
   id: number;
@@ -16,7 +16,7 @@ interface ToastStoreState {
 
 const useToastStore = create<ToastStoreState>((set) => ({
   toasts: [],
-  addToast: (message, type = "info") => {
+  addToast: (message, type = 'info') => {
     set((state) => ({
       toasts: [...state.toasts, { message, type, id: Date.now() }],
     }));

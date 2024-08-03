@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import styled from "styled-components";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import styled from 'styled-components';
+import { createPortal } from 'react-dom';
 
 interface Props {
   children: React.ReactNode;
@@ -24,20 +24,20 @@ const Modal = ({ children, isOpen, onClose }: Props) => {
   };
 
   const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       handleClose();
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      window.addEventListener("keydown", handleKeydown);
+      window.addEventListener('keydown', handleKeydown);
     } else {
-      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener('keydown', handleKeydown);
     }
 
     return () => {
-      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener('keydown', handleKeydown);
     };
   }, [isOpen]);
 
@@ -51,7 +51,7 @@ const Modal = ({ children, isOpen, onClose }: Props) => {
 
   return createPortal(
     <ModelStyle
-      className={isFadingOut ? "fade-out" : "fade-in"}
+      className={isFadingOut ? 'fade-out' : 'fade-in'}
       onClick={handleOverlayClick}
       onAnimationEnd={handleAnimationEnd}
     >

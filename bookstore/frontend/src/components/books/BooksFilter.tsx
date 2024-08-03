@@ -1,24 +1,24 @@
-import styled from "styled-components";
-import Button from "../common/Button";
-import { useSearchParams } from "react-router-dom";
-import { QUERYSTRING } from "../../constants/querystring";
+import styled from 'styled-components';
+import Button from '../common/Button';
+import { useSearchParams } from 'react-router-dom';
+import { QUERYSTRING } from '../../constants/querystring';
 
 const CATEGORY = [
   {
     id: null,
-    name: "전체",
+    name: '전체',
   },
   {
     id: 0,
-    name: "동화",
+    name: '동화',
   },
   {
     id: 1,
-    name: "소설",
+    name: '소설',
   },
   {
     id: 2,
-    name: "사회",
+    name: '사회',
   },
 ];
 
@@ -45,7 +45,7 @@ const BooksFilter = () => {
     if (newSearchParams.get(QUERYSTRING.NEWS)) {
       newSearchParams.delete(QUERYSTRING.NEWS);
     } else {
-      newSearchParams.set(QUERYSTRING.NEWS, "true");
+      newSearchParams.set(QUERYSTRING.NEWS, 'true');
     }
   };
 
@@ -55,9 +55,7 @@ const BooksFilter = () => {
         {CATEGORY.map((item) => (
           <Button
             size="medium"
-            scheme={
-              currentCategory === item.id?.toString() ? "primary" : "normal"
-            }
+            scheme={currentCategory === item.id?.toString() ? 'primary' : 'normal'}
             key={item.id}
             onClick={() => handleCategory(item.id)}
           >
@@ -66,11 +64,7 @@ const BooksFilter = () => {
         ))}
       </div>
       <div className="new">
-        <Button
-          size="medium"
-          scheme={searchParams.get("news") ? "primary" : "normal"}
-          onClick={() => handleNews()}
-        >
+        <Button size="medium" scheme={searchParams.get('news') ? 'primary' : 'normal'} onClick={() => handleNews()}>
           신간
         </Button>
       </div>

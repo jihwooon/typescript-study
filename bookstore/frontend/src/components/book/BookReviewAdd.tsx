@@ -1,7 +1,7 @@
-import { BookReviewItemWrite } from "@/models/book.model";
-import { useForm } from "react-hook-form";
-import styled from "styled-components";
-import Button from "../common/Button";
+import { BookReviewItemWrite } from '@/models/book.model';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import Button from '../common/Button';
 
 interface Props {
   onAdd: (data: BookReviewItemWrite) => void;
@@ -22,13 +22,11 @@ const BookReviewAdd = ({ onAdd }: Props) => {
     <BookReviewAddStyle>
       <form onSubmit={handleSubmit(handleAdd)}>
         <fieldset>
-          <textarea {...register("content", { required: true })}></textarea>
-          {errors.content && (
-            <p className="error-text">리뷰 내용을 입력해 주세요</p>
-          )}
+          <textarea {...register('content', { required: true })}></textarea>
+          {errors.content && <p className="error-text">리뷰 내용을 입력해 주세요</p>}
         </fieldset>
         <fieldset>
-          <select {...register("score", { required: true })}>
+          <select {...register('score', { required: true })}>
             <option value="1">1점</option>
             <option value="2">2점</option>
             <option value="3">3점</option>

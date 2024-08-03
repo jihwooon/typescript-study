@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import Title from "../components/common/Title";
-import { useOrders } from "../hooks/useOrders";
-import { foramtNumber, formatDate } from "../utils/format";
-import Button from "../components/common/Button";
-import React from "react";
+import styled from 'styled-components';
+import Title from '../components/common/Title';
+import { useOrders } from '../hooks/useOrders';
+import { foramtNumber, formatDate } from '../utils/format';
+import Button from '../components/common/Button';
+import React from 'react';
 
 const OrderList = () => {
   const { orders, selectOrderItem, selectedItemId } = useOrders();
@@ -31,7 +31,7 @@ const OrderList = () => {
               <React.Fragment key={order.id}>
                 <tr>
                   <td>{order.id}</td>
-                  <td>{formatDate(order.createAt, "YYYY.MM.DD")}</td>
+                  <td>{formatDate(order.createAt, 'YYYY.MM.DD')}</td>
                   <td>{order.address}</td>
                   <td>{order.receiver}</td>
                   <td>{order.contact}</td>
@@ -39,11 +39,7 @@ const OrderList = () => {
                   <td>{order.totalQuantity} 권</td>
                   <td>{foramtNumber(order.totalPrice)} 원</td>
                   <td>
-                    <Button
-                      size="small"
-                      scheme="normal"
-                      onClick={() => selectOrderItem(order.id)}
-                    >
+                    <Button size="small" scheme="normal" onClick={() => selectOrderItem(order.id)}>
                       자세히
                     </Button>
                   </td>

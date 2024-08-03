@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import logo from "../../assert/images/logo.png";
+import styled from 'styled-components';
+import logo from '../../assert/images/logo.png';
 
 const Footer = () => {
   return (

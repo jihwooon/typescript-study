@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Book } from "../../models/book.model";
-import { getImgSrc } from "../../utils/images";
-import { foramtNumber } from "../../utils/format";
-import { FaHeart } from "react-icons/fa";
-import { ViewMode } from "./BooksViewSwitcher";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Book } from '../../models/book.model';
+import { getImgSrc } from '../../utils/images';
+import { foramtNumber } from '../../utils/format';
+import { FaHeart } from 'react-icons/fa';
+import { ViewMode } from './BooksViewSwitcher';
+import { Link } from 'react-router-dom';
 
 interface Props {
   book: Book;
@@ -33,10 +33,10 @@ const BooksItem = ({ book, view }: Props) => {
   );
 };
 
-export const BooksItemStyle = styled.div<Pick<Props, "view">>`
+export const BooksItemStyle = styled.div<Pick<Props, 'view'>>`
   a {
     dispay: flex;
-    flex-direction: ${({ view }) => (view === "grid" ? "auto" : "row")};
+    flex-direction: ${({ view }) => (view === 'grid' ? 'auto' : 'row')};
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     text-decoration: none;
   }
@@ -44,7 +44,7 @@ export const BooksItemStyle = styled.div<Pick<Props, "view">>`
   .img {
     border-radius: ${({ theme }) => theme.borderRadius.default};
     overflow: hidden;
-    width: ${({ view }) => (view === "grid" ? "auto" : "160px")};
+    width: ${({ view }) => (view === 'grid' ? 'auto' : '160px')};
     img {
       max-width: 100%;
     }
@@ -53,7 +53,7 @@ export const BooksItemStyle = styled.div<Pick<Props, "view">>`
   .content {
     padding: 16px;
     position: relative;
-    flex: ${({ view }) => (view === "grid" ? 1 : 1)};
+    flex: ${({ view }) => (view === 'grid' ? 1 : 1)};
 
     .title {
       font-size: 1.25rem;
