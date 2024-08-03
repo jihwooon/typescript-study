@@ -1,12 +1,35 @@
-import { ToastItem } from "@/store/toastStore";
+import useTimeout from "@/hooks/useTimeout";
+import useToastStore, { ToastItem } from "@/store/toastStore";
+import { useState } from "react";
 import { FaBan, FaInfoCircle, FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 
+export const TOAST_REMOVE_DELAY = 3000;
+
 const Toast = ({ id, message, type }: ToastItem) => {
-  const handleRemoveToast = () => {};
+  const removeToast = useToastStore((state) => state.removeToast);
+
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  const handleRemoveToast = () => {
+    setIsFadingOut(true);
+  };
+
+  useTimeout(() => {
+    setIsFadingOut(true);
+  }, TOAST_REMOVE_DELAY);
+
+  const handleAnimationEnd = () => {
+    if (isFadingOut) {
+      removeToast(id);
+    }
+  };
 
   return (
-    <ToastStyle>
+    <ToastStyle
+      className={isFadingOut ? "fade-out" : "fade-in"}
+      onAnimationEnd={handleAnimationEnd}
+    >
       <p>
         {type === "info" && <FaInfoCircle />}
         {type === "error" && <FaBan />}
@@ -20,6 +43,32 @@ const Toast = ({ id, message, type }: ToastItem) => {
 };
 
 const ToastStyle = styled.div`
+  @keyframe fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframe fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  &.fade-in {
+    animation: fade-in 0.3s ease-in-out forwards;
+  }
+
+  &.fade-out {
+    animation: fade-out 0.3s ease-in-out forwards;
+  }
+
   background-color: ${({ theme }) => theme.color.background};
   padding: 12px;
   border-radius: ${({ theme }) => theme.borderRadius.default};
@@ -28,6 +77,8 @@ const ToastStyle = styled.div`
   justify-content: space-between;
   align-items: start;
   gap: 24px;
+  opacity: 0;
+  transition: all 0.3s;
 
   p {
     color: ${({ theme }) => theme.color.text};
