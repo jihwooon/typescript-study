@@ -4,15 +4,16 @@ import MainReview from "@/components/home/MainReview";
 import { useMain } from "@/hooks/useMain";
 import styled from "styled-components";
 import MainBest from "@/components/home/MainBest.tsx";
+import Banners from "@/components/common/banner/Banner.tsx";
 
 const Home = () => {
 
-  const {reviews, newBooks, bestBooks } = useMain()
+  const {reviews, newBooks, bestBooks, banners } = useMain()
 
+    console.log(banners)
   return (
     <HomeStyle>
-      {/* 배너 */}
-      <h2>배너</h2>
+      <Banners banners={banners}/>
 
       <section className="section">
           <MainBest books={bestBooks}/>
