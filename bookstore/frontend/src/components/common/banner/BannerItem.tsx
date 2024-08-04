@@ -20,7 +20,7 @@ const BannerItem = ({ banner }: Props) => {
 };
 
 const BannerItemStyle = styled.div`
-    display: flex;
+    flex: 0 0 100%;
     align-items: center;
     justify-content: center;
     text-align: center;
