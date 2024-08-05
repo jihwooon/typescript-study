@@ -28,4 +28,4 @@ export interface BookReviewItem {
   score: number;
 }
 
-export type BookReviewItemWrite = Pick<BookReviewItem, "content" | "score">;
+export type BookReviewItemWrite = Pick<BookReviewItem, 'content' | 'score'>;

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Button from "./Button";
-import { FaAngleDown } from "react-icons/fa6";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Button from './Button';
+import { FaAngleDown } from 'react-icons/fa6';
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const EllipsisBox = ({ children, linelimit }: Props) => {
             setExpanded(!expanded);
           }}
         >
-          {expanded ? "접기" : "펼치기"} <FaAngleDown />
+          {expanded ? '접기' : '펼치기'} <FaAngleDown />
         </Button>
       </div>
     </EllipsisBoxStyle>
@@ -40,8 +40,7 @@ const EllipsisBoxStyle = styled.div<EllipsisBoxStyleProps>`
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: ${({ linelimit, $expanded }) =>
-      $expanded ? "node" : linelimit};
+    -webkit-line-clamp: ${({ linelimit, $expanded }) => ($expanded ? 'node' : linelimit)};
     -webkit-box-orient: vertical;
     padding: 20px 0 0 0;
     margin: 0;
@@ -51,8 +50,7 @@ const EllipsisBoxStyle = styled.div<EllipsisBoxStyleProps>`
     display: flex;
     jutify-content: end;
     svg {
-      transform: ${({ $expanded }) =>
-        $expanded ? "rotate(180deg)" : "rotate(0)"};
+      transform: ${({ $expanded }) => ($expanded ? 'rotate(180deg)' : 'rotate(0)')};
     }
   }
 `;

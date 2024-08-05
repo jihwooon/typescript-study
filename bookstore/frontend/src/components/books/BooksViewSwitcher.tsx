@@ -1,22 +1,22 @@
-import styled from "styled-components";
-import Button from "../common/Button";
-import { FaList, FaTh } from "react-icons/fa";
-import { useSearchParams } from "react-router-dom";
-import { QUERYSTRING } from "../../constants/querystring";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import Button from '../common/Button';
+import { FaList, FaTh } from 'react-icons/fa';
+import { useSearchParams } from 'react-router-dom';
+import { QUERYSTRING } from '../../constants/querystring';
+import { useEffect } from 'react';
 
 const viewOptions = [
   {
-    value: "list",
+    value: 'list',
     icon: <FaList />,
   },
   {
-    value: "grid",
+    value: 'grid',
     icon: <FaTh />,
   },
 ];
 
-export type ViewMode = "grid" | "list";
+export type ViewMode = 'grid' | 'list';
 
 const BooksSwitcher = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,7 +30,7 @@ const BooksSwitcher = () => {
 
   useEffect(() => {
     if (!searchParams.get(QUERYSTRING.VIEW)) {
-      handleSwitch("grid");
+      handleSwitch('grid');
     }
   }, []);
 
@@ -40,9 +40,7 @@ const BooksSwitcher = () => {
         <Button
           key={value}
           size="medium"
-          scheme={
-            searchParams.get(QUERYSTRING.VIEW) === value ? "primary" : "normal"
-          }
+          scheme={searchParams.get(QUERYSTRING.VIEW) === value ? 'primary' : 'normal'}
           onClick={() => handleSwitch(value as ViewMode)}
         >
           {icon}

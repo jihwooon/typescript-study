@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import Title from "../components/common/Title";
-import BooksList from "../components/books/BooksList";
-import BooksEmpty from "../components/books/BooksEmpty";
-import BooksFilter from "../components/books/BooksFilter";
-import Pagination from "../components/books/Pageination";
-import { useBooks } from "../hooks/useBooks";
-import BooksViewSwitcher from "../components/books/BooksViewSwitcher";
-import Loading from "@/components/common/Loading";
+import styled from 'styled-components';
+import Title from '../components/common/Title';
+import BooksList from '../components/books/BooksList';
+import BooksEmpty from '../components/books/BooksEmpty';
+import BooksFilter from '../components/books/BooksFilter';
+import Pagination from '../components/books/Pageination';
+import { useBooks } from '../hooks/useBooks';
+import BooksViewSwitcher from '../components/books/BooksViewSwitcher';
+import Loading from '@/components/common/Loading';
 
 const Books = () => {
   const { books, pagination, isEmpty, isBooksLoading } = useBooks();

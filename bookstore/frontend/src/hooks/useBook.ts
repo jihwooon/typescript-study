@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-import {
-  BookDetail,
-  BookReviewItem,
-  BookReviewItemWrite,
-} from "../models/book.model";
-import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
-import { useAuthStore } from "../store/authStore";
-import { useAlert } from "./useAlert";
-import { addCart } from "../api/carts.api";
-import { addBookReview, fetchBookReview } from "@/api/review.api";
-import { useToast } from "./useToast";
+import { useEffect, useState } from 'react';
+import { BookDetail, BookReviewItem, BookReviewItemWrite } from '../models/book.model';
+import { fetchBook, likeBook, unlikeBook } from '../api/books.api';
+import { useAuthStore } from '../store/authStore';
+import { useAlert } from './useAlert';
+import { addCart } from '../api/carts.api';
+import { addBookReview, fetchBookReview } from '@/api/review.api';
+import { useToast } from './useToast';
 
 export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
@@ -23,7 +19,7 @@ export const useBook = (bookId: string | undefined) => {
     const { showToast } = useToast();
 
     if (!isLoggedIn) {
-      showAlert("로그인이 필요합니다.");
+      showAlert('로그인이 필요합니다.');
       return;
     }
 
@@ -45,7 +41,7 @@ export const useBook = (bookId: string | undefined) => {
           likes: book.likes + 1,
         });
       });
-      showToast("좋아요 성공했어요");
+      showToast('좋아요 성공했어요');
     }
   };
 
@@ -86,5 +82,12 @@ export const useBook = (bookId: string | undefined) => {
     });
   };
 
-  return { book, likeToggle, addToCart, cartAdded, reviews, addReview };
+  return {
+    book,
+    likeToggle,
+    addToCart,
+    cartAdded,
+    reviews,
+    addReview,
+  };
 };

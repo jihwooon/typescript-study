@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { BookDetail } from "../../models/book.model";
-import InputText from "../common/InputText";
-import Button from "../common/Button";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useBook } from "../../hooks/useBook";
+import styled from 'styled-components';
+import { BookDetail } from '../../models/book.model';
+import InputText from '../common/InputText';
+import Button from '../common/Button';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useBook } from '../../hooks/useBook';
 
 interface Props {
   book: BookDetail;
@@ -33,11 +33,7 @@ const AddToCart = ({ book }: Props) => {
   return (
     <AddtoCartStyle $added={cartAdded}>
       <div>
-        <InputText
-          inputType="number"
-          value={quantity}
-          onChange={handleChange}
-        />
+        <InputText inputType="number" value={quantity} onChange={handleChange} />
         <Button size="medium" scheme="normal" onClick={handleIncrese}>
           +
         </Button>
@@ -45,11 +41,7 @@ const AddToCart = ({ book }: Props) => {
           -
         </Button>
       </div>
-      <Button
-        size="medium"
-        scheme="primary"
-        onClick={() => addToCart(quantity)}
-      >
+      <Button size="medium" scheme="primary" onClick={() => addToCart(quantity)}>
         장바구니 담기
       </Button>
       {cartAdded && (
@@ -80,7 +72,7 @@ const AddtoCartStyle = styled.div<AddToCartStyleProps>`
     background: ${({ theme }) => theme.color.background};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     padding: 8px 12px;
-    opactity: ${({ $added }) => ($added ? "1" : "0")};
+    opactity: ${({ $added }) => ($added ? '1' : '0')};
     transition: all 0.5s ease;
 
     p {

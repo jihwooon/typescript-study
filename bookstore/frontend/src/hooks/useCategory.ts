@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Category } from "../models/category.model";
-import { fetchCategory } from "../api/category.api";
-import { useLocation } from "react-router-dom";
-import { QUERYSTRING } from "../constants/querystring";
+import { useEffect, useState } from 'react';
+import { Category } from '../models/category.model';
+import { fetchCategory } from '../api/category.api';
+import { useLocation } from 'react-router-dom';
+import { QUERYSTRING } from '../constants/querystring';
 
 export const useCategory = () => {
   const location = useLocation();
@@ -38,7 +38,7 @@ export const useCategory = () => {
       const categoryWithAll = [
         {
           id: null,
-          name: "전체",
+          name: '전체',
         },
         ...category,
       ];

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Title from "./Title";
+import styled from 'styled-components';
+import Title from './Title';
 
 interface Props {
   icon?: React.ReactNode;

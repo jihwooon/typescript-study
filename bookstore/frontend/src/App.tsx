@@ -1,55 +1,55 @@
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import Error from "./components/common/Error";
-import { BookStoreThemeProvider } from "./context/themeContext";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Signup from "./pages/Signup";
-import ResetPassword from "./pages/ResetPassword";
-import Login from "./pages/Login";
-import Books from "./pages/Books";
-import BookDetail from "./pages/BookDetail";
-import Cart from "./pages/Cart";
-import Order from "./pages/Order";
-import OrderList from "./pages/OrderList";
-import { queryClient } from "./api/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import ToastContainer from "./components/common/toast/ToastContainer";
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import Error from './components/common/Error';
+import { BookStoreThemeProvider } from './context/themeContext';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Signup from './pages/Signup';
+import ResetPassword from './pages/ResetPassword';
+import Login from './pages/Login';
+import Books from './pages/Books';
+import BookDetail from './pages/BookDetail';
+import Cart from './pages/Cart';
+import Order from './pages/Order';
+import OrderList from './pages/OrderList';
+import { queryClient } from './api/queryClient';
+import { QueryClientProvider } from '@tanstack/react-query';
+import ToastContainer from './components/common/toast/ToastContainer';
 
 const routeList = [
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/books",
+    path: '/books',
     element: <Books />,
   },
   {
-    path: "/signup",
+    path: '/signup',
     element: <Signup />,
   },
   {
-    path: "/reset",
+    path: '/reset',
     element: <ResetPassword />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/book/:bookId",
+    path: '/book/:bookId',
     element: <BookDetail />,
   },
   {
-    path: "/cart",
+    path: '/cart',
     element: <Cart />,
   },
   {
-    path: "/order",
+    path: '/order',
     element: <Order />,
   },
   {
-    path: "/orderlist",
+    path: '/orderlist',
     element: <OrderList />,
   },
 ];

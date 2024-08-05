@@ -1,8 +1,8 @@
-import { test, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { test, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-test("App contains correct heading", () => {
+test('App contains correct heading', () => {
   render(<App />);
   const headingElement = screen.getByText(/book body/i);
 

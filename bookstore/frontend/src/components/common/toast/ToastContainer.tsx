@@ -1,6 +1,6 @@
-import useToastStore from "@/store/toastStore";
-import styled from "styled-components";
-import Toast from "./Toast";
+import useToastStore from '@/store/toastStore';
+import styled from 'styled-components';
+import Toast from './Toast';
 
 const ToastContainer = () => {
   const toasts = useToastStore((state) => state.toasts);
@@ -8,12 +8,7 @@ const ToastContainer = () => {
   return (
     <ToastContainerStyle>
       {toasts.map((toast) => (
-        <Toast
-          key={toast.id}
-          id={toast.id}
-          message={toast.message}
-          type={toast.type}
-        />
+        <Toast key={toast.id} id={toast.id} message={toast.message} type={toast.type} />
       ))}
     </ToastContainerStyle>
   );

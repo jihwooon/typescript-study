@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface StoreState {
   isLoggedIn: boolean;
@@ -7,16 +7,16 @@ interface StoreState {
 }
 
 export const getToken = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   return token;
 };
 
 const setToken = (token: string) => {
-  localStorage.setItem("token", token);
+  localStorage.setItem('token', token);
 };
 
 export const removeToken = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem('token');
 };
 
 export const useAuthStore = create<StoreState>((set) => ({

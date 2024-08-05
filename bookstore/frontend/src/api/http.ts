@@ -1,7 +1,7 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { getToken, removeToken } from "../store/authStore";
+import axios, { AxiosRequestConfig } from 'axios';
+import { getToken, removeToken } from '../store/authStore';
 
-const BASE_URL = "http://localhost:9999";
+const BASE_URL = 'http://localhost:9999';
 const DEFAULT_TITMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
@@ -9,8 +9,8 @@ export const createClient = (config?: AxiosRequestConfig) => {
     baseURL: BASE_URL,
     timeout: DEFAULT_TITMEOUT,
     headers: {
-      "content-type": "application.json",
-      Authorization: getToken() ? getToken() : "",
+      'content-type': 'application.json',
+      Authorization: getToken() ? getToken() : '',
     },
     withCredentials: true,
     ...config,
@@ -23,7 +23,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     (error) => {
       if (error.response.status === 401) {
         removeToken();
-        window.location.href = "/login";
+        window.location.href = '/login';
         return;
       }
       return Promise.reject(error);
@@ -35,26 +35,22 @@ export const createClient = (config?: AxiosRequestConfig) => {
 
 export const httpClient = createClient();
 
-type RequestMethod = "get" | "post" | "put" | "delete";
+type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
-export const requestHandler = async <T>(
-  method: RequestMethod,
-  url: string,
-  payload?: T,
-) => {
+export const requestHandler = async <T>(method: RequestMethod, url: string, payload?: T) => {
   let response;
 
   switch (method) {
-    case "post":
+    case 'post':
       response = await httpClient.post(url, payload);
       break;
-    case "get":
+    case 'get':
       response = await httpClient.get(url);
       break;
-    case "put":
+    case 'put':
       response = await httpClient.put(url, payload);
       break;
-    case "delete":
+    case 'delete':
       response = await httpClient.delete(url);
       break;
   }

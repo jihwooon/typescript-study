@@ -1,5 +1,5 @@
-import { FaSpinner } from "react-icons/fa";
-import styled from "styled-components";
+import { FaSpinner } from 'react-icons/fa';
+import styled from 'styled-components';
 
 const Loading = () => {
   return (

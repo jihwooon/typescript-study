@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import Footer from "./Footer";
-import { beforeEach, describe, expect, it } from "vitest";
-import { BookStoreThemeProvider } from "../../context/themeContext";
+import { render, screen } from '@testing-library/react';
+import Footer from './Footer';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { BookStoreThemeProvider } from '../../context/themeContext';
 
-describe("Footer 컴포넌트", () => {
+describe('Footer 컴포넌트', () => {
   beforeEach(() => {
     render(
       <BookStoreThemeProvider>
@@ -11,33 +11,31 @@ describe("Footer 컴포넌트", () => {
       </BookStoreThemeProvider>,
     );
   });
-  describe("로고 이미지지가 주어지면", () => {
-    it("렌더링되어야 합니다", () => {
-      const logoImage = screen.getByAltText("book store");
+  describe('로고 이미지지가 주어지면', () => {
+    it('렌더링되어야 합니다', () => {
+      const logoImage = screen.getByAltText('book store');
 
       expect(logoImage).toBeInTheDocument();
-      expect(logoImage).toHaveAttribute("src", "/src/assert/images/logo.png");
+      expect(logoImage).toHaveAttribute('src', '/src/assert/images/logo.png');
     });
   });
 
-  describe("저작권 텍스트가 주어지면", () => {
-    it("올바르게 표시되어야 합니다.", () => {
-      const copyrightText = screen.getByText(
-        /copyright\(c\), 2024, book store/i,
-      );
+  describe('저작권 텍스트가 주어지면', () => {
+    it('올바르게 표시되어야 합니다.', () => {
+      const copyrightText = screen.getByText(/copyright\(c\), 2024, book store/i);
 
       expect(copyrightText).toBeInTheDocument();
     });
   });
 
-  describe("Footer에 기본 스타일이 올바르면", () => {
-    it("올바르게 적용되어야 합니다.", () => {
-      const footer = screen.getByRole("contentinfo");
+  describe('Footer에 기본 스타일이 올바르면', () => {
+    it('올바르게 적용되어야 합니다.', () => {
+      const footer = screen.getByRole('contentinfo');
 
-      expect(footer).toHaveStyle("max-width: 1020px");
-      expect(footer).toHaveStyle("border-top: 1px solid lightgrey");
-      expect(footer).toHaveStyle("display: flex");
-      expect(footer).toHaveStyle("justify-content: space-between");
+      expect(footer).toHaveStyle('max-width: 1020px');
+      expect(footer).toHaveStyle('border-top: 1px solid lightgrey');
+      expect(footer).toHaveStyle('display: flex');
+      expect(footer).toHaveStyle('justify-content: space-between');
     });
   });
 });

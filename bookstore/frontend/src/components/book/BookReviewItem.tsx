@@ -1,13 +1,13 @@
-import { BookReviewItem as IBookReviewItem } from "@/models/book.model";
-import { formatDate } from "@/utils/format";
-import { FaStar } from "react-icons/fa";
-import styled from "styled-components";
+import { BookReviewItem as IBookReviewItem } from '@/models/book.model';
+import { formatDate } from '@/utils/format';
+import { FaStar } from 'react-icons/fa';
+import styled from 'styled-components';
 
 interface Props {
   review: IBookReviewItem;
 }
 
-const Star = (props: Pick<IBookReviewItem, "score">) => {
+const Star = (props: Pick<IBookReviewItem, 'score'>) => {
   return (
     <span className="star">
       {Array.from({ length: props.score }, (_, index) => (

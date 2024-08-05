@@ -1,8 +1,8 @@
-import useTimeout from "@/hooks/useTimeout";
-import useToastStore, { ToastItem } from "@/store/toastStore";
-import { useState } from "react";
-import { FaBan, FaInfoCircle, FaPlus } from "react-icons/fa";
-import styled from "styled-components";
+import useTimeout from '@/hooks/useTimeout';
+import useToastStore, { ToastItem } from '@/store/toastStore';
+import { useState } from 'react';
+import { FaBan, FaInfoCircle, FaPlus } from 'react-icons/fa';
+import styled from 'styled-components';
 
 export const TOAST_REMOVE_DELAY = 3000;
 
@@ -26,13 +26,10 @@ const Toast = ({ id, message, type }: ToastItem) => {
   };
 
   return (
-    <ToastStyle
-      className={isFadingOut ? "fade-out" : "fade-in"}
-      onAnimationEnd={handleAnimationEnd}
-    >
+    <ToastStyle className={isFadingOut ? 'fade-out' : 'fade-in'} onAnimationEnd={handleAnimationEnd}>
       <p>
-        {type === "info" && <FaInfoCircle />}
-        {type === "error" && <FaBan />}
+        {type === 'info' && <FaInfoCircle />}
+        {type === 'error' && <FaBan />}
         {message}
       </p>
       <button onClick={handleRemoveToast}>

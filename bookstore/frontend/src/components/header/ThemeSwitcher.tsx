@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../context/themeContext";
-import styled from "styled-components";
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/themeContext';
+import styled from 'styled-components';
 
 interface Props {
   chidren: React.ReactNode;

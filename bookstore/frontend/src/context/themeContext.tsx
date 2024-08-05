@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { getTheme, ThemeName } from "../style/theme";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "../style/global";
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { getTheme, ThemeName } from '../style/theme';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from '../style/global';
 
-const DEFAULT_THEME_NAME = "light";
-const THEME_LOCALSTORAGE_KEY = "book_store_key";
+const DEFAULT_THEME_NAME = 'light';
+const THEME_LOCALSTORAGE_KEY = 'book_store_key';
 
 interface State {
   themeName: ThemeName;
@@ -18,25 +18,16 @@ export const state: State = {
 
 export const ThemeContext = createContext<State>(state);
 
-export const BookStoreThemeProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
+export const BookStoreThemeProvider = ({ children }: { children: ReactNode }) => {
   const [themeName, setThemeName] = useState<ThemeName>(DEFAULT_THEME_NAME);
 
   const toggleTheme = () => {
-    setThemeName(themeName === "light" ? "dark" : "light");
-    localStorage.setItem(
-      THEME_LOCALSTORAGE_KEY,
-      themeName === "light" ? "dark" : "light",
-    );
+    setThemeName(themeName === 'light' ? 'dark' : 'light');
+    localStorage.setItem(THEME_LOCALSTORAGE_KEY, themeName === 'light' ? 'dark' : 'light');
   };
 
   useEffect(() => {
-    const savedThemeName = localStorage.getItem(
-      THEME_LOCALSTORAGE_KEY,
-    ) as ThemeName;
+    const savedThemeName = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as ThemeName;
 
     setThemeName(savedThemeName || DEFAULT_THEME_NAME);
   }, []);

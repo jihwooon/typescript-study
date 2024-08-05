@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import logo from "../../assert/images/logo.png";
+import styled from 'styled-components';
+import logo from '../../assert/images/logo.png';
 
 const Footer = () => {
   return (
@@ -34,6 +34,11 @@ const FooterStyle = styled.footer`
       font-size: 0.75rem;
       color: ${({ theme }) => theme.color.text};
     }
+  }
+
+  @media screen AND ${({ theme }) => theme.mediaQuery.mobile} {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

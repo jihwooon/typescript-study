@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { Cart } from "../../models/cart.model";
-import Button from "../common/Button";
-import Title from "../common/Title";
-import { foramtNumber } from "../../utils/format";
-import CheckIconButton from "./CheckIconButton";
-import { useMemo } from "react";
-import { useAlert } from "../../hooks/useAlert";
+import styled from 'styled-components';
+import { Cart } from '../../models/cart.model';
+import Button from '../common/Button';
+import Title from '../common/Title';
+import { foramtNumber } from '../../utils/format';
+import CheckIconButton from './CheckIconButton';
+import { useMemo } from 'react';
+import { useAlert } from '../../hooks/useAlert';
 
 interface Props {
   cart: Cart;
@@ -26,7 +26,7 @@ const CartItem = ({ cart, checkedItems, onCheck, onDelete }: Props) => {
   };
 
   const handleDelete = () => {
-    showConfirm("정말 삭제하시겠습니까?", () => {
+    showConfirm('정말 삭제하시겠습니까?', () => {
       onDelete(cart.id);
     });
   };
