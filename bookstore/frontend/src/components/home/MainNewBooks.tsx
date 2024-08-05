@@ -19,6 +19,10 @@ const MainNewBooks = ({ books }: Props) => {
 const MainNewBooksStyle = styled.div`
   display: flex;
   grid-template-columns: repeat(4, 1fr);
+
+  @media screen AND ${({ theme }) => theme.mediaQuery.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export default MainNewBooks;

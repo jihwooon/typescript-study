@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 import logo from '../../assert/images/logo.png';
-import {FaAngleRight, FaBars, FaRegSun, FaRegUser, FaSignInAlt, FaUserCircle} from 'react-icons/fa';
+import { FaAngleRight, FaBars, FaRegSun, FaRegUser, FaSignInAlt, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import Dropdown from './Dropdown';
 import ThemeSwitcher from '../header/ThemeSwitcher';
-import {useState} from "react";
+import { useState } from 'react';
 
 const CATEGORY = [
   {
@@ -28,7 +28,7 @@ const CATEGORY = [
 
 const Header = () => {
   const { isLoggedIn = false, storeLogout } = useAuthStore();
-  const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <HeaderStyle $isOpen={isMobileOpen}>
@@ -37,7 +37,7 @@ const Header = () => {
       </h1>
       <nav className="category">
         <button className="menu-button" onClick={() => setIsMobileOpen(!isMobileOpen)}>
-          {isMobileOpen ?  <FaBars /> : <FaAngleRight />}
+          {isMobileOpen ? <FaBars /> : <FaAngleRight />}
         </button>
 
         <ul>
@@ -86,7 +86,7 @@ const Header = () => {
 };
 
 interface HeaderStyleProps {
-  $isOpen: boolean
+  $isOpen: boolean;
 }
 
 const HeaderStyle = styled.header<HeaderStyleProps>`
@@ -186,7 +186,7 @@ const HeaderStyle = styled.header<HeaderStyleProps>`
         display: flex;
         position: absolute;
         top: 12px;
-        right: ${({ $isOpen }) => ($isOpen ? "62%" : "52px")};
+        right: ${({ $isOpen }) => ($isOpen ? '62%' : '52px')};
         background: #fff;
         border: 0;
         font-size: 1.5rem;
@@ -195,17 +195,17 @@ const HeaderStyle = styled.header<HeaderStyleProps>`
       ul {
         position: fixed;
         top: 0;
-        right: ${({ $isOpen }) => ($isOpen ? "0" : "-100%")};
+        right: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
         width: 60%;
         height: 100vh;
         background: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transition: right 0.3s ease-in-out;
-        
+
         margin: 0;
         padding: 24px;
         z-index: 1000;
-        
+
         flex-direction: column;
         gap: 16px;
       }
