@@ -5,11 +5,12 @@ import { useMain } from '@/hooks/useMain';
 import styled from 'styled-components';
 import MainBest from '@/components/home/MainBest.tsx';
 import Banners from '@/components/common/banner/Banner.tsx';
+import { useMediaQuery } from '@/hooks/useMediaQuery.ts';
 
 const Home = () => {
   const { reviews, newBooks, bestBooks, banners } = useMain();
+  const { isMobile } = useMediaQuery();
 
-  console.log(banners);
   return (
     <HomeStyle>
       <Banners banners={banners} />
