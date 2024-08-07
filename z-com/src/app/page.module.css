@@ -56,13 +56,13 @@
   margin-top: 40px;
 }
 
-.login button {
+.login {
   width: 300px;
   height: 40px;
   border-radius: 20px;
   padding: 0 16px;
   font-size: 15px;
-  color: #1d9bf0;
+  background-color: #1d9bf0;
   border: 1px solid #cfd9de;
   display: flex;
   align-items: center;
