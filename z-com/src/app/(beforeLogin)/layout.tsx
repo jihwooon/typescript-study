@@ -6,7 +6,6 @@ interface Props {
 const HomeLayout = ({ children, modal }: Props) => {
   return (
     <>
-      비포 로그인 레이아웃
       {children}
       {modal}
     </>
