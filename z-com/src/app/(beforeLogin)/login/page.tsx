@@ -1,7 +1,7 @@
-import {redirect} from "next/navigation";
+import { redirect } from "next/navigation";
 
 const Login = () => {
-  return redirect('/i/flow/login')
+  return redirect("/i/flow/login");
 };
 
 export default Login;
