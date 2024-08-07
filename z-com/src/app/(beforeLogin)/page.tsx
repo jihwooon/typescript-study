@@ -12,7 +12,7 @@ export default function Home() {
       <div className={styles.right}>
         <h1>지금 일어나고 있는 일</h1>
         <h2>지금 가입하세요</h2>
-        <Link href="/i/flow/signup" className={styles.signup}>
+        <Link href="/@modal/i/flow/signup" className={styles.signup}>
           <button>계정 만들기</button>
         </Link>
         <h3>이미 트위터에 가입하셨나요?</h3>
