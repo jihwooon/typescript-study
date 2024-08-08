@@ -2,6 +2,8 @@ import style from './layout.module.css'
 import Link from "next/link";
 import Image from "next/image"
 import zlogo from '../../../public/zlogo.png'
+import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
+import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
 
 interface Props {
   children: React.ReactNode
@@ -18,6 +20,13 @@ const AfterLoginLayout = ({ children }: Props) => {
                                 <Image src={zlogo} alt="z.com" width={40} height={40}/>
                             </div>
                         </Link>
+                        <nav>
+                            <ul>
+                                <NavMenu/>
+                                <Link href={"/compose/tweet"} className={style.postButton}>게시하기</Link>
+                            </ul>
+                        </nav>
+                        <LogoutButton />
                     </div>
                 </section>
             </header>
