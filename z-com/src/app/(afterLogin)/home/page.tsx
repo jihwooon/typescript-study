@@ -1,7 +1,14 @@
+import Tab from "@/app/(afterLogin)/home/_component/Tab";
+import TabProvider from "@/app/(afterLogin)/home/_component/TabProvider";
+import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
+
 const Home = () => {
   return (
     <main className="main">
-      <h1>홈페이지</h1>
+        <TabProvider>
+            <Tab />
+            <PostForm />
+        </TabProvider>
     </main>
   );
 };
