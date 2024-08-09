@@ -4,6 +4,8 @@ import Image from "next/image"
 import zlogo from '../../../public/zlogo.png'
 import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
 import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
+import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
+import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
 
 interface Props {
   children: React.ReactNode
@@ -45,6 +47,8 @@ const AfterLoginLayout = ({ children }: Props) => {
                                 <input type="search" />
                             </form>
                         </div>
+                        <TrendSection />
+                        <FollowRecommend />
                     </section>
                 </div>
             </div>
