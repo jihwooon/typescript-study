@@ -2,10 +2,10 @@ import style from './layout.module.css'
 import Link from "next/link";
 import Image from "next/image"
 import zlogo from '../../../public/zlogo.png'
-import NavMenu from "@/app/(afterLogin)/_component/NavMenu";
-import LogoutButton from "@/app/(afterLogin)/_component/LogoutButton";
-import TrendSection from "@/app/(afterLogin)/_component/TrendSection";
-import FollowRecommend from "@/app/(afterLogin)/_component/FollowRecommend";
+import NavMenu from "@/app/(afterLogin)/_component/navMenu/NavMenu";
+import LogoutButton from "@/app/(afterLogin)/_component/logout/LogoutButton";
+import TrendSection from "@/app/(afterLogin)/_component/trend/TrendSection";
+import FollowRecommend from "@/app/(afterLogin)/_component/follow/FollowRecommend";
 
 interface Props {
   children: React.ReactNode

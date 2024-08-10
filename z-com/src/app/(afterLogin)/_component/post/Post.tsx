@@ -4,9 +4,9 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
-import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
+import PostArticle from "@/app/(afterLogin)/_component/post/PostArticle";
 import {faker} from '@faker-js/faker';
-import PostImages from "@/app/(afterLogin)/_component/PostImages";
+import PostImages from "@/app/(afterLogin)/_component/post/PostImages";
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime)

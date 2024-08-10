@@ -1,4 +1,4 @@
-import Follow from "@/app/(afterLogin)/_component/Follow";
+import Follow from "@/app/(afterLogin)/_component/follow/Follow";
 import style from "./followRecommend.module.css"
 
 const FollowRecommend = () => {

@@ -1,5 +1,5 @@
 import style from "./trendSection.module.css"
-import Trend from "@/app/(afterLogin)/_component/Trend";
+import Trend from "@/app/(afterLogin)/_component/trend/Trend";
 
 const TrendSection = () => {
   return (
