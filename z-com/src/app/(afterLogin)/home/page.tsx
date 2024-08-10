@@ -1,6 +1,7 @@
 import Tab from "@/app/(afterLogin)/home/_component/Tab";
 import TabProvider from "@/app/(afterLogin)/home/_component/TabProvider";
 import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
+import Post from "@/app/(afterLogin)/_component/Post";
 
 const Home = () => {
   return (
@@ -8,6 +9,13 @@ const Home = () => {
         <TabProvider>
             <Tab />
             <PostForm />
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
         </TabProvider>
     </main>
   );
