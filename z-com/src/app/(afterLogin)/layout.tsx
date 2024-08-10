@@ -9,9 +9,10 @@ import FollowRecommend from "@/app/(afterLogin)/_component/follow/FollowRecommen
 
 interface Props {
   children: React.ReactNode
+  modal: React.ReactNode
 }
 
-const AfterLoginLayout = ({ children }: Props) => {
+const AfterLoginLayout = ({ children, modal }: Props) => {
     return (
         <div className={style.container}>
             <header className={style.leftSectionWrapper}>
@@ -49,6 +50,7 @@ const AfterLoginLayout = ({ children }: Props) => {
                         </div>
                         <TrendSection />
                         <FollowRecommend />
+                        {modal}
                     </section>
                 </div>
             </div>
