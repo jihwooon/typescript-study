@@ -22,4 +22,10 @@ export const handlers = [
             }
         })
     }),
+    http.post('/api/users', async () => {
+        console.log('회원 가입');
+        return HttpResponse.text(JSON.stringify('user_exists'), {
+         status: 403,
+        })
+    }),
 ]
