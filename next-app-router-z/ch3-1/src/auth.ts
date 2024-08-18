@@ -3,12 +3,14 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const {
     handlers: { GET, POST },
+    signIn,
     auth,
 } = NextAuth({
     pages: {
         signIn: '/i/flow/login',
         newUser: '/i/flow/signup',
     },
+
     providers: [
         CredentialsProvider({
             async authorize(credentials) {

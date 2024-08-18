@@ -1,13 +1,33 @@
 "use client";
 
 import style from '@/app/(beforeLogin)/_component/login.module.css';
-import {useState} from "react";
+import {FormEventHandler, useState} from "react";
+import { signIn } from '@/auth'
+import { useRouter } from "next/navigation";
 
 export default function LoginModal() {
   const [id, setId] = useState();
   const [password, setPassword] = useState();
-  const [message, setMessage] = useState();
-  const onSubmit = () => {};
+  const [message, setMessage] = useState('');
+  const router = useRouter();
+
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    try {
+      const result = await signIn("credentials", {
+        username: id,
+        password,
+        redirect: false,
+      })
+      console.log(result);
+      router.replace('/home');
+    } catch (err) {
+      console.error(err);
+      setMessage('아이디와 비밀번호가 일치하지 않습니다.');
+    }
+  };
+
   const onClickClose = () => {};
 
   const onChangeId = () => {};
