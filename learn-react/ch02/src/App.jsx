@@ -43,6 +43,8 @@ const reducer = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext(null);
 
+
+
 const App = () => {
   const [data, dispatch] = useReducer(reducer, []);
   const dataId = useRef(0);
