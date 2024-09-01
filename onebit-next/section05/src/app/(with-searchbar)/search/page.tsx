@@ -1,7 +1,7 @@
 import BookItem from "@/components/book-item";
 import { BookData } from "@/types";
 
-export default async function Page({
+export defnult async function Page({
   searchParams,
 }: {
   searchParams: {
@@ -10,6 +10,9 @@ export default async function Page({
 }) {
   const response = await fetch(
     `http://localhost:12345/book/search?q=${searchParams.q}`,
+    {
+      cache: "force-cache",
+    },
   );
 
   if (!response.ok) {
