@@ -1,3 +1,5 @@
+import ClientComponent from '@/component/client-component';
+
 export default function Page({
   searchParams,
 }: {
@@ -5,5 +7,12 @@ export default function Page({
     q?: string;
   };
 }) {
-  return <div>{searchParams.q}</div>;
+  return (
+    <div>
+      Search 페이지 {searchParams.q}
+      <ClientComponent>
+        <></>
+      </ClientComponent>
+    </div>
+  );
 }

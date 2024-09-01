@@ -1,4 +1,4 @@
-import Searchbar from '@/app/(with-searchbar)/searchbar';
+import Searchbar from '@/component/searchbar';
 
 interface Props {
   children: React.ReactNode;
