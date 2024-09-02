@@ -1,6 +1,6 @@
 import BookItem from '@/components/book-item';
 import style from './page.module.css';
-import { BookData } from '@/types';
+import { BookData } from '@/model/types';
 
 async function AllBooks() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
