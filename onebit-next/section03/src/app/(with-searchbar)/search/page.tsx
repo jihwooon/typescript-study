@@ -1,5 +1,5 @@
 import BookItem from '@/components/book-item';
-import { BookData } from '@/models/book.model';
+import { Books } from '@/models/book.model';
 
 export default async function Page({
   searchParams,
@@ -13,7 +13,7 @@ export default async function Page({
     return <div>로딩 중입니다.</div>;
   }
 
-  const books: BookData[] = await response.json();
+  const books: Books[] = await response.json();
 
   return (
     <div>

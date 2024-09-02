@@ -1,14 +1,16 @@
 import BookItem from '@/components/book-item';
 import style from './page.module.css';
-import { BookData } from '@/model/types';
+import { Books } from '@/models/book.model';
 
 async function AllBooks() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`, {
+    cache: 'no-store',
+  });
   if (!response.ok) {
     return <div>오류가 발생했습니다.</div>;
   }
 
-  const allBooks: BookData[] = await response.json();
+  const allBooks: Books[] = await response.json();
 
   return (
     <div>
@@ -25,7 +27,7 @@ async function RecoBooks() {
     return <div>오류가 발생했습니다.</div>;
   }
 
-  const recoBooks: BookData[] = await response.json();
+  const recoBooks: Books[] = await response.json();
 
   return (
     <div>
