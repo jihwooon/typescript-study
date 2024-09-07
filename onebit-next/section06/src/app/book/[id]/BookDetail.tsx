@@ -2,7 +2,10 @@ import { notFound } from 'next/navigation';
 import style from '@/app/book/[id]/page.module.css';
 
 export async function BookDetail({ bookId }: { bookId: string }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`, {
+    cache: 'force-cache',
+  });
+
   const { id, title, subTitle, description, author, publisher, coverImgUrl } = await response.json();
   if (!response.ok) {
     if (response.status == 404) {
