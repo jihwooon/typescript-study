@@ -3,6 +3,7 @@ import { Books } from '@/models/book.model';
 import { delay } from '@/util/delay';
 import { Suspense } from 'react';
 import BookListSkeleton from '@/components/skeleton/book-list-skeleton';
+import { Metadata } from 'next';
 
 async function SearchResult({ q }: { q: string }) {
   await delay(1500);
@@ -22,6 +23,23 @@ async function SearchResult({ q }: { q: string }) {
       ))}
     </div>
   );
+}
+
+export function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    q?: string;
+  };
+}): Metadata {
+  return {
+    title: `${searchParams.q} : 검색어`,
+    description: `${searchParams.q} 검색 결과입니다.`,
+    openGraph: {
+      title: `${searchParams.q} : 한입 북스 검색`,
+      description: `${searchParams.q} 검색 결과입니다.`,
+    },
+  };
 }
 
 export default async function Page({
