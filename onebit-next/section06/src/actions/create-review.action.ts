@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function createReviewAction(formData: FormData) {
   const content = formData.get('content')?.toString();
@@ -16,8 +16,15 @@ export async function createReviewAction(formData: FormData) {
       method: 'POST',
       body: JSON.stringify({ bookId, content, author }),
     });
-    console.log(response.status);
-    revalidatePath(`/book/${bookId}`);
+    // revalidatePath(`/book/${bookId}`);
+    //
+    // revalidatePath('/book/[id]', 'page');
+    //
+    // revalidatePath('/(with-searchbar)', 'layout');
+    //
+    // revalidatePath('/', 'layout');
+
+    revalidateTag(`review-${bookId}`);
   } catch (err) {
     console.error(err);
   }
