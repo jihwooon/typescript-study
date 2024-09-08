@@ -27,3 +27,13 @@ const backpackingMeals = {
 }
 
 console.log(backpackingMeals)
+
+function directions(...arg) {
+ const [start, ...remaining] = arg;
+
+ console.log(`${arg.length} 도시를 운행합니다.`)
+ console.log(`${start}에서 출발합니다`)
+  console.log(`남은 역의 도시 ${remaining.length} 입니다.`)
+}
+
+directions("서울", "부산", "천안")
