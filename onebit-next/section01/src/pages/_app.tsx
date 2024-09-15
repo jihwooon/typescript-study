@@ -17,16 +17,6 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return <>
-    <header>
-      <Link href={"/"}>index</Link>
-      &nbsp;
-      <Link href={"/search"} prefetch={false}>index</Link>
-      &nbsp;
-      <Link href={"/book/1"}>index</Link>
-      <div>
-        <button onClick={onClickButton}>/test 페이지 이동</button>
-      </div>
-    </header>
     <GlobalLayout>
       <Component {...pageProps} />
     </GlobalLayout>
