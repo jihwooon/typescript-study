@@ -1,10 +1,9 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
-  const date = new Date()
-  res.status(200).json({ time: date.toLocaleString() });
+  const date = new Date();
+  res.json({ time: date.toLocaleString() });
 }
