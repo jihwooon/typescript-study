@@ -17,21 +17,21 @@ export class BookService {
       createBookDto.subTitle,
     ]);
 
-    return await this.prisma.book.create({
+    return this.prisma.book.create({
       data: { ...createBookDto, searchIndex },
       select: prismaExclude('Book', ['searchIndex']),
     });
   }
 
   async findAllBooks() {
-    return await this.prisma.book.findMany({
+    return this.prisma.book.findMany({
       select: prismaExclude('Book', ['searchIndex']),
     });
   }
 
   async searchBooks(q?: string) {
     const searchText = q.replace(/\s+/g, '');
-    return await this.prisma.book.findMany({
+    return this.prisma.book.findMany({
       select: prismaExclude('Book', ['searchIndex']),
       where: {
         OR: [
@@ -84,7 +84,7 @@ export class BookService {
       dto.subTitle ?? beforeUpdateData.subTitle,
     ]);
 
-    return await this.prisma.book.update({
+    return this.prisma.book.update({
       select: prismaExclude('Book', ['searchIndex']),
       where: {
         id: id,

@@ -1,39 +1,39 @@
 // CSS Module
 import SearchableLayout from '@/components/searchable-layout';
 import style from './index.module.css';
-import { ReactNode, useEffect } from 'react';
-import books from '@/mock/books.json';
+import { ReactNode } from 'react';
 import BookItem from '@/components/book-item';
 import { InferGetServerSidePropsType } from 'next';
+import fetchBooks from '@/lib/fetch-books';
+import fetchRandomBooks from '@/lib/fetch-random';
 
-export const getServerSideProps = () => {
-  const data = "hello"
+export const getServerSideProps = async () => {
+  const [allBooks, randomBooks] = await Promise.all([
+    await fetchBooks(),
+    await fetchRandomBooks()
+  ]);
 
   return {
     props: {
-      data,
+      allBooks,
+      randomBooks
     }
   }
 }
 
-export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(data)
-
-  useEffect(() => {
-    console.log(window)
-  }, []);
+export default function Home({ allBooks,randomBooks }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 
   return (
     <div className={style.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        {books.map((book) => (
+        {randomBooks.map((book) => (
           <BookItem key={book.id} {...book} />
         ))}
       </section>
       <section>
         <h3>등록된 모든 도서</h3>
-        {books.map((book) => (
+        {allBooks.map((book) => (
           <BookItem key={book.id} {...book} />
         ))}
       </section>
