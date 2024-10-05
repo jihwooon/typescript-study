@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import DashboardItems from "../components/dashboard/DashboardItems";
 import { CircleUser, DollarSign, Globe, Home } from "lucide-react"
 import { ModeToggle } from "../components/dashboard/ThemeToggle";
@@ -14,7 +14,7 @@ export const navLinks = [
     },
     {
         name: 'Sites',
-        href: "/dashboard/sites",
+        href: "/dashboard/site",
         icon: Globe,
     },
     {
