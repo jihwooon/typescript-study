@@ -22,9 +22,10 @@ export default function SitesRouter () {
             <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground max-w-sm mx-auto">You currently dont have any Sites, Please create some so that you 
                 see them right here!
             </p>
-             <Button asChild>
+             <Button asChild suppressHydrationWarning>
                 <Link href={"/dashboard/site/new"}>
-                    <PlusCircle className="mr-2 size-4"/>Create Site</Link>
+                  <PlusCircle className="mr-2 size-4"/>Create Site
+                </Link>
             </Button>           
           </div>
         </>

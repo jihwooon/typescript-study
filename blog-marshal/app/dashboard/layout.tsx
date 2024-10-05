@@ -5,6 +5,7 @@ import { CircleUser, DollarSign, Globe, Home } from "lucide-react"
 import { ModeToggle } from "../components/dashboard/ThemeToggle";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button"
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 export const navLinks = [
     {
@@ -60,7 +61,9 @@ const layout = ({ children }: { children: ReactNode}) => {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem asChild>Log out</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <LogoutLink>Log out</LogoutLink>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>    
                 </div> 
