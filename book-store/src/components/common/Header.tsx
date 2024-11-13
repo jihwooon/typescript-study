@@ -9,11 +9,11 @@ function Header() {
 }
 
 const HeaderStyle = styled.header`
-    background: #333;
+    background-color: ${(props) => props.theme.color.background};
 
     h1 {
-        color: white;
+        color: ${(props) => props.theme.color.primary}
     }
-`
+`;
 
 export default Header;
