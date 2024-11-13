@@ -1,9 +1,19 @@
-function Header () {
+import {styled} from "styled-components";
+
+function Header() {
     return (
-        <header>
+        <HeaderStyle>
             <h1>book store</h1>
-        </header>
+        </HeaderStyle>
     )
 }
+
+const HeaderStyle = styled.header`
+    background: #333;
+
+    h1 {
+        color: white;
+    }
+`
 
 export default Header;
