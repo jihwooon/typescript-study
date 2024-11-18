@@ -3,7 +3,7 @@ import {FaRegUser, FaSignInAlt} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import {useCategory} from "../../hook/useCategory";
 import {useAuthStore} from "../../store/AuthStore";
-import Button from "./Button";
+import logo from "../../assets/images/logo.png"
 
 function Header() {
     const {category} = useCategory();
@@ -13,11 +13,11 @@ function Header() {
         <HeaderStyle>
             <h1 className="logo">
                 <Link to="/">
-                    <img src="" alt="book store"/>
+                    <img src={logo} alt="book store"/>
                 </Link>
             </h1>
             <nav className="category">
-                <ul>
+            <ul>
                     {
                         category.map((item) => (
                             <li key={item.id}>
