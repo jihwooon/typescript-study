@@ -1,10 +1,11 @@
 import {styled} from "styled-components";
+import logo from "../../assets/images/logo.png"
 
 function Footer() {
     return (
         <FooterStyle>
             <h1 className="logo">
-                <img src="" alt="book store"/>
+                <img src={logo} alt="book store"/>
             </h1>
             <div className="copyright">
                 <p>
