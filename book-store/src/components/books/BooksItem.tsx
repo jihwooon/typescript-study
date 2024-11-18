@@ -14,7 +14,7 @@ interface Props {
 function BooksItem({book, view}: Props) {
     return (
         <BooksItemStyle view={view}>
-            <Link to={`/book/${book.id}`}>
+            <Link to={`/books/${book.id}`}>
                 <div className="img">
                     <img src={getImgSrc(book.img)} alt={book.title}/>
                 </div>

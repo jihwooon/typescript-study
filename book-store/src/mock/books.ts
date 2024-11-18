@@ -13,6 +13,7 @@ const bestBooksData: Book[] = Array.from({
         max: 2,
     }),
     form: '종이책',
+    categoryName: '소설',
     isbn: faker.commerce.isbn(),
     summary: faker.lorem.paragraphs(),
     detail: faker.lorem.paragraphs(),
@@ -36,9 +37,9 @@ export const bestBooks = http.get('http://localhost:9999/books/best', () => {
     });
 });
 
-export const bookId = http.get('http://localhost:9999/books/:bookId', ({ params }) => {
-    const { bookId } = params;
-    const book = bestBooksData.find(book => book.id === Number(bookId));
+export const bookId = http.get('http://localhost:9999/books/:id', ({ params }) => {
+    const { id } = params;
+    const book = bestBooksData.find(book => book.id === Number(id));
 
     if (!book) {
         return new HttpResponse(null, { status: 404 });

@@ -34,7 +34,7 @@ const routeList = [
         element: <Login/>
     },
     {
-        path: "/book/:bookId",
+        path: "/books/:bookId",
         element: <BookDetail/>
     }
 ];
