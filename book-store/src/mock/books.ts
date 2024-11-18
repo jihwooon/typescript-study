@@ -1,5 +1,5 @@
-import { http, HttpResponse } from 'msw';
-import { faker } from '@faker-js/faker';
+import {http, HttpResponse} from 'msw';
+import {faker} from '@faker-js/faker';
 import {Book} from "../models/book.model";
 
 const bestBooksData: Book[] = Array.from({
@@ -34,4 +34,45 @@ export const bestBooks = http.get('http://localhost:9999/books/best', () => {
     return HttpResponse.json(bestBooksData, {
         status: 200,
     });
+});
+
+export const bookId = http.get('http://localhost:9999/books/:bookId', ({ params }) => {
+    const { bookId } = params;
+    const book = bestBooksData.find(book => book.id === Number(bookId));
+
+    if (!book) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(book);
+});
+
+
+export const books =  http.get('http://localhost:9999/books', async ({ request }) => {
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get('page')) || 1;
+    const limit = Number(url.searchParams.get('limit')) || 10;
+    const category = url.searchParams.get('category');
+
+    let filteredBooks = [...bestBooksData];
+
+    // Category 필터링
+    if (category) {
+        filteredBooks = filteredBooks.filter(
+            book => book.category_id === Number(category)
+        );
+    }
+
+    // 페이지네이션 처리
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+
+    return HttpResponse.json({
+        books: paginatedBooks,
+        pagination: {
+            totalCount: filteredBooks.length,
+            currentPage: page
+        }
+    })
 });

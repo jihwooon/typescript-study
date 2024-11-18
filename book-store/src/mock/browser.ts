@@ -1,6 +1,6 @@
 import {setupWorker} from 'msw/browser';
-import {bestBooks} from './books';
+import {bestBooks, bookId, books} from './books';
 
-const handlers = [bestBooks];
+const handlers = [bestBooks, bookId, books];
 
 export const worker = setupWorker(...handlers);
