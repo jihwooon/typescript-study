@@ -31,6 +31,28 @@ const bestBooksData: Book[] = Array.from({
     pubDate: faker.date.past().toISOString(),
 }));
 
+export const unlikeBook = http.delete('http://localhost:9999/likes/:id', ({ params }) => {
+    const { id } = params;
+    const book = bestBooksData.find(book => book.id === Number(id));
+
+    if (!book) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(book.likes);
+});
+
+export const likeBook = http.post('http://localhost:9999/likes/:id', ({ params }) => {
+    const { id } = params;
+    const book = bestBooksData.find(book => book.id === Number(id));
+
+    if (!book) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(book.likes);
+});
+
 export const bestBooks = http.get('http://localhost:9999/books/best', () => {
     return HttpResponse.json(bestBooksData, {
         status: 200,
