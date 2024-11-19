@@ -89,7 +89,7 @@ const BooksItemStyle = styled.div<Pick<Props, "view">>`
             color: ${({theme}) => theme.color.primary}
             margin: 0 0 4px 0;
             font-weight: 700;
-            border: 1px solid ${({theme}) => theme.color.border}
+            border: 1px solid ${({theme}) => theme.color.border};
             border-radius: ${({theme}) => theme.borderRadius.default};
             padding: 4px 12px;
             position: absolute;

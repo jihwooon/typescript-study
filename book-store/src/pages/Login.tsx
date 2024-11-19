@@ -15,7 +15,7 @@ export interface SignupProps {
 
 function Login() {
     const navigate = useNavigate();
-    const showAlert = useAlert();
+    const { showAlert } = useAlert();
     const {register, handleSubmit, formState: {errors}} = useForm<SignupProps>()
     const { storeLogin } = useAuthStore();
 

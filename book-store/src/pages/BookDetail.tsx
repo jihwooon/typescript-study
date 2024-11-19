@@ -5,6 +5,9 @@ import {getImgSrc} from "../utils/imge";
 import Title from "../components/common/Title";
 import {BookDetail as IBookDetail} from "../models/book.model";
 import {formatDate, formatNumber} from "../utils/format";
+import EllipsisBox from "../components/common/EllipsisBox";
+import LikeButton from "../components/book/LikeButton";
+import AddToCart from "../components/book/AddToCart";
 
 const bookInfoList = [
     {
@@ -44,7 +47,7 @@ const bookInfoList = [
 
 function BookDetail() {
     const {bookId} = useParams();
-    const {book} = useBook(bookId);
+    const {book, likeToggle} = useBook(bookId);
 
     if (!book) {
         return null;
@@ -66,11 +69,20 @@ function BookDetail() {
                     ))}
                     <p className="summary">{book.summary}</p>
 
-                    <div className="like">좋아요</div>
-                    <div className="add-cart">장바구니</div>
+                    <div className="like">
+                        <LikeButton book={book} onClick={likeToggle}/>
+                    </div>
+                    <div className="add-cart">
+                        <AddToCart book={book}/>
+                    </div>
                 </div>
             </header>
-            <div className="content"></div>
+            <div className="content">
+                <Title size="medium" color="primary">상세 설명</Title>
+                <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
+                <Title size="medium" color="primary">목차</Title>
+                <p className="index">{book.contents}</p>
+            </div>
         </BookDetailStyle>
     )
 }
@@ -84,6 +96,7 @@ const BookDetailStyle = styled.div`
 
         .img {
             flex: 1;
+
             img {
                 width: 100%;
                 height: auto;
@@ -104,10 +117,14 @@ const BookDetailStyle = styled.div`
                     width: 80px;
                     color: ${({theme}) => theme.color.secondary};
                 }
+
                 a {
                     color: ${({theme}) => theme.color.primary};
                 }
             }
+        }
+
+        .content {
         }
     }
 `

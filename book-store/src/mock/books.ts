@@ -15,8 +15,8 @@ const bestBooksData: Book[] = Array.from({
     form: '종이책',
     categoryName: '소설',
     isbn: faker.commerce.isbn(),
-    summary: faker.lorem.paragraphs(),
-    detail: faker.lorem.paragraphs(),
+    summary: faker.lorem.paragraphs({ min: 1, max: 1}),
+    detail: faker.lorem.paragraphs({ min: 1, max: 100 }),
     author: faker.person.firstName(),
     pages: faker.helpers.rangeToNumber({
         min: 100,
@@ -30,6 +30,28 @@ const bestBooksData: Book[] = Array.from({
     likes: faker.helpers.rangeToNumber({ min: 0, max: 100 }),
     pubDate: faker.date.past().toISOString(),
 }));
+
+export const unlikeBook = http.delete('http://localhost:9999/likes/:id', ({ params }) => {
+    const { id } = params;
+    const book = bestBooksData.find(book => book.id === Number(id));
+
+    if (!book) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(book.likes);
+});
+
+export const likeBook = http.post('http://localhost:9999/likes/:id', ({ params }) => {
+    const { id } = params;
+    const book = bestBooksData.find(book => book.id === Number(id));
+
+    if (!book) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(book.likes);
+});
 
 export const bestBooks = http.get('http://localhost:9999/books/best', () => {
     return HttpResponse.json(bestBooksData, {
