@@ -10,6 +10,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
+import Cart from "./pages/Cart";
 
 const routeList = [
     {
@@ -36,6 +37,10 @@ const routeList = [
     {
         path: "/books/:bookId",
         element: <BookDetail/>
+    },
+    {
+        path: "/cart",
+        element: <Cart/>
     }
 ];
 

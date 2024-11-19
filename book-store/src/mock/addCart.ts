@@ -21,3 +21,23 @@ export const addCart = http.post('http://localhost:9999/carts', async ({ request
         status: 200,
     });
 });
+
+export const fetchCart = http.get('http://localhost:9999/carts', async () => {
+
+    return HttpResponse.json(mockCartData, {
+        status: 200,
+    });
+});
+
+export const deleteCart = http.delete('http://localhost:9999/carts/:id', async ({ params }) => {
+    const { id } = params;
+    const cart = mockCartData.find((cart) => cart.id === Number(id))
+
+    if (!cart) {
+        return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json(cart, {
+        status: 200,
+    });
+});
