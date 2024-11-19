@@ -15,7 +15,7 @@ const bestBooksData: Book[] = Array.from({
     form: '종이책',
     categoryName: '소설',
     isbn: faker.commerce.isbn(),
-    summary: faker.lorem.paragraphs(),
+    summary: faker.lorem.paragraphs({ min: 1, max: 1}),
     detail: faker.lorem.paragraphs({ min: 1, max: 100 }),
     author: faker.person.firstName(),
     pages: faker.helpers.rangeToNumber({
