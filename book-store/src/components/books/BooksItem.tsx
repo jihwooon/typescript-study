@@ -44,7 +44,7 @@ const BooksItemStyle = styled.div<Pick<Props, "view">>`
     .img {
         border-radius: ${({theme}) => theme.borderRadius.default};
         overflow: hidden;
-        width: ${({view}) => view === 'grid' ? 'auto' : "160px"};
+        width: ${({view}) => view === 'grid' ? 'auto' : "200px"};
 
         img {
             max-width: 100%;
@@ -55,7 +55,8 @@ const BooksItemStyle = styled.div<Pick<Props, "view">>`
         padding: 16px;
         position: relative;
         flex: ${({view}) => view === 'grid' ? 0 : 1};
-
+        height: 100%;
+        
         .title {
             font-size: 1.25rem;
             font-weight: 700;
@@ -86,7 +87,7 @@ const BooksItemStyle = styled.div<Pick<Props, "view">>`
             align-items: center;
             gap: 4px;
             font-size: 0.875rem;
-            color: ${({theme}) => theme.color.primary}
+            color: ${({theme}) => theme.color.primary};
             margin: 0 0 4px 0;
             font-weight: 700;
             border: 1px solid ${({theme}) => theme.color.border};
