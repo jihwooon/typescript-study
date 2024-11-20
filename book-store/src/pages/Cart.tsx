@@ -7,8 +7,13 @@ import {useAlert} from "../hook/useAlert";
 import Empty from "../components/common/Empty";
 import {FaShoppingCart} from "react-icons/fa";
 import CartSummary from "../components/cart/CartSummary";
+import Button from "../components/common/Button";
+import {OrderSheet} from "../models/order.model";
+import {useNavigate} from "react-router-dom";
 
 function Cart() {
+    const {showAlert} = useAlert();
+    const navigate = useNavigate();
     const {carts, deleteCartItem, isEmpty} = useCart();
     const {showConfirm} = useAlert();
     const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -46,7 +51,25 @@ function Cart() {
             }
             return acc;
         }, 0)
-    },[carts, checkedItems])
+    }, [carts, checkedItems])
+
+    const handleOrder = () => {
+        if (checkedItems.length === 0) {
+            showAlert("주문할 상품을 선택해 주세요.")
+            return;
+        }
+
+        const orderData: Omit<OrderSheet, "delivery"> = {
+            items: checkedItems,
+            totalPrice,
+            totalQuantity,
+            firstBookTitle: carts[0].title
+        }
+
+        showConfirm("주문하시겠습니까?", () => {
+            navigate("/order", {state: orderData})
+        })
+    }
 
     return (
         <>
@@ -67,6 +90,7 @@ function Cart() {
                         </div>
                         <div className="summary">
                             <CartSummary totalQuantity={totalQuantity} totalPrice={totalPrice}/>
+                            <Button size="large" scheme="primary" onClick={handleOrder}>주문 하기</Button>
                         </div>
                     </>
                 )}
@@ -94,6 +118,8 @@ const CartStyle = styled.div`
 
     .summary {
         display: flex;
+        flex-direction: column;
+        gap: 24px;
     }
 `
 
