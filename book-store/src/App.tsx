@@ -11,6 +11,8 @@ import Login from "./pages/Login";
 import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
+import OrderList from "./pages/OrderList";
 
 const routeList = [
     {
@@ -41,6 +43,14 @@ const routeList = [
     {
         path: "/cart",
         element: <Cart/>
+    },
+    {
+        path: "/order",
+        element: <Order/>
+    },
+    {
+        path: "/orderlist",
+        element: <OrderList/>
     }
 ];
 

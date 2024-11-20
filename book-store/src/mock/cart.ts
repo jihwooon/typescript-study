@@ -14,7 +14,7 @@ const mockCartData: Cart[] = Array.from({ length: 4 }).map((_, index) => ({
     price: Number(faker.commerce.price({ min: 100 })),
 }));
 
-export const addCart = http.post('http://localhost:9999/carts', async ({ request }) => {
+export const cart = http.post('http://localhost:9999/carts', async ({ request }) => {
     const info = await request.json();  // formData 대신 json 사용
 
     return HttpResponse.json(info, {
