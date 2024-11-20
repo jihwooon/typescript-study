@@ -1,7 +1,7 @@
 import {setupWorker} from 'msw/browser';
 import {bestBooks, bookId, books, likeBook, unlikeBook} from './books';
-import {addCart, deleteCart, fetchCart} from "./addCart";
+import {cart, deleteCart, fetchCart} from "./cart";
 
-const handlers = [bestBooks, bookId, books, likeBook, unlikeBook, addCart, fetchCart, deleteCart];
+const handlers = [bestBooks, bookId, books, likeBook, unlikeBook, cart, fetchCart, deleteCart];
 
 export const worker = setupWorker(...handlers);
