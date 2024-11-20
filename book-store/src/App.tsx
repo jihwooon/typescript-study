@@ -12,6 +12,7 @@ import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import OrderList from "./pages/OrderList";
 
 const routeList = [
     {
@@ -46,6 +47,10 @@ const routeList = [
     {
         path: "/order",
         element: <Order/>
+    },
+    {
+        path: "/orderlist",
+        element: <OrderList/>
     }
 ];
 

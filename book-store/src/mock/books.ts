@@ -2,7 +2,7 @@ import {http, HttpResponse} from 'msw';
 import {faker} from '@faker-js/faker';
 import {Book} from "../models/book.model";
 
-const bestBooksData: Book[] = Array.from({
+export const bestBooksData: Book[] = Array.from({
     length: 10,
 }).map((_, index) => ({
     id: index,
