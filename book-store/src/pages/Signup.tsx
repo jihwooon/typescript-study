@@ -3,9 +3,8 @@ import Title from "../components/common/Title";
 import {styled} from "styled-components";
 import InputText from "../components/common/InputText";
 import Button from "../components/common/Button";
-import {Link, useNavigate} from "react-router-dom";
-import {signup} from "../api/auth.api";
-import {useAlert} from "../hook/useAlert";
+import {Link} from "react-router-dom";
+import {useAuth} from "../hook/useAuth";
 
 export interface SignupProps {
     email: string;
@@ -13,15 +12,11 @@ export interface SignupProps {
 }
 
 function Signup() {
-    const navigate = useNavigate();
-    const { showAlert } = useAlert();
     const {register, handleSubmit, formState: {errors}} = useForm<SignupProps>()
+    const { userSignup } = useAuth()
 
     const onSubmit = (data: SignupProps) => {
-        signup(data).then((res) => {
-            showAlert("회원가입이 완료 되었습니다.")
-            navigate("/login")
-        });
+        return userSignup(data)
     }
 
     return (
