@@ -8,6 +8,8 @@ import {formatDate, formatNumber} from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
 import LikeButton from "../components/book/LikeButton";
 import AddToCart from "../components/book/AddToCart";
+import BookReview from "./BookReview";
+import {Tab, Tabs} from "../components/common/Tabs";
 
 const bookInfoList = [
     {
@@ -47,7 +49,7 @@ const bookInfoList = [
 
 function BookDetail() {
     const {bookId} = useParams();
-    const {book, likeToggle} = useBook(bookId);
+    const {book, likeToggle, reviews, addReview} = useBook(bookId);
 
     if (!book) {
         return null;
@@ -78,10 +80,20 @@ function BookDetail() {
                 </div>
             </header>
             <div className="content">
-                <Title size="medium" color="primary">상세 설명</Title>
-                <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
-                <Title size="medium" color="primary">목차</Title>
-                <p className="index">{book.contents}</p>
+                <Tabs>
+                    <Tab title="상세 설명">
+                        <Title size="medium" color="primary">상세 설명</Title>
+                        <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
+                    </Tab>
+                    <Tab title="목차">
+                        <Title size="medium" color="primary">목차</Title>
+                        <p className="index">{book.contents}</p>
+                    </Tab>
+                    <Tab title="리뷰">
+                        <Title size="medium" color="primary">리뷰</Title>
+                        <BookReview reviews={reviews} onAdd={addReview}/>
+                    </Tab>
+                </Tabs>
             </div>
         </BookDetailStyle>
     )
