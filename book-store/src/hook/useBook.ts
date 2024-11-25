@@ -5,14 +5,17 @@ import {useAuthStore} from "../store/AuthStore";
 import {useAlert} from "./useAlert";
 import {addCart} from "../api/cart.api";
 import {addBookReview, fetchBookReview} from "../api/review.api";
+import {useToast} from "./useToast";
 
 export const useBook = (bookId: string | undefined) => {
     const [book, setBook] = useState<BookDetail | null>(null)
     const [cartAdded, setCartAdded] = useState(false)
     const [reviews, setReviews] = useState<BookReviewItem[]>([])
 
-    const { isLoggedIn } = useAuthStore();
-    const { showAlert } = useAlert();
+    const {isLoggedIn} = useAuthStore();
+    const {showAlert} = useAlert();
+
+    const {showToast} = useToast();
 
     const likeToggle = () => {
         if (!isLoggedIn) {
@@ -29,20 +32,22 @@ export const useBook = (bookId: string | undefined) => {
                     liked: false,
                     likes: book.likes - 1,
                 })
+                showToast("좋아요가 취소되었습니다.")
             })
         } else {
             likeBook(book.id).then(() => {
-               setBook({
-                  ...book,
-                  liked: true,
-                  likes: book.likes + 1,
-               });
+                setBook({
+                    ...book,
+                    liked: true,
+                    likes: book.likes + 1,
+                });
+                showToast("좋아요가 성공되었습니다.")
             });
         }
     }
 
     const addToCart = (quantity: number) => {
-        if(!book) return
+        if (!book) return
 
         addCart({bookId: book.id, quantity: quantity}).then(() => {
             showAlert("장바구니에 추가되었습니다.")
@@ -51,6 +56,8 @@ export const useBook = (bookId: string | undefined) => {
                 setCartAdded(false)
             }, 3000)
         })
+
+        showToast("장바구니에 추가되었습니다.")
     }
 
     useEffect(() => {
