@@ -1,7 +1,6 @@
 import {styled} from "styled-components";
 import {BookReviewItem as IBookReviewItem, BookReviewItemWrite} from "../models/book.model";
 import BookReviewItem from "../components/book/BookReviewItem";
-import Title from "../components/common/Title";
 import BookReviewAdd from "../components/book/BookReviewAdd";
 
 interface Props {
@@ -13,7 +12,6 @@ function BookReview({reviews, onAdd}: Props) {
     return (
         <BookReviewStyle>
             <BookReviewAdd onAdd={onAdd}/>
-            <Title size="medium" color="primary">리뷰</Title>
             {
                 reviews.map((review, index) => (
                     <BookReviewItem key={index} review={review}/>
