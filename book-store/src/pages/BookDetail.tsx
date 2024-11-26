@@ -10,6 +10,8 @@ import LikeButton from "../components/book/LikeButton";
 import AddToCart from "../components/book/AddToCart";
 import BookReview from "./BookReview";
 import {Tab, Tabs} from "../components/common/Tabs";
+import Modal from "../components/modal/Modal";
+import {useState} from "react";
 
 const bookInfoList = [
     {
@@ -48,6 +50,7 @@ const bookInfoList = [
 ]
 
 function BookDetail() {
+    const [isImgOpen, setIsImgOpen] = useState(false)
     const {bookId} = useParams();
     const {book, likeToggle, reviews, addReview} = useBook(bookId);
 
@@ -58,9 +61,12 @@ function BookDetail() {
     return (
         <BookDetailStyle>
             <header className="header">
-                <div className="img">
+                <div className="img" onClick={() => setIsImgOpen(true)}>
                     <img src={getImgSrc(book.img)} alt={book.title}/>
                 </div>
+                <Modal isOpen={isImgOpen} onClose={() => setIsImgOpen(false)}>
+                    <img src={getImgSrc(book.img)} alt={book.title}/>
+                </Modal>
                 <div className="info">
                     <Title size="large" color="text">{book.title}</Title>
                     {bookInfoList.map((item) => (
@@ -105,6 +111,10 @@ const BookDetailStyle = styled.div`
         align-items: start;
         gap: 24px;
         padding: 0 0 24px 0;
+        
+        > div {
+            position: relative !important;
+        }
 
         .img {
             flex: 1;
