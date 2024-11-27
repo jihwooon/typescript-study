@@ -5,14 +5,13 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {useMediaQuery} from "../../hook/useMediaQuery";
 
 interface Props {
     reviews: IBookReviewItem[];
+    isMobile: boolean
 }
 
-function MainReview({reviews}: Props) {
-    const { isMobile } = useMediaQuery();
+function MainReview({reviews, isMobile }: Props) {
 
     const sliderSettings = {
         dots: true,
