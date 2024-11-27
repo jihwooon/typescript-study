@@ -12,7 +12,7 @@ export interface LoginProps {
 
 function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm<LoginProps>()
-    const { userLogin } = useAuth()
+    const {userLogin} = useAuth()
 
     const onSubmit = (data: LoginProps) => {
         return userLogin(data)
@@ -24,16 +24,20 @@ function Login() {
             <LoginStyle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
-                        <InputText placeholder="이메일"
-                                   inputType="email"
-                                   {...register("email", {required: true})}
+                        <InputText
+                            placeholder="이메일"
+                            inputType="email"
+                            {...register("email", {required: true})}
+                            inputMode="email"
                         />
                         {errors.email && <p className="error-text">이메일을 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
-                        <InputText placeholder="비밀번호"
-                                   inputType="password"
-                                   {...register("password", {required: true})}
+                        <InputText
+                            placeholder="비밀번호"
+                            inputType="password"
+                            {...register("password", {required: true})}
+                            inputMode="decimal"
                         />
                         {errors.password && <p className="error-text">패스워드를 입력해주세요</p>}
                     </fieldset>
