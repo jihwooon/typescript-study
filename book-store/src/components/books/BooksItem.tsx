@@ -33,14 +33,14 @@ function BooksItem({book, view}: Props) {
     )
 }
 
-const BooksItemStyle = styled.div<Pick<Props, "view">>`
+export const BooksItemStyle = styled.div<Pick<Props, "view">>`
     a {
         display: flex;
         flex-direction: ${({view}) => view === 'grid' ? 'column' : "row"};
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
         text-decoration: none;
     }
-    
+
     .img {
         border-radius: ${({theme}) => theme.borderRadius.default};
         overflow: hidden;
@@ -56,17 +56,27 @@ const BooksItemStyle = styled.div<Pick<Props, "view">>`
         position: relative;
         flex: ${({view}) => view === 'grid' ? 0 : 1};
         height: 100%;
-        
+
         .title {
             font-size: 1.25rem;
             font-weight: 700;
             margin: 0 0 12px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .summary {
             font-size: 0.875rem;
             color: ${({theme}) => theme.color.secondary};
             margin: 0 0 4px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .author {
