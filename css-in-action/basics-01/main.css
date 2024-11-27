@@ -42,7 +42,7 @@ img {
     margin-left: auto;
 }
 
-.bl_module .body > span {
+.bl_module_body > span {
     color: #555;
     font-size: 14px;
 }
@@ -65,17 +65,17 @@ img {
     vertical-align: top;
 }
 
-.bl_module {
+.bl_module_body {
     flex: 1 1 68.33333%
 }
 
-.bl_module .title {
+.bl_module_title {
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
 }
 
-.bl_module .sub-title {
+.sub-title {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 18px;
