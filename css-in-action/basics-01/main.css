@@ -55,27 +55,27 @@ img {
     border: 1px solid black;
 }
 
-#main div.bl_module.main-module figure {
+#main .bl_module.main-module .image-wrapper {
     flex: 1 1 25%;
     margin-right: 3.33333%;
 }
 
-#main div.bl_module.main-module img {
+#main .bl_module.main-module .image-wrapper img {
     width: 100%;
     vertical-align: top;
 }
 
-#main div.bl_module.main-module div {
+#main .bl_module.main-module .body {
     flex: 1 1 68.33333%
 }
 
-#main div.bl_module.main-module h2 {
+#main .bl_module.main-module .title {
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
 }
 
-#main div.bl_module.main-module h3 {
+#main .bl_module.main-module .sub-title {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 18px;
