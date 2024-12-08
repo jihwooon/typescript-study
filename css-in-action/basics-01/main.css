@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+}
+
+#product-overview {
+    background: #ff1b68;
+}
+
+.first-section-title {
+
+}
+
+.section-title {
+    color: #2ddf5c;
+    font-family: inherit;
+}
+
+h1 {
+    color: white;
+    font-family: 'Apple Braille', sans-serif;
+}
+
+#product-overview {
+    background: black;
+}
+
+#product-overview h1 {
+    color: white;
+    font-family: sans-serif;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.layout {
+    max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.bl_module_body > span {
+    color: #555;
+    font-size: 14px;
+}
+
+.bl_module {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1.5;
+    border: 1px solid black;
+}
+
+.bl_module .image-wrapper {
+    flex: 1 1 25%;
+    margin-right: 3.33333%;
+}
+
+.bl_module .image-wrapper img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.bl_module_body {
+    flex: 1 1 68.33333%
+}
+
+.bl_module_title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sub-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #555;
+}

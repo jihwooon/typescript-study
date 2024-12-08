@@ -28,7 +28,7 @@ function Home() {
             {/* 리뷰 */}
             <section className="section">
                 <Title size="large">리뷰</Title>
-                <MainReview reviews={reviews}/>
+                <MainReview reviews={reviews} isMobile={isMobile}/>
             </section>
         </HomeStyle>
     )
