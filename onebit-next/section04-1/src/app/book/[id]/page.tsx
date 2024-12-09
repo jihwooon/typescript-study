@@ -1,5 +1,10 @@
 import style from "./page.module.css";
 import {BookData} from "@/types";
+import NotFound from "@/app/not-found";
+
+export function generateStaticParams () {
+    return [{id: "1"}, {id: "2"}, {id: "3"}]
+}
 
 export default async function Page({
   params,
@@ -8,7 +13,7 @@ export default async function Page({
 }) {
   const response = await fetch(`http://localhost:12345/book/${params.id}`);
   if (!response.ok) {
-    return <div>오류가 발생했습니다.</div>
+    return <NotFound/>
   }
 
   const book: BookData = await response.json();
