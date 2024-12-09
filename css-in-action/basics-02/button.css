@@ -1,25 +1,20 @@
-#main .btn-general {
+.btn {
     display: inline-block;
     width: 300px;
     max-width: 100%;
     padding: 20px 10px;
-    background-color: #e25c00;
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-    color: #fff;
     font-size: 18px;
     line-height: 1.5;
     text-align: center;
 }
 
-#main .btn-warning {
-    display: inline-block;
-    width: 300px;
-    max-width: 100%;
-    padding: 20px 10px;
+.general {
+    background-color: #e25c00;
+    color: #fff;
+}
+
+.warning {
     background-color: #f1de00;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
     color: #222;
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
 }
