@@ -23,11 +23,15 @@
 }
 
 /* 헤더 안에 배치되었을 때의 버튼 모듈 덮어쓰기 내용  */
-.l-header .btn {
+.btn {
     width: 80px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 14px;
+}
+
+.btn.btn-long {
+    width: 160px;
 }
 
 .headermenu {
