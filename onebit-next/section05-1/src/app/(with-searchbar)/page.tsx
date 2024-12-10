@@ -3,6 +3,8 @@ import style from "./page.module.css";
 import {BookData} from "@/types";
 import {Suspense} from "react";
 import {delay} from "@/util/delay";
+import {BookItemSkeleton} from "@/components/skeleton/book-item-skeleton";
+import BookListSkeleton from "@/components/skeleton/book-list-skeleton";
 
 // export const dynamic = "auto";
 // 1. auto
@@ -35,7 +37,7 @@ async function AllBooks() {
 async function RecoBooks() {
     await delay(1500)
     const response = await fetch(`http://localhost:12345/book/random`, {
-        next: { revalidate: 3}
+        next: {revalidate: 3}
     });
 
     const randomBooks: BookData[] = await response.json();
@@ -54,19 +56,23 @@ async function RecoBooks() {
 export default function Home() {
 
     return (
-    <div className={style.container}>
-      <section>
-        <h3>지금 추천하는 도서</h3>
-          <Suspense fallback={<div>RecoBooks....</div>}>
-              <RecoBooks />
-          </Suspense>
-      </section>
-      <section>
-        <h3>등록된 모든 도서</h3>
-          <Suspense fallback={<div>AllBooks...</div>}>
-              <AllBooks />
-          </Suspense>
-      </section>
-    </div>
-  );
+        <div className={style.container}>
+            <section>
+                <h3>지금 추천하는 도서</h3>
+                <Suspense fallback={
+                    <BookListSkeleton count={3}/>
+                }>
+                    <RecoBooks/>
+                </Suspense>
+            </section>
+            <section>
+                <h3>등록된 모든 도서</h3>
+                <Suspense fallback={
+                    <BookListSkeleton count={3}/>
+                }>
+                    <AllBooks/>
+                </Suspense>
+            </section>
+        </div>
+    );
 }
