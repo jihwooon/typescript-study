@@ -1,5 +1,6 @@
 import BookItem from "@/components/book-item";
 import {BookData} from "@/types";
+import {delay} from "@/util/delay";
 
 export default async function Page({
   searchParams,
@@ -8,6 +9,7 @@ export default async function Page({
     q?: string;
   };
 }) {
+  await delay(1500);
   const response = await fetch(`http://localhost:12345/book/search?q=${searchParams.q}`, {
     cache: "force-cache"
   });
