@@ -1,7 +1,8 @@
 import style from "./page.module.css";
-import {BookData} from "@/types";
+import {BookData, ReviewData} from "@/types";
 import NotFound from "@/app/not-found";
-import {createReviewAction} from "@/app/actions/create-review.action";
+import ReviewEditor from "@/components/review-editor";
+import ReviewList from "@/components/review-list";
 
 export function generateStaticParams() {
     return [{id: "1"}, {id: "2"}, {id: "3"}]
@@ -43,19 +44,6 @@ async function BookDetail({bookId}: { bookId: string }) {
     );
 }
 
-async function ReviewEditor({bookId}: {bookId:string}) {
-    return (
-        <section>
-            <form action={createReviewAction}>
-                <input name="bookId" value={bookId} hidden readOnly/>
-                <input required name="content" placeholder="리뷰 내용"/>
-                <input required name="author" placeholder="작성자"/>
-                <button type="submit">작성하기</button>
-            </form>
-        </section>
-    )
-}
-
 export default function Page(
     {
         params,
@@ -65,5 +53,6 @@ export default function Page(
     return <div className={style.container}>
         <BookDetail bookId={params.id}/>
         <ReviewEditor bookId={params.id}/>
+        <ReviewList bookId={params.id}/>
     </div>
 }
