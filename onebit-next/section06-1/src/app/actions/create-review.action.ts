@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import {revalidateTag} from 'next/cache'
 import {delay} from "@/util/delay";
 
 export async function createReviewAction(_: any, formData: FormData) {
@@ -16,7 +16,7 @@ export async function createReviewAction(_: any, formData: FormData) {
     }
 
     try {
-        await delay(20000);
+        await delay(2000);
         const response = await fetch(`http://localhost:12345/review`, {
             method: "POST",
             body: JSON.stringify({
@@ -27,7 +27,7 @@ export async function createReviewAction(_: any, formData: FormData) {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
-        revalidatePath(`review-${bookId}`);
+        revalidateTag(`review-${bookId}`);
     } catch(err) {
         console.error(err)
         return {

@@ -2,11 +2,11 @@
 
 import style from "./review-editor.module.css"
 import {createReviewAction} from "@/app/actions/create-review.action";
-import {useActionState} from 'react'
+import {useActionState, useEffect } from 'react'
 
 export default function ReviewEditor({bookId}: { bookId: string }) {
 
-    const [state, formAction, isPending] = useActionState(createReviewAction, null);
+    const [state, formAction, pending] = useActionState(createReviewAction, null);
 
     useEffect(() => {
         if (state && !state.status) {
@@ -18,12 +18,12 @@ export default function ReviewEditor({bookId}: { bookId: string }) {
         <section>
             <form className={style.form_container} action={formAction}>
                 <input name="bookId" value={bookId} hidden readOnly/>
-                <textarea disabled={isPending} required name="content" placeholder="리뷰 내용"/>
+                <textarea disabled={pending} required name="content" placeholder="리뷰 내용"/>
                 <div className={style.submit_container}>
-                    <input disabled={isPending} required name="author" placeholder="작성자"/>
-                    <button disabled={isPending} type="submit">{
-                        idPending ? "..." : "작성하기"
-                    }</button>
+                    <input disabled={pending} required name="author" placeholder="작성자"/>
+                    <button disabled={pending} type="submit">
+                        {pending ? "..." : "작성하기"}
+                    </button>
                 </div>
             </form>
         </section>
