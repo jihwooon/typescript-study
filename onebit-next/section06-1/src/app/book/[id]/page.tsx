@@ -9,7 +9,9 @@ export function generateStaticParams() {
 }
 
 async function BookDetail({bookId}: { bookId: string }) {
-    const response = await fetch(`http://localhost:12345/book/${bookId}`);
+    const response = await fetch(`http://localhost:12345/book/${bookId}`, {
+        cache: "force-cache"
+    });
     if (!response.ok) {
         return <NotFound/>
     }
