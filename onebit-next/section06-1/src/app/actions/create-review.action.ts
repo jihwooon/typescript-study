@@ -19,7 +19,7 @@ export async function createReviewAction(formData: FormData) {
             })
         });
 
-        revalidatePath(`/book/${bookId}`);
+        revalidatePath(`review-${bookId}`);
     } catch(err) {
         console.error(err)
         return;
