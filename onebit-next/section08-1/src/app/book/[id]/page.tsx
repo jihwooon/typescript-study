@@ -1,5 +1,5 @@
 import style from "./page.module.css";
-import {BookData, ReviewData} from "@/types";
+import {BookData} from "@/types";
 import NotFound from "@/app/not-found";
 import ReviewEditor from "@/components/review-editor";
 import ReviewList from "@/components/review-list";
@@ -11,7 +11,7 @@ export function generateStaticParams() {
 
 async function BookDetail({bookId}: { bookId: string }) {
     const response = await fetch(`http://localhost:12345/book/${bookId}`, {
-        next: { tags: [`review-${bookId}`]}
+        next: {tags: [`review-${bookId}`]}
     });
     if (!response.ok) {
         return <NotFound/>
@@ -45,6 +45,29 @@ async function BookDetail({bookId}: { bookId: string }) {
             <div className={style.description}>{description}</div>
         </section>
     );
+}
+
+export async function generateMetadata({params}: { params: Promise<{ id: string }>; }) {
+    const {id} = await params;
+    const response = await fetch(`http://localhost:12345/book/${id}`, {
+        cache: "force-cache"
+    })
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    const book: BookData = await response.json();
+
+    return {
+        title: `${book.title} - 한입 북스`,
+        description: `${book.description}`,
+        openGraph: {
+            title: `${book.title} - 한입북스`,
+            description: `${book.description}`,
+            images: [book.coverImgUrl]
+        }
+    }
 }
 
 export default function Page(

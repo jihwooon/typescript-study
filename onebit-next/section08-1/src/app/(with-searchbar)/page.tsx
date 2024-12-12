@@ -3,8 +3,8 @@ import style from "./page.module.css";
 import {BookData} from "@/types";
 import {Suspense} from "react";
 import {delay} from "@/util/delay";
-import {BookItemSkeleton} from "@/components/skeleton/book-item-skeleton";
 import BookListSkeleton from "@/components/skeleton/book-list-skeleton";
+import {Metadata} from "next";
 
 // export const dynamic = "auto";
 // 1. auto
@@ -51,6 +51,16 @@ async function RecoBooks() {
             }
         </div>
     )
+}
+
+export const metadata: Metadata = {
+    title: "한입 북스",
+    description: "한입 북스에 등록된 도서를 만나보세요",
+    openGraph: {
+        title: "한입 북스",
+        description: "한입 북스에 등록된 도서를 만나보세요",
+        images: ['/assert/thumbnail.png']
+    }
 }
 
 export default function Home() {
