@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2017",
+    "module": "esnext",
+    "target": "es2020",
     "noImplicitAny": true,
     "sourceMap": false,
-    "outDir": "./output"
+    "outDir": "./output",
+    "moduleResolution": "node"
   },
-  "exclude": [
-    "node_modules",
-    "**/*.(spec|test).ts"
+  "exclude": ["node_modules"],
+  "include": [
+    "./src/**/*.ts"
   ],
   "esModuleInterop": true
 }
