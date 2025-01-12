@@ -1,15 +1,30 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es2020",
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
     "noImplicitAny": true,
-    "sourceMap": false,
-    "outDir": "./output",
-    "moduleResolution": "node"
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "target": "ES2021",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "./_output",
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules",
+    "./src/**/*.test.ts"
+  ],
   "include": [
     "./src/**/*.ts"
   ],
-  "esModuleInterop": true
 }
