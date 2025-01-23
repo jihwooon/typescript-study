@@ -16,5 +16,3 @@ const createCourseGoal = (
 
     return courseGoal as CourseGoal;
 }
-
-const name: Readonly<string[]> = ['Max', 'Sports']
