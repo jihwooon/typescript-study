@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hostname
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: hostname
@@ -16,8 +16,7 @@ spec:
         app: hostname
     spec:
       containers:
-      - name: hname
-        image: <Your image registry here>
-        ports:
-        - containerPort: 80
-
+        - name: hname
+          image: jihwooon/kdt-pj3:latest
+          ports:
+            - containerPort: 80
