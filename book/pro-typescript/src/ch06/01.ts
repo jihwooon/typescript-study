@@ -4,7 +4,20 @@ type Colorkey = 'primary' | 'background' | 'secondary' | 'third' | 'border' | 't
 type HeadingSize = 'large' | 'normal' | 'small'
 type ButtonSize = 'large' | 'normal' | 'small'
 
-type ButtonKey = keyof ButtonSize
+type LayoutWith = {
+	large: string,
+	medium: string,
+	small: string
+}
+
+type MediaQuery = {
+	mobile: string,
+	tablet: string,
+	desktop: string
+	kind: 'MediaQuey'
+}
+
+type Shape = LayoutWith | MediaQuery
 
 interface Theme {
 	name: ThemeName;
