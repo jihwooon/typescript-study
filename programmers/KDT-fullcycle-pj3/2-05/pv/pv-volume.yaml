@@ -12,5 +12,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "<Your directory here (absolute path)"
-
+    path: "/Users/jihwooon/Workspaces/js-in-action/programmers/KDT-fullcycle-pj3/2-05/pv/data"
