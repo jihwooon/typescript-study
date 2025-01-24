@@ -96,3 +96,38 @@ const max: Human = {
     species: 'homosapiens',
     age: 30
 }
+
+interface Bird {
+    type: 'bird'
+    flyingSpeed: number;
+}
+
+interface Horse { 
+    type: 'horse'
+    runningSpeed: number;
+}
+
+type BirdOrHorse = Bird | Horse;
+
+const moveAnimal = (animal: BirdOrHorse) => {
+    if ('flyingSpeed' in animal) {
+        console.log('Moveing with flyingSpeed: ' + animal.flyingSpeed); 
+    }
+
+    if ('runningSpeed' in animal) {
+        console.log('Moveing with runningSpeed: ' + animal.runningSpeed); 
+    }
+
+    let speed;
+    switch(animal.type) {
+        case 'bird':
+        speed = animal.flyingSpeed;
+        break;
+        case 'horse':
+        speed = animal.runningSpeed;
+    }
+    console.log('Moving at speed: ' + speed); 
+}
+
+moveAnimal({type: 'bird' , flyingSpeed: 100})
+moveAnimal({type: 'horse' , runningSpeed: 300})
