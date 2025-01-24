@@ -22,3 +22,23 @@ type Numeric = number | boolean;
 type Universal = Combinable & Numeric; // number 타입
 
 type StringAndNumber = string & number; // never 타입
+
+type Animal = {
+    species: string;
+    age: number;
+}
+
+type Human  = Animal & {
+    name: string;
+}
+
+const nabi: Animal = {
+    species: 'cat',
+    age: 3
+}
+
+const max: Human = {
+    name: 'Max',
+    species: 'homosapiens',
+    age: 30
+}
