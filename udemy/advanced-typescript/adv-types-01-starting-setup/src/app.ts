@@ -131,3 +131,9 @@ const moveAnimal = (animal: BirdOrHorse) => {
 
 moveAnimal({type: 'bird' , flyingSpeed: 100})
 moveAnimal({type: 'horse' , runningSpeed: 300})
+
+const userInputEmplemt = document.getElementById('user-input') as HTMLInputElement
+
+if (userInputEmplemt) {
+    (userInputEmplemt as HTMLInputElement).value = 'Hi there!';
+}
