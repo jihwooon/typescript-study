@@ -152,3 +152,14 @@ const errorBag: ErrorContainer = {
 
 const result = add('Max', 5);
 result.split(' ');
+
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: {
+        title: 'CEO',
+        description: 'My own company'
+    }
+}
+
+console.log(fetchedUserData?.job?.title);
