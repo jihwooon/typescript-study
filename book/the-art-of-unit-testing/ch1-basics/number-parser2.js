@@ -15,4 +15,7 @@ const sum = (numbers) => {
 sum('1, 2')
 sum('1, 2')
 
-console.log(totalSoFar());
+module.exports = {
+    sum,
+    totalSoFar
+}
