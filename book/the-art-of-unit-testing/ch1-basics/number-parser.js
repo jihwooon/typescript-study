@@ -5,4 +5,4 @@ const sum = (numbers) => { // 진입점
     return result; // 반환 값
 }
 
-console.log(sum('1,2,3'));
+module.exports.sum = sum
