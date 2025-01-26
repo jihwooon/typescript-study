@@ -21,7 +21,10 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric; // number 타입
 
-const add = (a: Combinable, b: Combinable) => {
+function add(a: string, b: number): string
+function add (a: string, b: string): string;
+function add (a: number, b: number): number
+function add (a: Combinable, b: Combinable) {
     if (typeof a === 'string' || typeof b === 'string') {
         return a.toString() + b.toString();
     }
@@ -146,3 +149,6 @@ const errorBag: ErrorContainer = {
     email: 'Not a valid email',
     username: 'Must start with a capital character!'
 }
+
+const result = add('Max', 5);
+result.split(' ');
