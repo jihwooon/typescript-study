@@ -12,9 +12,6 @@ const sum = (numbers) => {
     return result;
 }
 
-sum('1, 2')
-sum('1, 2')
-
 module.exports = {
     sum,
     totalSoFar
