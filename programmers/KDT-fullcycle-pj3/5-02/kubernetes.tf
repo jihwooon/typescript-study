@@ -1,26 +1,9 @@
-terraform { 
-  cloud {  
-    organization = "PROJECT_CICD" 
-    workspaces { 
-      name = "terraform-kubernetes" 
-    } 
-  } 
-}
-
 terraform {
   required_providers {
     kubernetes = {
       source = "hashicorp/kubernetes"
     }
   }
-}
-
-variable "kubernetes_config_path" {
-  default = "~/.kube/config"
-}
-
-variable "kubernetes_namespace" {
-  default = "default"
 }
 
 variable "host" {
