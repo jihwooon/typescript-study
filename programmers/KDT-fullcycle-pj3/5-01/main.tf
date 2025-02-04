@@ -12,7 +12,7 @@ provider "docker" {
 }
 
 resource "docker_image" "nginx" {
-  name         = "nginx:latest"
+  name         = "nginx:1.27.3"
   keep_locally = false
 }
 
