@@ -1,4 +1,4 @@
-const { PasswordVerifier1 } = require('./password-verifier1')
+const { PasswordVerifier1 } = require('../password-verifier1')
 
 const makeVerifier = () => new PasswordVerifier1()
 const passingRule = () => ({ passed: true, reason: '' })
