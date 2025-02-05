@@ -30,4 +30,41 @@ describe('PasswordVerifier', () => {
             expect(errors.length).toBe(1); 
         })
     })
+
+    context('with a passing rule', () => {
+        let fakeRule;
+        let errors;
+
+        beforeEach(() => {
+            fakeRule = () => ({ passed: true, reason: ''})
+            verifier.addRule(fakeRule);
+            errors = verifier.verify('any value');
+        })
+
+        it('has exactly one error', () => { 
+            expect(errors.length).toBe(0); 
+        })
+    })
+
+    context('with a failing and a passing rule', () => {
+        let fakeRulePass;
+        let fakeRuleFail;
+        let errors;
+
+        beforeEach(() => {
+            fakeRulePass = () => ({ passed: true, reason: 'fake success'})
+            fakeRuleFail = () => ({ passed: false, reason: 'fake reason'})
+            verifier.addRule(fakeRulePass);
+            verifier.addRule(fakeRuleFail);
+            errors = verifier.verify('any value');
+        })
+
+        it('has one error', () => { 
+            expect(errors.length).toBe(1); 
+        })
+
+        it('error text belongs to failed rule', () => {
+            expect(errors[0]).toContain('fake reason');
+        })
+    })
 })
