@@ -7,10 +7,7 @@ class PasswordVerifier1 {
     this.rules.push(rule);
   }
 
-  verify(input) {
-    if (this.rules.length === 0) {
-      throw new Error('There are no rules configured');
-    }
+  verify(input) { 
     const errors = [];
     this.rules.forEach((rule) => {
       const result = rule(input);
