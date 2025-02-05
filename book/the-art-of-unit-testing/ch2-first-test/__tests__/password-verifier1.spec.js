@@ -3,7 +3,7 @@ const {
     makeVerifierWithPassingRule,
     makeVerifierWithFailedRule,
     makeVerifier
-} = require('../test-utils');
+} = require('../fixture/test.fixture');
 
 test('with a failing rule: has an error message based on the rule.reason', () => { 
     const verifer = makeVerifierWithFailedRule('fake reason');
