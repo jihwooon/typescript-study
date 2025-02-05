@@ -1,8 +1,9 @@
 const { 
     passingRule,
     makeVerifierWithPassingRule,
-    makeVerifierWithFailedRule 
-} = require('./test-utils');
+    makeVerifierWithFailedRule,
+    makeVerifier
+} = require('../test-utils');
 
 test('with a failing rule: has an error message based on the rule.reason', () => { 
     const verifer = makeVerifierWithFailedRule('fake reason');
@@ -35,3 +36,10 @@ test('with a failing and a passing rule: error text belongs to failed rule', () 
     const errors = verifer.verify('any input');
     expect(errors[0]).toContain('fake reason');
 });
+
+test('', () => {
+    const verifer = makeVerifier()
+    
+    expect(() => verifer.verify('any input'))
+    .toThrowError(/no rules configured/)  
+})
