@@ -1,4 +1,7 @@
 module.exports = {
+    rootDir: '.',
+    roots: ['<rootDir>/__tests__'],
+    testRegex: '.*\\.spec\\.js$',
     reporters: [
       "default",
       [
@@ -12,4 +15,5 @@ module.exports = {
     testPathIgnorePatterns: [
       "/node_modules/",
     ]
+    
   };
