@@ -1,9 +1,11 @@
 import Home from "./pages/common/Home"
+import Layout from "./pages/layout/Layout"
 
 function App() {
   return (
     <>
-      <Home />
+      <div>app</div>
+      <Layout><Home/></Layout>
     </>
   )
 }

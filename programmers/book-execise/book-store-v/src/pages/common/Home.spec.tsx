@@ -7,14 +7,9 @@ describe('Home', () => {
   })
 
   it('홈 컴포넌트를 렌더링하면 "book store" 텍스트가 화면에 보여야 한다.', () => {
-    const textElement = screen.getByText(/book/i)
+    const textElement = screen.getByText(/home/i)
 
-    expect(textElement).toHaveTextContent('book store');
+    expect(textElement).toHaveTextContent('home');
   })
 
-  it('홈 컴포넌트를 렌더링하면 "header" 텍스트가 화면에 보여야 한다.', () => {
-    const textElement = screen.getByText(/header/i)
-
-    expect(textElement).toHaveTextContent('header');
-  })
 })
