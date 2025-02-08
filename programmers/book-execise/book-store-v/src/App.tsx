@@ -3,7 +3,7 @@ import './App.css'
 function App() {
   return (
     <>
-      <div>Vitest Test!</div> 
+      <div>Vitest Test!</div>
     </>
   )
 }
