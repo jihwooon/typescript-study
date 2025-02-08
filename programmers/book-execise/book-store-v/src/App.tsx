@@ -1,9 +1,8 @@
-import Home from "./pages/Home"
+import Home from "./pages/common/Home"
 
 function App() {
   return (
     <>
-      {/* <div>Vitest Test!</div> */}
       <Home />
     </>
   )
