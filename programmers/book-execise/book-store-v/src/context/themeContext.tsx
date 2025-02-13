@@ -31,7 +31,7 @@ export const BookStoreThemeProvider = ({ children }: {children: ReactNode}) => {
     const savedThemeName = localStorage.getItem(THEME_LOCAL_STORAGE_KEY) as ThemeName;
 
     setThemeName(savedThemeName || DEFAULT_THEME_NAME)
-  },[])
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ themeName, toggleTheme }}>
