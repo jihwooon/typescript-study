@@ -9,19 +9,28 @@ interface Theme {
 export const light: Theme = {
   name: 'light',
   color: {
-    primary: 'brown',
-    background: 'lightgray',
-    secondary: 'blue',
-    third: 'green',
+    primary: "#ff5800",
+    background: "lightgrey",
+    secondary: "5F5F5F",
+    third: "green",
   },
 }
 
 export const dark: Theme = {
   name: 'dark',
   color: {
-    primary: 'black',
-    background: 'black',
-    secondary: 'blue',
-    third: 'darkgreen',
+    primary: "coral",
+    background: "midnightblue",
+    secondary: "darkblue",
+    third: "darkgreen",
   },
+}
+
+export const getTheme = (themeName: ThemeName): Theme => {
+  switch (themeName) {
+  case 'light':
+    return light;
+  case 'dark':
+    return dark;
+  }
 }
