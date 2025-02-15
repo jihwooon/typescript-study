@@ -1,17 +1,15 @@
+import Header from './components/header/header';
+import Home from './components/home'
+
 function App() {
+
   return (
     <div>
       <header>
-        <img src="src/assets/react-core-concepts.png" alt="Stylized atom" />
-        <h1>React Essentials</h1>
-        <p>
-          Fundamental React concepts you will need for almost any app you are
-          going to build!
-        </p>
+        <h1>Hello World</h1>
       </header>
-      <main>
-        <h2>Time to get started!</h2>
-      </main>
+      <Header />
+      <Home />
     </div>
   );
 }
