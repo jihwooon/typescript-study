@@ -5,6 +5,7 @@ import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 import { EXAMPLES } from './data.js';
+import CheckBox from './components/CheckBox.jsx';
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState();
@@ -34,6 +35,7 @@ function App() {
   return (
     <div>
       <Header />
+      <CheckBox/>
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
