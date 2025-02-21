@@ -3,6 +3,7 @@ import './App.css'
 import Avatar from './components/Avatar';
 import Counter from './components/Counter';
 import Profile from './components/Profile';
+import Products from './components/Products';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <div className='container'>
+        <Products />
         <h2 className='totalcount'>
           Total Count: {count}
         </h2>
