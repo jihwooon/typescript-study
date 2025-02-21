@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Player from "./components/Player"
-import GameBoard from "./components/GameBoard"
-import Log from './components/Log';
+import Log from './components/Log'
+import GameBoard from "./components/GameBoard";
 
 function App() {
   const [gameTurns, setGameTurns] =useState([]);
