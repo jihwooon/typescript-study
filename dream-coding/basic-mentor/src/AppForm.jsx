@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 export default function AppForm() {
   const [form, setForm] = useState({ email: "", name: "" });
@@ -14,6 +15,7 @@ export default function AppForm() {
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">이름:</label>
       <input
@@ -34,5 +36,7 @@ export default function AppForm() {
       />
       <button>Submit</button>
     </form>
+    <Button><article>버튼</article></Button>
+    </>
   );
 }

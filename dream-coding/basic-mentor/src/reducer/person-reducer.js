@@ -1,5 +1,3 @@
-import {produce} from "immer";
-
 function personReducer(person, action) {
   switch (action.type) {
     case 'update': {
