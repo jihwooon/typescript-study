@@ -1,3 +1,5 @@
+import styles from './FilterTodo.module.css'
+
 interface Props {
   filters: string[];
   filter: string;
@@ -6,11 +8,15 @@ interface Props {
 
 const Filter = ({ filters, filter, onFilterChange }: Props) => {
   return (
-    <header>
-      <ul>
+    <header className={styles.header}>
+      <ul className={styles.filters}>
         {filters.map((value, index) => (
-          <li key={index}>
-            <button onClick={() => onFilterChange(value)}>{value}</button>
+          <li
+            key={index}
+          >
+            <button
+              className={`${styles.filter} ${filter === value ? styles.selected : ''}`}
+              onClick={() => onFilterChange(value)}>{value}</button>
           </li>
         ))}
       </ul>
