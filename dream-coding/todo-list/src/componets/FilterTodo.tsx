@@ -9,9 +9,7 @@ const Filter = ({ filters, filter, onFilterChange }: Props) => {
     <header>
       <ul>
         {filters.map((value, index) => (
-          <li style={{
-            listStyle: "none"
-          }} key={index}>
+          <li key={index}>
             <button onClick={() => onFilterChange(value)}>{value}</button>
           </li>
         ))}

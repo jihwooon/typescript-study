@@ -22,15 +22,13 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1>투두 앱 만들기</h1>
-        <Filter
-          filters={filters}
-          filter={filter}
-          onFilterChange={handleFilterChange}
-        />
-        <TodoList filter={filter} />
-      </div>
+      <h1>투두 앱 만들기</h1>
+      <Filter
+        filters={filters}
+        filter={filter}
+        onFilterChange={handleFilterChange}
+      />
+      <TodoList filter={filter} />
     </>
   )
 }

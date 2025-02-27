@@ -21,25 +21,14 @@ const TodoDetail = ({ todo, onUpdate, onDelete }: Props) => {
   };
 
   return (
-    <li
-      style={{
-        listStyle: 'none',
-      }}
-    >
+    <li>
       <input
         type="checkbox"
         checked={status === 'completed'}
         onChange={handleChange}
       />
       <label>{text}</label>
-      <button
-        style={{
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-        }}
-        onClick={handleDelete}
-      >
+      <button onClick={handleDelete}>
         <FaRegTrashCan />
       </button>
     </li>
