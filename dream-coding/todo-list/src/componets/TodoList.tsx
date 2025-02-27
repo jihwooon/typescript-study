@@ -8,7 +8,11 @@ export interface Todo {
   status: string;
 }
 
-const TodoList = () => {
+interface Props {
+  filter: string;
+}
+
+const TodoList = ({ filter }: Props) => {
   const [todos, setTodos] = useState<Todo[]>([{
     id: '1',
     text: '할일 1',
@@ -32,10 +36,12 @@ const TodoList = () => {
     setTodos(todos.filter((todo) => todo.id !== id))
   }
 
+  const filtered = getFilteredItems(todos, filter)
+
   return (
     <div>
       <ul>
-        {todos.map((item) => (
+        {filtered.map((item) => (
           <TodoDetail key={item.id} todo={item}
           onUpdate={handleUpdate}
           onDelete={handleDelete}/>
@@ -47,3 +53,11 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
+const getFilteredItems = (todos: Todo[], filter: string): Todo[] => {
+ if (filter === 'all') {
+   return todos;
+ }
+
+ return todos.filter((todo) => todo.status === filter)
+}

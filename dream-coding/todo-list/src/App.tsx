@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import './App.css'
+import Filter from './componets/FilterTodo'
 import TodoList from './componets/TodoList'
 
 // TODO APP
@@ -8,12 +10,26 @@ import TodoList from './componets/TodoList'
 // - 아이템 추가
 // - 아이템 필터링
 // - 다크모드 지원하기
+//
+const filters = ['all', 'active', 'completed']
+
 function App() {
+  const [filter, setFilter] = useState<string>(filters[0])
+
+  const handleFilterChange = (selectedFilter: string) => {
+    setFilter(selectedFilter)
+  }
+
   return (
     <>
       <div>
         <h1>투두 앱 만들기</h1>
-        <TodoList />
+        <Filter
+          filters={filters}
+          filter={filter}
+          onFilterChange={handleFilterChange}
+        />
+        <TodoList filter={filter} />
       </div>
     </>
   )
