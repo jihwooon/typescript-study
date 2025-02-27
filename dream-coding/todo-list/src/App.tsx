@@ -1,4 +1,5 @@
 import './App.css'
+import TodoList from './componets/TodoList'
 
 // TODO APP
 // - 전체 리스트 보여주기
@@ -12,6 +13,7 @@ function App() {
     <>
       <div>
         <h1>투두 앱 만들기</h1>
+        <TodoList />
       </div>
     </>
   )
