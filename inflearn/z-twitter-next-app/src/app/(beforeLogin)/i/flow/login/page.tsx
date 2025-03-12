@@ -1,9 +1,7 @@
-const page = () => {
-    return (
-        <div>
-            <h1>page</h1>
-        </div>
-    );
+import { redirect } from "next/navigation";
+
+const Login = () => {
+    return redirect('/i/flow/login')
 }
 
-export default page;
+export default Login;
