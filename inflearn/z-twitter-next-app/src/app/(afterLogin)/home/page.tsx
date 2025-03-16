@@ -1,15 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import xLogo from '../../../../public/x.png'
-import styles from '../../page.module.css'
 
 const Home = () => {
   return (
     <>
-      <div className={styles.left}>
+      <div>
         <Image src={xLogo} alt="logo" width={200} height={200} />
       </div>
-      <div className={styles.right}>
+      <div>
         <h1>지금 일어나고 있는 일</h1>
         <h2>지금 가입하세요.</h2>
         <Link href="/i/flow/signup">계정 만들기</Link>
