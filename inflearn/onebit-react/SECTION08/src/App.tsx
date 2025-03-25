@@ -4,7 +4,7 @@ import Viewer from './componets/Viewer';
 import Controller from './componets/Controller';
 
 function App() {
-  const [count, setCount] =useState<number>(0)
+  const [count, setCount] = useState<number>(0)
 
   const handleClick = (value: number) => {
     setCount(count + value);
@@ -13,9 +13,9 @@ function App() {
   return (
     <div>
       <h1>Simple Counter</h1>
-      <section> 
+      <section>
         <Viewer count={count}/>
-      </section> 
+      </section>
       <section>
         <div className="counter-button">
           <Controller onClickButton={handleClick} />
