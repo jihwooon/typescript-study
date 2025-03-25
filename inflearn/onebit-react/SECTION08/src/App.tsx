@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import Viewer from './componets/Viewer';
+import Controller from './componets/Controller';
 
 function App() {
   const [count, setCount] =useState<number>(0)
@@ -11,20 +13,12 @@ function App() {
   return (
     <div>
       <h1>Simple Counter</h1>
-      <section>
-        <div className="counter-display">
-          <p>현재카운트:</p>
-          {count}
-        </div> 
+      <section> 
+        <Viewer count={count}/>
       </section> 
       <section>
         <div className="counter-button">
-          <button onClick={() => handleClick(-1)}>-1</button>
-          <button onClick={() => handleClick(-10)}>-10</button>
-          <button onClick={() => handleClick(-100)}>-100</button>
-          <button onClick={() => handleClick(100)}>+100</button>
-          <button onClick={() => handleClick(10)}>+10</button>
-          <button onClick={() => handleClick(1)}>+1</button>
+          <Controller onClickButton={handleClick} />
         </div>
       </section>
     </div>
