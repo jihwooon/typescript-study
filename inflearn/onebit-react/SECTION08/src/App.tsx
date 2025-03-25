@@ -14,10 +14,6 @@ function App() {
     console.log(`${count} ${input}`)
   }, [count, input])
 
-  // useEffect(() => {
-  //   console.log("mount");
-  // }, [])
-
   useEffect(() => {
     if (!isMount.current) {
       isMount.current = true;
@@ -28,7 +24,7 @@ function App() {
   })
 
   const handleClick = (value: number) => {
-    setCount(count + value);
+    setCount((prev) => prev + value);
   }
 
   return (
