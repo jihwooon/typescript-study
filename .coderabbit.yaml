@@ -1,6 +1,7 @@
-# $schema: https://coderabbit.ai/integrations/schema.v2.json
 language: "ko-KR"
-early_access: false
+
+early_access: true
+enable_free_tier: true
 reviews:
   profile: "chill"
   request_changes_workflow: false

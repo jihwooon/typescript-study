@@ -32,19 +32,19 @@ function App() {
     }
   ]
 
-  interface Data {
+  interface TodoItem {
     id: number,
     isDone: boolean,
     content: string,
     date: number,
   }
 
-  const [todo, setTodo] = useState<Data[]>(mockData)
-  const isRef = useRef(3)
+  const [todo, setTodo] = useState<TodoItem[]>(mockData)
+  const idRef = useRef(Math.max(...mockData.map(item => item.id)) + 1)
 
   const onCreate = (content: string) => {
     const newTodo = {
-      id: isRef.current++,
+      id: idRef.current++,
       isDone: false,
       content: content,
       date: new Date().getTime()
