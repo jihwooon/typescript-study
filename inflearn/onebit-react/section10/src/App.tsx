@@ -1,9 +1,9 @@
 import { useRef, useState } from "react"
 import "./App.css"
-import { Editor } from "./components/Editor"
-import { Header } from "./components/Header"
-import { List } from "./components/List"
 import { TodoItem } from "./models/todo-item.model"
+import { Header } from "./components/Header"
+import { Editor } from "./components/Editor"
+import { List } from "./components/List"
 
 function App() {
   const mockData = [
@@ -47,11 +47,19 @@ function App() {
     setTodo([newTodo, ...todo])
   }
 
+  const onUpdate = (targetId: number) => {
+    setTodo(todo.map((item) =>
+      item.id === targetId
+        ? { ...item, isDone: !item.isDone }
+        : item
+    ))
+  }
+
   return (
     <div className="App">
      <Header/>
      <Editor onCreate={onCreate}/>
-     <List todos={todo}/> 
+     <List todos={todo} onUpdate={onUpdate}/>
     </div>
   )
 }

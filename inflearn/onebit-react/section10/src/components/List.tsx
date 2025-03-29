@@ -5,9 +5,10 @@ import { useState } from 'react'
 
 interface Props {
     todos: ITodos[]
+    onUpdate: (id: number) => void;
 }
 
-export const List = ({ todos }: Props) => {
+export const List = ({ todos, onUpdate }: Props) => {
   const [search, setSearch] =useState("")
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +40,7 @@ export const List = ({ todos }: Props) => {
       />
       <div className='todos_wrapper'>
         {filteredTodos.map((item) => (
-          <TodoItem key={item.id} todo={item}/>
+          <TodoItem key={item.id} todo={item} onUpdate={onUpdate}/>
         ))}
       </div>
     </div>
