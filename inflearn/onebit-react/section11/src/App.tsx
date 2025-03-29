@@ -1,10 +1,21 @@
-import { useRef, useState } from "react"
+import { useRef, useReducer } from "react"
 import "./App.css"
-import { TodoItem } from "./models/todo-item.model"
 import { Header } from "./components/Header"
 import { Editor } from "./components/Editor"
 import { List } from "./components/List"
-import Exam from './components/Exam'
+
+const reducer = (state: any, action: any) => {
+  switch(action.type) {
+    case 'CREATE':
+      return [action.data, ...state]
+    case 'UPDATE':
+      return state.map((item) => item.id === action.targetId? {...item, isDone: !item.isDone} : item)
+    case 'DELETE':
+      return state.filter((item) => item.id !== action.targetId)
+    default:
+      return state;
+  }
+}
 
 function App() {
   const mockData = [
@@ -34,38 +45,40 @@ function App() {
     }
   ]
 
-  const [todo, setTodo] = useState<TodoItem[]>(mockData)
+  const [todo, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(Math.max(...mockData.map(item => item.id)) + 1)
 
   const onCreate = (content: string) => {
-    const newTodo = {
-      id: idRef.current++,
-      isDone: false,
-      content: content,
-      date: new Date().getTime()
-    }
-
-    setTodo([newTodo, ...todo])
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: idRef.current ++,
+        idDone: false,
+        content: content,
+        date: new Date().getTime(),
+      }
+    })
   }
 
   const onUpdate = (targetId: number) => {
-    setTodo(todo.map((item) =>
-      item.id === targetId
-        ? { ...item, isDone: !item.isDone }
-        : item
-    ))
+    dispatch({
+      type: "UPDATE",
+      targetId: targetId
+    })
   }
 
   const onDelete = (targetId: number) => {
-    setTodo(todo.filter((item) => item.id !== targetId))
+    dispatch({
+      type: "DELETE",
+      targetId: targetId
+    })
   }
 
   return (
     <div className="App">
-     <Exam/>
-     {/* <Header/>
+     <Header/>
      <Editor onCreate={onCreate}/>
-     <List todos={todo} onUpdate={onUpdate} onDelete={onDelete}/> */}
+     <List todos={todo} onUpdate={onUpdate} onDelete={onDelete}/>
     </div>
   )
 }
