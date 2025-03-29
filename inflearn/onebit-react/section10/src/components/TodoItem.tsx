@@ -1,11 +1,16 @@
+import { TodoItem as ITodoItem } from "../models/todo-item.model"
 import "./TodoItem.css"
 
-export const TotoItem = () => {
+interface Props {
+    todo: ITodoItem
+}
+
+export const TodoItem = ({ todo } : Props) => {
     return (
         <div className="TodoItem">
             <input type="checkbox" />
-            <div className="content">Todo...</div>
-            <div className="date">Date</div>
+            <div className="content">{todo.content}</div>
+            <div className="date">{todo.date}</div>
             <button>삭제</button>
         </div>
     )
