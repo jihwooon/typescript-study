@@ -15,6 +15,7 @@ export const Editor = ({ onCreate }: Props) => {
 
     const onKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
+        e.preventDefault();
         onSubmit()
       }
     }
@@ -30,11 +31,11 @@ export const Editor = ({ onCreate }: Props) => {
 
     return (
       <div className="Editor">
-        <input 
+        <input
           ref={contentRef}
           value={content}
           onKeyDown={onKeydown}
-          placeholder="새로운 todo.." 
+          placeholder="새로운 todo.."
           onChange={onChangeContent}
         />
         <button onClick={onSubmit}>추가</button>

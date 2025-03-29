@@ -19,9 +19,9 @@ export const TodoItem = ({ todo, onUpdate, onDelete } : Props) => {
 
     return (
         <div className="TodoItem">
-            <input readOnly type="checkbox" checked={todo.isDone} onChange={onChangeCheckBox} />
+            <input type="checkbox" checked={todo.isDone} onChange={onChangeCheckBox} />
             <div className="content">{todo.content}</div>
-            <div className="date">{todo.date}</div>
+            <div className="date">{new Date(todo.date).toLocaleDateString()}</div>
             <button onClick={onClickButton}>삭제</button>
         </div>
     )

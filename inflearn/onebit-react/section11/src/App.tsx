@@ -47,7 +47,7 @@ const reducer = (state: TodoItem[], action: Action) => {
 
 function App() {
   const [todo, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(Math.max(...mockData.map(item => item.id)) + 1)
+  const idRef = useRef(mockData.length > 0 ? Math.max(...mockData.map(item => item.id)) + 1 : 0)
 
   const onCreate = (content: string) => {
     dispatch({

@@ -21,7 +21,7 @@ const Exam = () => {
     })
   }
 
-  const onClickMius = () => {
+  const onClickMinus = () => {
     dispatch({
       type: "DECREASE",
       data: 1,
@@ -31,7 +31,7 @@ const Exam = () => {
   return <div>
     <h1>{state}</h1>
     <button onClick={onClickPlus}>+</button>
-    <button onClick={onClickMius}>-</button>
+    <button onClick={onClickMinus}>-</button>
   </div>
 }
 
