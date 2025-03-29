@@ -4,12 +4,17 @@ import "./TodoItem.css"
 interface Props {
     todo: ITodoItem
     onUpdate: (id: number) => void;
+    onDelete: (id: number) => void;
 }
 
-export const TodoItem = ({ todo, onUpdate } : Props) => {
+export const TodoItem = ({ todo, onUpdate, onDelete } : Props) => {
 
   const onChangeCheckBox = () => {
     onUpdate(todo.id)
+  }
+
+  const onClickButton = () => {
+    onDelete(todo.id)
   }
 
     return (
@@ -17,7 +22,7 @@ export const TodoItem = ({ todo, onUpdate } : Props) => {
             <input readOnly type="checkbox" checked={todo.isDone} onChange={onChangeCheckBox} />
             <div className="content">{todo.content}</div>
             <div className="date">{todo.date}</div>
-            <button>삭제</button>
+            <button onClick={onClickButton}>삭제</button>
         </div>
     )
 }
