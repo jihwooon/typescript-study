@@ -1,7 +1,7 @@
 import './List.css'
 import { TodoItem as ITodos } from '../models/todo-item.model'
 import { TodoItem } from './TodoItem'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 interface Props {
     todos: ITodos[]
@@ -30,9 +30,27 @@ export const List = ({ todos, onUpdate, onDelete }: Props) => {
 
   const filteredTodos = getFilteredData()
 
+  const { totalCount, doenCount, notDoneCount } = useMemo(() => {
+    const totalCount = todos.length;
+    const doenCount = todos.filter((todo) => todo.isDone).length;
+
+    const notDoneCount = totalCount - doenCount
+
+    return {
+      totalCount,
+      doenCount,
+      notDoneCount
+    }
+  }, [todos])
+
   return (
     <div className="List">
       <h4>Todo List</h4>
+      <div>
+        <div>total: {totalCount}</div>
+        <div>done: {doenCount}</div>
+        <div>notDone: {notDoneCount}</div>
+      </div>
       <input
         type="text"
         value={search}
