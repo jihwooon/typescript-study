@@ -1,6 +1,6 @@
 import './List.css'
 import { TodoItem as ITodos } from '../models/todo-item.model'
-import { TodoItem } from './TodoItem'
+import TodoItem from './TodoItem'
 import { useMemo, useState } from 'react'
 
 interface Props {
