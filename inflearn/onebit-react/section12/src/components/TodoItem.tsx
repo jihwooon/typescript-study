@@ -28,19 +28,4 @@ const TodoItem = ({ todo, onUpdate, onDelete } : Props) => {
     )
 }
 
-export default memo(TodoItem, (prevProps, nextProps) => {
-  if (prevProps.todo.id !== nextProps.todo.id) {
-    return false
-  }
-  if (prevProps.todo.isDone !== nextProps.todo.isDone) {
-    return false
-  }
-  if (prevProps.todo.content !== nextProps.todo.content) {
-    return false
-  }
-  if (prevProps.todo.date !== nextProps.todo.date) {
-    return false
-  }
-
-  return true;
-})
+export default memo(TodoItem);

@@ -1,4 +1,4 @@
-import { useRef, useReducer } from "react"
+import { useRef, useReducer, useCallback } from "react"
 import "./App.css"
 import { Editor } from "./components/Editor"
 import { List } from "./components/List"
@@ -49,31 +49,31 @@ function App() {
   const [todo, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(mockData.length > 0 ? Math.max(...mockData.map(item => item.id)) + 1 : 0)
 
-  const onCreate = (content: string) => {
+  const onCreate = useCallback((content: string) => {
     dispatch({
       type: "CREATE",
       data: {
-        id: idRef.current ++,
+        id: idRef.current++,
         isDone: false,
         content: content,
         date: new Date().getTime(),
       }
     })
-  }
+  }, [])
 
-  const onUpdate = (targetId: number) => {
-    dispatch({
-      type: "UPDATE",
-      targetId: targetId
-    })
-  }
-
-  const onDelete = (targetId: number) => {
+  const onDelete = useCallback((targetId: number) => {
     dispatch({
       type: "DELETE",
       targetId: targetId
     })
-  }
+  }, [])
+
+  const onUpdate = useCallback((targetId: number) => {
+    dispatch({
+      type: "UPDATE",
+      targetId: targetId
+    })
+  }, [])
 
   return (
     <div className="App">
