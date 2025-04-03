@@ -6,7 +6,7 @@ interface ModalState {
     task: Task
 }
 
-interface Task {  
+export interface Task {  
     taskId: string;
     taskName: string;
     taskDescription: string;
