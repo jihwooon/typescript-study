@@ -22,6 +22,11 @@
 - [x] LoggerModal 컴포넌트 - 활동 로그 표시
 - [x] SideForm 컴포넌트 - 보드 생성 폼
 
+### 컴포넌트 개선
+- [x] SideForm 컴포넌트 입력 필드 초기값 설정
+- [x] SideForm 컴포넌트 onBlur 이벤트 처리 추가
+- [x] 보드 생성 입력 필드 placeholder 추가
+
 ### 상태 관리
 - [x] Redux Toolkit 설정
 - [x] boardsSlice 구현 - 보드 상태 관리
