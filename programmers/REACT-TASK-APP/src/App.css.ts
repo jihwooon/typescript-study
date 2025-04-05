@@ -47,10 +47,10 @@ export const vars = createGlobalTheme(":root", {
 })
 
 export const appContainer = style({
-  display: 'flex',
-  flexDirection: 'row',
-  height: 'max-content',
-  width: '100vw',
+  // display: 'flex',
+  // flexDirection: 'row',
+  // height: 'max-content',
+  // width: '100vw',
 });
 
 export const board = style({

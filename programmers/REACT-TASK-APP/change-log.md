@@ -2,6 +2,18 @@
 
 이 프로젝트의 모든 주요 변경 사항이 이 파일에 기록됩니다.
 
+## [0.0.3] - 2025-04-06
+
+### 기능 추가
+- 사이드바 폼([SideForm](cci:1://file:///Users/jihwooon/Workspaces/typescript-study/programmers/REACT-TASK-APP/src/components/BoardList/SideForm/SideForm.tsx:13:0-55:1))을 통해 새로운 게시판을 추가하는 기능 구현
+- 게시판 추가 시 로그(`loggerSlice`)에 관련 기록을 남기는 기능 추가
+
+### 코드 개선
+- [SideForm](cci:1://file:///Users/jihwooon/Workspaces/typescript-study/programmers/REACT-TASK-APP/src/components/BoardList/SideForm/SideForm.tsx:13:0-55:1) 컴포넌트 스타일 업데이트 (`SideForm.css.ts`)
+- `boardsSlice`에 `addBoard` 액션 추가 및 로직 구현
+- `loggerSlice`에 `addLog` 액션 추가 및 로직 구현
+- 일부 컴포넌트 스타일 조정 (`App.css.ts`)
+
 ## [0.0.2] - 2025-04-06
 
 ### 컴포넌트 업데이트

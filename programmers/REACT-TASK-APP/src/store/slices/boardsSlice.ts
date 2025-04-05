@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction ,createSlice } from "@reduxjs/toolkit";
 import { Task } from "./modalSlice";
 
 interface Board {
@@ -16,6 +16,10 @@ interface List {
 interface BoardsState {
   modalActive: boolean;
   boardArray: Board[]; 
+}
+
+type TADDBoardAction = {
+  board: Board;
 }
 
 const initialState: BoardsState = {
@@ -70,8 +74,11 @@ const boardsSlice = createSlice({
     name: "boards",
     initialState,
     reducers: {
-
+      addBoard: (state, { payload }: PayloadAction<TADDBoardAction>) => {
+        state.boardArray.push(payload.board)
+      }
     }
 })
 
+export const { addBoard } = boardsSlice.actions
 export const boardReducer = boardsSlice.reducer;
