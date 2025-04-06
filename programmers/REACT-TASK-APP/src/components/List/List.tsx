@@ -1,6 +1,11 @@
-import React from 'react'
+import { List as IList } from "../../types"
 
-const List = () => {
+interface Props {
+  list: IList;
+  boardId: string
+}
+
+const List = ({ list, boardId }: Props) => {
   return (
     <div>List</div>
   )

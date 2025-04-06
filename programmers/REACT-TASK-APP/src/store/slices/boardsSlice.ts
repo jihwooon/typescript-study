@@ -1,22 +1,5 @@
 import { PayloadAction ,createSlice } from "@reduxjs/toolkit";
-import { Task } from "./modalSlice";
-
-interface Board {
-  boardId: string;
-  boardName: string;
-  lists: List[];
-}
-
-interface List {
-  listId: string;
-  listName: string;
-  tasks: Task[];
-}
-
-interface BoardsState {
-  modalActive: boolean;
-  boardArray: Board[]; 
-}
+import { Board, BoardsState } from "../../types";
 
 type TADDBoardAction = {
   board: Board;
