@@ -21,6 +21,7 @@
 - [x] EditModal 컴포넌트 - 작업 편집 기능
 - [x] LoggerModal 컴포넌트 - 활동 로그 표시
 - [x] SideForm 컴포넌트 - 보드 생성 폼
+- [x] ListContainer 컴포넌트 - 리스트 목록 표시 및 관리
 
 ### 컴포넌트 개선
 - [x] SideForm 컴포넌트 입력 필드 초기값 설정
@@ -29,9 +30,10 @@
 
 ### 상태 관리
 - [x] Redux Toolkit 설정
-- [x] boardsSlice 구현 - 보드 상태 관리
-- [x] loggerSlice 구현 - 활동 로그 관리
-- [x] modalSlice 구현 - 모달 상태 관리
+- [x] boardsSlice 업데이트 - `addBoard` 액션 및 중앙 타입 적용
+- [x] loggerSlice 업데이트 - `addLog` 액션 구현
+- [x] modalSlice 업데이트 - 중앙 타입 적용
+- [x] TypeScript 타입 중앙 관리 (`src/types/index.ts`)
 
 ### 기능 구현
 - [x] React Beautiful DnD 통합 - 드래그 앤 드롭

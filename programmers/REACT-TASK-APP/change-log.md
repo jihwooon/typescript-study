@@ -5,14 +5,18 @@
 ## [0.0.3] - 2025-04-06
 
 ### 기능 추가
-- 사이드바 폼([SideForm](cci:1://file:///Users/jihwooon/Workspaces/typescript-study/programmers/REACT-TASK-APP/src/components/BoardList/SideForm/SideForm.tsx:13:0-55:1))을 통해 새로운 게시판을 추가하는 기능 구현
-- 게시판 추가 시 로그(`loggerSlice`)에 관련 기록을 남기는 기능 추가
+- 사이드바 폼([SideForm](cci:1://file:///Users/jihwooon/Workspaces/typescript-study/programmers/REACT-TASK-APP/src/components/BoardList/SideForm/SideForm.tsx:13:0-55:1))을 통해 새로운 게시판을 추가하는 기능 구현.
+- 게시판 추가 시 로그(`loggerSlice`)에 관련 기록을 남기는 기능 추가.
+- `App.tsx`에서 활성 보드에 따라 해당 리스트(`List`)들을 `ListContainer`를 통해 렌더링하도록 구현.
 
-### 코드 개선
-- [SideForm](cci:1://file:///Users/jihwooon/Workspaces/typescript-study/programmers/REACT-TASK-APP/src/components/BoardList/SideForm/SideForm.tsx:13:0-55:1) 컴포넌트 스타일 업데이트 (`SideForm.css.ts`)
-- `boardsSlice`에 `addBoard` 액션 추가 및 로직 구현
-- `loggerSlice`에 `addLog` 액션 추가 및 로직 구현
-- 일부 컴포넌트 스타일 조정 (`App.css.ts`)
+### 리팩토링 및 코드 개선
+- TypeScript 타입을 `src/types/index.ts`로 중앙화하여 코드 구조 개선 및 타입 일관성 확보.
+- Redux 슬라이스 (`boardsSlice`, `modalSlice`)에서 중앙화된 타입을 사용하도록 업데이트.
+- `boardsSlice`에 `addBoard` 액션 및 로직 구현.
+- `loggerSlice`에 `addLog` 액션 및 로직 구현.
+- `ListContainer` 컴포넌트 구현: 리스트 목록 표시 및 리스트 추가를 위한 `ActionButton` 포함.
+- `List` 컴포넌트가 props를 받도록 수정.
+- 컴포넌트 스타일 업데이트 (`SideForm.css.ts`, `App.css.ts`).
 
 ## [0.0.2] - 2025-04-06
 
