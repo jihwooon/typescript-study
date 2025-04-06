@@ -2,6 +2,16 @@
 
 이 프로젝트의 모든 주요 변경 사항이 이 파일에 기록됩니다.
 
+## [0.0.4] - 2025-04-06
+
+### 기능 추가
+- 리스트 삭제 기능 구현 (`boardsSlice`에 `deleteBoard` 액션 추가).
+- 작업 항목 클릭 시 편집 모달을 열고 관련 데이터를 설정하는 기능 구현 (`List` 컴포넌트, `modalSlice`의 `setModalActive`, `setModalData` 액션).
+
+### 코드 개선
+- `List` 컴포넌트에서 리스트 삭제 및 모달 열기 로직 구현.
+- `boardsSlice` 및 `modalSlice`에 타입 정의 추가 (Action Types).
+
 ## [0.0.3] - 2025-04-06
 
 ### 기능 추가

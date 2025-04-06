@@ -30,9 +30,9 @@
 
 ### 상태 관리
 - [x] Redux Toolkit 설정
-- [x] boardsSlice 업데이트 - `addBoard` 액션 및 중앙 타입 적용
+- [x] boardsSlice 업데이트 - `addBoard`, `deleteBoard` 액션 및 중앙 타입 적용
 - [x] loggerSlice 업데이트 - `addLog` 액션 구현
-- [x] modalSlice 업데이트 - 중앙 타입 적용
+- [x] modalSlice 업데이트 - `setModalData`, `setModalActive` 액션 및 중앙 타입 적용
 - [x] TypeScript 타입 중앙 관리 (`src/types/index.ts`)
 
 ### 기능 구현
@@ -40,6 +40,8 @@
 - [x] UUID 통합 - 고유 식별자 생성
 - [x] SideForm을 통한 새 게시판 추가 기능 구현
 - [x] 게시판 추가 시 로그 기록 기능 구현
+- [x] 리스트 삭제 기능 구현
+- [x] 작업 클릭 시 편집 모달 표시 및 데이터 설정
 
 ## 진행 중인 태스크 
 
