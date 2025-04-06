@@ -9,7 +9,7 @@
 ### 컴포넌트 개발
 - [x] Board 컴포넌트 생성
 - [x] List 컴포넌트 생성 및 스타일링
-- [x] Task 컴포넌트 생성
+- [x] Task 컴포넌트 생성 및 스타일링
 - [x] ListContainer 컴포넌트 생성
 - [x] ActionButton 컴포넌트 (드롭다운 포함) 생성
 - [x] EditModal 컴포넌트 생성
