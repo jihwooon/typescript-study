@@ -4,6 +4,7 @@ import { useTypedDispatch } from '../../../hooks/redux';
 import { addList, addTask } from '../../../store/slices/boardsSlice';
 import { v4 } from 'uuid';
 import { addLog } from '../../../store/slices/loggerSlice';
+import { button, buttons, close, listForm, taskForm } from './DropDownForm.css';
 
 type Props = {
   boardId: string;
@@ -68,7 +69,7 @@ const DropDownForm = ({ boardId, list, listId, setIsFormOpen }: Props) => {
   const buttonTitle = list ? "리스트 추가하기" : "일 추가하기"
 
   return (
-    <div>
+    <div className={list ? listForm : taskForm}>
       <textarea 
         value={text}
         onChange={handleTextChange}
@@ -76,11 +77,14 @@ const DropDownForm = ({ boardId, list, listId, setIsFormOpen }: Props) => {
         placeholder={formPlaceholder}
         onBlur={() => setIsFormOpen}
         />
-      <div>
-        <button onMouseDown={handleButtonClick}>
+      <div className={buttons}>
+        <button 
+          className={button} 
+          onMouseDown={handleButtonClick}
+        >
           {buttonTitle}
         </button>
-        <FiX />
+        <FiX className={close}/>
       </div>
     </div>
   )
