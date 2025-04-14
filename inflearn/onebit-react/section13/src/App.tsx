@@ -15,7 +15,9 @@ function App() {
 
   return (
     <>
-      <div> 
+      <div style={{
+        marginBottom: '40px'
+      }}> 
          <img src={getEmotionImage(1)?.toString()} />
          <img src={getEmotionImage(2)?.toString()} />
          <img src={getEmotionImage(3)?.toString()} />
@@ -24,6 +26,7 @@ function App() {
       </div>
       <div style={{
         display : 'flex',
+        justifyContent: 'center',
         gap: 40
       }}>
         <Link to={"/"}>Home</Link>
