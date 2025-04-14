@@ -20,3 +20,14 @@
 ### 변경됨
 - Diary 컴포넌트에서 useParams 훅 사용으로 개선
 - Home 컴포넌트에서 useSearchParams 훅 추가
+
+## [1.0.2] - 2025-04-14
+
+### 추가됨
+- 감정 이미지 5종 추가 (emotion1.png ~ emotion5.png)
+- get-emotion-image 유틸리티 함수 구현
+- 나눔손글씨 폰트 적용
+
+### 변경됨
+- 전반적인 CSS 리팩토링 (레이아웃 개선)
+- App 컴포넌트에 감정 이미지 미리보기 추가
