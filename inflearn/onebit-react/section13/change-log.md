@@ -9,3 +9,4 @@
 
 ### 변경됨
 - App.tsx에서 라우트 구조 업데이트
+- App.tsx의 CSS 문법 오류 수정 (display: 'flex' 다음에 콤마 추가)
