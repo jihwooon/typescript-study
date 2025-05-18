@@ -5,7 +5,12 @@ import { fetchEvents } from '../../api/event.api.js'
 import { useQuery } from '@tanstack/react-query';
 
 export default function NewEventsSection() {
-  const{ data, isPending, isError, error } = useQuery({ queryKey: ['events'], queryFn: fetchEvents })
+  const{ data, isPending, isError, error } = useQuery({ 
+    queryKey: ['events'], 
+    queryFn: fetchEvents, 
+    staleTime: 5000,
+    gcTime: 1000
+  })
 
   let content;
 
