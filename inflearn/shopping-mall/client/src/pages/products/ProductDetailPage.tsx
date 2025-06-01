@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
-import type { Product } from "../../types"
-import { QueryKeys } from "../../queryClient"
-import { fetcher } from "../../queryClient"
+import { QueryKeys, graphqlFetcher } from "../../queryClient"
 import { useParams } from "react-router"
 import ProductDetail from "../../compoents/products/ProductDetail"
+import { GET_PRODUCT, type product } from "../../graphql/products"
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams()
-  const { data, isLoading, error } = useQuery<Product>({
+  const { data, isLoading, error } = useQuery<product>({
     queryKey: [QueryKeys.PRODUCTS, productId],
-    queryFn: () => fetcher({ method: 'GET', path: `/products/${productId}` }),
+    queryFn: () => graphqlFetcher(GET_PRODUCT, { id: productId }),
   })
 
   if (isLoading) return <div>Loading...</div>

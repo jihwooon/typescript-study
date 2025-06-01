@@ -1,7 +1,7 @@
 import { Link } from "react-router"
-import type { PRODUCT } from "../../graphql/products"
+import type { product } from "../../graphql/products"
 
-const ProductItem: React.FC<PRODUCT> = ({ id, imageUrl, price, title}) => {
+const ProductItem: React.FC<product> = ({ id, imageUrl, price, title}) => {
   return (
    <li className="product-item">
     <Link to={`/products/${id}`}>

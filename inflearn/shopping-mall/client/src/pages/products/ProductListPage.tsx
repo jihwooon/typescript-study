@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
 import { graphqlFetcher, QueryKeys } from "../../queryClient"
 import ProductItem from "../../compoents/products/ProductItem"
-import GET_PRODUCTS, { type PRODUCTS } from "../../graphql/products"
+import { GET_PRODUCTS, type products } from "../../graphql/products"
 
 const ProductListPage: React.FC = () => {
-  const { data, isLoading, error } = useQuery<PRODUCTS>({
+  const { data, isLoading, error } = useQuery<products>({
     queryKey: [QueryKeys.PRODUCTS],
     queryFn: () => graphqlFetcher(GET_PRODUCTS),
   })
