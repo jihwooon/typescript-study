@@ -7,7 +7,18 @@ import {
 
     return () => {
         if (!client) {
-            client = new QueryClient()
+          client = new QueryClient(
+            {
+              defaultOptions: {
+                queries: {
+                  gcTime: 1000 * 60 * 60 * 24,
+                  staleTime: 1000,
+                  refetchOnReconnect: false,
+                  refetchOnWindowFocus: false,
+                }
+              }
+            }
+          )
         }
 
         return client;
@@ -21,6 +32,8 @@ const BASE_URL = 'https://fakestoreapi.com'
 export const fetcher = async ({
   method,
   path,
+  params,
+  body,
 }: {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD',
   path:string
@@ -28,13 +41,21 @@ export const fetcher = async ({
   params?: AnyObject
 }) => {
   try {
-    const url = `${BASE_URL}${path}`
+    let url = `${BASE_URL}${path}`
     const fetchOptions: RequestInit = {
       method,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': BASE_URL,
       },
+    }
+
+    if (params) {
+      url += `?${new URLSearchParams(params).toString()}`
+    }
+
+    if (body) {
+      fetchOptions.body = JSON.stringify(body)
     }
 
     const response = await fetch(url, fetchOptions)
