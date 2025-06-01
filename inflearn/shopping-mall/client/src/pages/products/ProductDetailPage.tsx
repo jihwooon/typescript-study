@@ -3,7 +3,7 @@ import type { Product } from "../../types"
 import { QueryKeys } from "../../queryClient"
 import { fetcher } from "../../queryClient"
 import { useParams } from "react-router"
-import ProductDetail from "./ProductDetail"
+import ProductDetail from "../../compoents/products/ProductDetail"
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams()

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { fetcher, QueryKeys } from "../../queryClient"
-import ProductItem from "./ProductItem"
+import ProductItem from "../../compoents/products/ProductItem"
 import type { Product } from "../../types"
 
 const ProductListPage: React.FC = () => {
