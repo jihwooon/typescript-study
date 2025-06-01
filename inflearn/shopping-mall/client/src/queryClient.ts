@@ -1,3 +1,5 @@
+import { request, type RequestDocument } from 'graphql-request';
+
 import {
     QueryClient,
   } from '@tanstack/react-query'
@@ -27,7 +29,10 @@ import {
 )()
 
 type AnyObject = { [key: string]: any }
-const BASE_URL = 'https://fakestoreapi.com'
+const BASE_URL = 'http://localhost:5173'
+
+export const graphqlFetcher = async <T>(query: RequestDocument, variables = {}) => 
+  request<T>(BASE_URL, query, variables)
 
 export const fetcher = async ({
   method,
