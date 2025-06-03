@@ -73,4 +73,5 @@ export const fetcher = async ({
 
 export const QueryKeys = {
   PRODUCTS: 'PRODUCTS',
+  CART: 'CART'
 }
