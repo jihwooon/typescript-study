@@ -41,7 +41,7 @@ const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
 
   return (
     <li className="cart-item">
-      <img src={imageUrl}/>
+      <img className="cart-item__image" src={imageUrl}/>
       <p className="cart-item__price">{price}</p>
       <p className="cart_item__title">{title}</p>
       <input className="cart_item__amount" type="number" min={1} value={amount} onChange={handleUpdateAmount}/>
