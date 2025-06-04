@@ -1,7 +1,7 @@
 import { graphql, HttpResponse } from 'msw'
 import { GET_PRODUCT } from '../graphql/products'
 import { GET_PRODUCTS } from '../graphql/products'
-import { ADD_CART, GET_CART, type Cart } from '../graphql/cart'
+import { ADD_CART, GET_CART, UPDATE_CART, type Cart } from '../graphql/cart'
 
 const mockProducts = (() => Array.from({ length: 20 }, (_, index) => ({
     id: index + 1 + '',
@@ -55,6 +55,23 @@ export const handlers = [
         }
         cartData = newData;
 
+        return HttpResponse.json({
+            data: newData
+        })
+    }),
+    graphql.mutation(UPDATE_CART, ({variables}) => {
+        const newData = { ...cartData}
+        const { id, amount } = variables
+        if (!newData[id]) {
+            throw new Error('존재하지 않는 데이터입니다.')
+        }
+        
+        newData[id] = {
+          ...newData[id],
+          amount
+        }
+
+        cartData = newData;
         return HttpResponse.json({
             data: newData
         })

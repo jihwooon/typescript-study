@@ -6,8 +6,6 @@ const CartList = ({items } : {items?: Cart[]}) => {
         return null;
     }
 
-    console.log(items)
-
     return (
      <ul>
         {items.map((item) => <CartItem key={item.id} {...item}/>)}
