@@ -36,27 +36,23 @@ export const handlers = [
       })
     }),
     graphql.mutation(ADD_CART, ({variables}) => {
-        const newData = { ...cartData}
+        const newCartData = { ...cartData}
         const { id } = variables
-        if (newData[id]) {
-            newData[id] = {
-                ...newData[id],
-                amount: (newData[id].amount || 0) + 1
-            }
-        } else {
-            const founded = mockProducts.find((product) => product.id === id)
-            console.log(founded)
-            if (founded) {
-                newData[id] = {
-                    ...founded,
-                    amount: 1
-                } 
-            } 
+
+        const targetProduct = mockProducts.find((product) => product.id === id)
+        if (!targetProduct) {
+            throw new Error('상품이 없습니다.')
         }
-        cartData = newData;
+        
+        const newItem = {
+          ...targetProduct,
+          amount: (newCartData[id]?.amount || 0) + 1
+        }
+        newCartData[id] = newItem;
+        cartData = newCartData;
 
         return HttpResponse.json({
-            data: newData
+            data: newItem
         })
     }),
     graphql.mutation(UPDATE_CART, ({variables}) => {
@@ -66,14 +62,15 @@ export const handlers = [
             throw new Error('존재하지 않는 데이터입니다.')
         }
         
-        newData[id] = {
+        const newItem = {
           ...newData[id],
           amount
         }
 
+        newData[id] = newItem;
         cartData = newData;
         return HttpResponse.json({
-            data: newData
+            data: newItem
         })
     })
   ]
