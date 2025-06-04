@@ -7,9 +7,12 @@ const CartList = ({items } : {items?: Cart[]}) => {
     }
 
     return (
-     <ul>
+      <>
+      <label><input type="checkbox"/>전체선택</label>
+       <ul>
         {items.map((item) => <CartItem key={item.id} {...item}/>)}
-     </ul>
+       </ul>
+      </>
     )
 }
 
