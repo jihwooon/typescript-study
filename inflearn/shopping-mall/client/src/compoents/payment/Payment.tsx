@@ -42,7 +42,7 @@ const Payment = () => {
 
     return (
       <div>
-        <WillPay submitTitle={"결제하기"} handleSubmit={showModal}/> 
+        <WillPay submitTitle={"결제하기"} handleSubmit={showModal}/>
         <PaymentModal show={modalShown} proceed={proceed} cancel={cancel}/>
       </div>
     )

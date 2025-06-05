@@ -2,6 +2,7 @@ import { graphql, HttpResponse } from 'msw'
 import { GET_PRODUCT } from '../graphql/products'
 import { GET_PRODUCTS } from '../graphql/products'
 import { ADD_CART, DELETE_CART, GET_CART, UPDATE_CART, type Cart } from '../graphql/cart'
+import { EXECUTE_PAY } from '../graphql/payment'
 
 const mockProducts = (() => Array.from({ length: 20 }, (_, index) => ({
     id: index + 1 + '',
@@ -25,7 +26,7 @@ export const handlers = [
     }),
     graphql.query(GET_PRODUCT, ({variables}) => {
         const { id } = variables
-        
+
         return HttpResponse.json({
             data: mockProducts.find((product) => product.id === id)
         })
@@ -43,7 +44,7 @@ export const handlers = [
         if (!targetProduct) {
             throw new Error('상품이 없습니다.')
         }
-        
+
         const newItem = {
           ...targetProduct,
           amount: (newCartData[id]?.amount || 0) + 1
@@ -61,7 +62,7 @@ export const handlers = [
         if (!newData[id]) {
             throw new Error('존재하지 않는 데이터입니다.')
         }
-        
+
         const newItem = {
           ...newData[id],
           amount
@@ -79,6 +80,15 @@ export const handlers = [
       cartData = newData;
       return HttpResponse.json({
         data: id
+      })
+    }),
+    graphql.mutation(EXECUTE_PAY, ({ variables: ids }) => {
+      ids.forEach((id: string) => {
+        delete cartData[id]
+      })
+
+      return HttpResponse.json({
+        data: ids
       })
     })
   ]
