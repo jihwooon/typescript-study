@@ -1,8 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { DELETE_CART, UPDATE_CART, type Cart } from "../../graphql/cart";
 import { getQueryClient, graphqlFetcher, QueryKeys } from "../../queryClient";
+import { forwardRef, type ForwardedRef } from "react";
 
-const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
+const CartItem = ({id, imageUrl, price, title, amount }: Cart, ref: ForwardedRef<HTMLInputElement>) =>{
   const queryClient = getQueryClient()
   const { mutate: updateToCart } = useMutation({
     mutationFn: ({ id, amount}: {id: string, amount: number}) => graphqlFetcher(UPDATE_CART, { id, amount }), 
@@ -20,7 +21,7 @@ const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
 
       queryClient.setQueryData([QueryKeys.CART], newCart) 
     },
-    onSuccess: newValue => {
+    onSuccess: (newValue) => {
       const prevCart = queryClient.getQueryData<{ [key: string]: Cart[] }>([QueryKeys.CART]) 
 
       const newCart = {
@@ -29,8 +30,7 @@ const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
       }
 
       queryClient.setQueryData([QueryKeys.CART], newCart) 
-    }
-    }
+    }}
   );
 
   const { mutate: deleteCart } = useMutation({
@@ -52,6 +52,7 @@ const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
 
   return (
     <li className="cart-item">
+       <input className="cart-item__checkbox" type="checkbox" name={`select-item`} ref={ref}/>
       <img className="cart-item__image" src={imageUrl}/>
       <p className="cart-item__price">{price}</p>
       <p className="cart_item__title">{title}</p>
@@ -61,4 +62,4 @@ const CartItem = ({id, imageUrl, price, title, amount }: Cart) =>{
   )
 }
 
-export default CartItem;
+export default forwardRef(CartItem);
