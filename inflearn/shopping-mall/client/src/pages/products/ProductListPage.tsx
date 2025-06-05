@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { graphqlFetcher, QueryKeys } from "../../queryClient"
-import ProductItem from "../../compoents/products/ProductItem"
 import { GET_PRODUCTS, type products } from "../../graphql/products"
+import ProductList from "../../compoents/products/ProductList"
 
 const ProductListPage: React.FC = () => {
   const { data, isLoading, error } = useQuery<products>({
@@ -14,12 +14,8 @@ const ProductListPage: React.FC = () => {
 
   return (
     <div>
-      <h3>상품 목록</h3>
-      <ul className="products">
-        {data?.products.map(product => (
-          <ProductItem key={product.id} {...product} />
-        ))}
-      </ul>
+      <h3>상품 목록</h3> 
+      <ProductList list={data?.products || []}/>
     </div>
   )
 }

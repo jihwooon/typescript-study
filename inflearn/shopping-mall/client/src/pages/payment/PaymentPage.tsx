@@ -1,7 +1,5 @@
-const PaymentPage = () => {
-  return (
-    <div>결제하기 페이지</div>
-  )
-}
+import Payment from "../../compoents/payment/Payment";
+
+const PaymentPage = () => <Payment/>
 
 export default PaymentPage
