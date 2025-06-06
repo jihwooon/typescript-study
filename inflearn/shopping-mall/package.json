@@ -2,10 +2,12 @@
   "name": "shopping-mall",
   "private": true,
   "workspaces": [
-    "client"
+    "client",
+    "server"
   ],
   "scripts": {
-    "client": "yarn workspace client run dev"
+    "client": "yarn workspace client dev",
+    "server": "yarn workspace server dev"
   },
   "devDependencies": {
     "corepack": "^0.33.0"

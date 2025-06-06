@@ -6,7 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/server": "^4.12.2",
+    "@as-integrations/express5": "^1.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "graphql": "^16.11.0",
     "http": "^0.0.1-security",
@@ -22,8 +24,8 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "dev": "pm2 start ecosystem.config.js --only projectName-dev --env development",
     "build": "rm -rf dist && tsc",
-    "stop": "pm2 stop src/index.ts"
+    "stop": "pm2 stop src/index.ts",
+    "dev": "tsx watch -r dotenv/config src/index.ts"
   }
 }

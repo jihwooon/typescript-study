@@ -1,37 +1,40 @@
 import express from 'express'
 import cors from 'cors';
 import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@as-integrations/express5';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import http from 'http';
+import { resolvers } from './resolvers/resolvers';
+import { typeDefs } from './schema/schema';
 
 (async () => {
-  // const server = new ApolloServer(null);
-  const port = 3000
+  const port = 8000;
 
-  const app = express()
-  // await server.start()
+  const app = express();
+  const httpServer = http.createServer(app);
 
-  // CORS 설정 옵션
-  const corsOptions = {
-    origin: ['http://localhost:3000'], // 허용할 도메인
-    credentials: true, // 쿠키 포함 요청 허용
-  };
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
+  
+  await server.start();
 
-  // 전역 CORS 설정
-  app.use(cors(corsOptions));
-
-  // 특정 경로에 대한 CORS 설정
-  app.use('/graphql',
+  app.use(
+    '/graphql',
     cors({
-      origin: 'http://localhost:3000',
+      origin: ['http://localhost:5173', 'https://studio.apollographql.com'],
       credentials: true
     }),
     express.json(),
+    expressMiddleware(server)
   );
 
   app.get('/', (req, res) => {
-     res.send('Hello World!');
+    res.send('Hello World!');
   });
 
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
-})()
+  await new Promise<void>((resolve) => httpServer.listen({ port }, () => resolve()));
+  console.log(`🚀 Server ready at http://localhost:${port}`);
+})();
