@@ -3,11 +3,11 @@ import cors from 'cors';
 import { ApolloServer } from '@apollo/server';
 
 (async () => {
-  const server = new ApolloServer(null);
+  // const server = new ApolloServer(null);
   const port = 3000
 
   const app = express()
-  await server.start()
+  // await server.start()
 
   // CORS 설정 옵션
   const corsOptions = {
@@ -26,6 +26,10 @@ import { ApolloServer } from '@apollo/server';
     }),
     express.json(),
   );
+
+  app.get('/', (req, res) => {
+     res.send('Hello World!');
+  });
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
