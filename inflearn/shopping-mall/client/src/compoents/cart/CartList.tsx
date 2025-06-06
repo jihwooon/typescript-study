@@ -73,12 +73,11 @@ const CartList = ({ items } : {items?: Cart[]}) => {
 
     const checkboxRefs = items.map(() => createRef<HTMLInputElement>())
 
-
     const handleSubmit = () => {
         if (checkedCartData.length) {
             navigate("/payment")
         } else {
-            alert("결제할 대상이 아닙니다.")
+            alert("결제할 항목을 선택해주세요.")
         }
     }
 
