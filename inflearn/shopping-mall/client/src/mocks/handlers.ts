@@ -1,7 +1,8 @@
 import { graphql, HttpResponse } from 'msw'
 import { GET_PRODUCT } from '../graphql/products'
 import { GET_PRODUCTS } from '../graphql/products'
-import { ADD_CART, GET_CART, type Cart } from '../graphql/cart'
+import { ADD_CART, DELETE_CART, GET_CART, UPDATE_CART, type Cart } from '../graphql/cart'
+import { EXECUTE_PAY } from '../graphql/payment'
 
 const mockProducts = (() => Array.from({ length: 20 }, (_, index) => ({
     id: index + 1 + '',
@@ -25,7 +26,7 @@ export const handlers = [
     }),
     graphql.query(GET_PRODUCT, ({variables}) => {
         const { id } = variables
-        
+
         return HttpResponse.json({
             data: mockProducts.find((product) => product.id === id)
         })
@@ -36,27 +37,58 @@ export const handlers = [
       })
     }),
     graphql.mutation(ADD_CART, ({variables}) => {
-        const newData = { ...cartData}
+        const newCartData = { ...cartData}
         const { id } = variables
-        if (newData[id]) {
-            newData[id] = {
-                ...newData[id],
-                amount: (newData[id].amount || 0) + 1
-            }
-        } else {
-            const founded = mockProducts.find((product) => product.id === id)
-            console.log(founded)
-            if (founded) {
-                newData[id] = {
-                    ...founded,
-                    amount: 1
-                } 
-            } 
+
+        const targetProduct = mockProducts.find((product) => product.id === id)
+        if (!targetProduct) {
+            throw new Error('상품이 없습니다.')
         }
-        cartData = newData;
+
+        const newItem = {
+          ...targetProduct,
+          amount: (newCartData[id]?.amount || 0) + 1
+        }
+        newCartData[id] = newItem;
+        cartData = newCartData;
 
         return HttpResponse.json({
-            data: newData
+            data: newItem
         })
+    }),
+    graphql.mutation(UPDATE_CART, ({variables}) => {
+        const newData = { ...cartData}
+        const { id, amount } = variables
+        if (!newData[id]) {
+            throw new Error('존재하지 않는 데이터입니다.')
+        }
+
+        const newItem = {
+          ...newData[id],
+          amount
+        }
+
+        newData[id] = newItem;
+        cartData = newData;
+        return HttpResponse.json({
+            data: newItem
+        })
+    }),
+    graphql.mutation(DELETE_CART, ({variables: { id }})=> {
+      const newData = {...cartData };
+      delete newData[id]
+      cartData = newData;
+      return HttpResponse.json({
+        data: id
+      })
+    }),
+    graphql.mutation(EXECUTE_PAY, ({ variables: { ids } }) => {
+      ids.forEach((id: string) => {
+        delete cartData[id]
+      })
+
+      return HttpResponse.json({
+        data: ids
+      })
     })
   ]
