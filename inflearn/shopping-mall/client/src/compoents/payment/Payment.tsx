@@ -8,19 +8,14 @@ import { useMutation } from "@tanstack/react-query";
 import { EXECUTE_PAY } from "../../graphql/payment";
 import { graphqlFetcher } from "../../queryClient";
 
-type PayInfo = {
-  id: string;
-  amount: number;
-}
-
-type PaymentInfo = PayInfo[];
+type PaymentInfo = string[]
 
 const Payment = () => {
     const navigate = useNavigate()
     const [checkedCartData, setCheckedCartData] = useRecoilState(checkedCartState)
     const [modalShown, toggleModal] = useState<boolean>(false)
     const { mutate: executePay } = useMutation({
-      mutationFn: (payInfo: PaymentInfo) => graphqlFetcher(EXECUTE_PAY, payInfo)
+      mutationFn: (ids: PaymentInfo) => graphqlFetcher(EXECUTE_PAY, { ids })
     })
 
     const showModal = () => {
@@ -28,12 +23,14 @@ const Payment = () => {
     }
 
     const proceed = () => {
-      const payInfos = checkedCartData.map(({ id, amount }) => (
-        {id, amount}
-      ))
-      executePay(payInfos)
-      setCheckedCartData([])
-      navigate('/products', { replace: true})
+      const ids = checkedCartData.map(({ id }) => id)
+      executePay(ids, {
+        onSuccess: () => {
+          setCheckedCartData([])
+          alert("결제 완료되었습니다.")
+          navigate('/products', { replace: true})
+        }
+      })
     }
 
     const cancel = () => {
