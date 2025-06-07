@@ -30,7 +30,8 @@ import {
 )()
 
 type AnyObject = { [key: string]: any }
-const BASE_URL = 'http://localhost:5173'
+
+const BASE_URL = 'http://localhost:8000/graphql'
 
 export const graphqlFetcher = async <T>(query: RequestDocument, variables = {}) => 
   request<T>(BASE_URL, query, variables)

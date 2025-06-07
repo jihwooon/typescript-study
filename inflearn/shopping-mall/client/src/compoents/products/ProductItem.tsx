@@ -1,10 +1,10 @@
 import { Link } from "react-router"
-import type { product } from "../../graphql/products"
+import type { Product } from "../../graphql/products"
 import { useMutation } from "@tanstack/react-query";
 import { graphqlFetcher } from "../../queryClient";
 import { ADD_CART } from "../../graphql/cart";
 
-const ProductItem: React.FC<product> = ({ id, imageUrl, price, title}) => {
+const ProductItem: React.FC<Product> = ({ id, imageUrl, price, title}) => {
   const { mutate: addToCart } = useMutation({
     mutationFn: (id: string) => graphqlFetcher(ADD_CART, { id })
   });

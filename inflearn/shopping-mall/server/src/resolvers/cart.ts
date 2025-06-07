@@ -1,46 +1,82 @@
-import { mockProducts } from './product';
+import { setJSON } from "..";
+import { Resolver } from "./types";
 
-let cartData: { [key: string]: any } = {};
-
-export const cartResolvers = {
+export const cartResolvers: Resolver = {
   Query: {
-    cart: () => Object.values(cartData),
+    cart: (parent, args, { db }) => {
+      return db.cart
+    },
   },
   Mutation: {
-    addCart: (_: any, { id }: { id: string }) => {
-      const targetProduct = mockProducts.find((product) => product.id === id);
+    addCart: (parent, { id }, { db }) => {
+      if (!id) { throw new Error('상품 id가 없습니다.')
+      }
+
+      const targetProduct = db.products.find((product) => product.id === id);
       if (!targetProduct) {
-        throw new Error('상품이 없습니다.');
+        throw new Error('상품이 없습니다.')
+      }
+
+      const existCartItemIndex = db.cart.findIndex((item) => item.id === id)
+
+      if (existCartItemIndex > -1) {
+        const newCartItem = {
+          id,
+          amount: db.cart[existCartItemIndex].amount + 1
+        }
+
+        db.cart.splice(existCartItemIndex, 1, newCartItem)
+        setJSON(db.cart)
+        return newCartItem;
       }
 
       const newItem = {
-        ...targetProduct,
-        amount: (cartData[id]?.amount || 0) + 1
+        id,
+        amount: 1
       };
-      cartData[id] = newItem;
+
+      db.cart.push(newItem)
+      setJSON(db.cart)
       return newItem;
     },
-    updateCart: (_: any, { id, amount }: { id: string; amount: number }) => {
-      if (!cartData[id]) {
+    updateCart: (parent, { id, amount }, { db }) => {
+      const existCartIndex = db.cart.findIndex((item) => item.id === id)
+
+      if (existCartIndex < 0) {
         throw new Error('존재하지 않는 데이터입니다.');
       }
 
-      const newItem = {
-        ...cartData[id],
+      const newCartItem = {
+        id,
         amount
-      };
-      cartData[id] = newItem;
-      return newItem;
+      }
+
+      db.cart.splice(existCartIndex, 1, newCartItem)
+      setJSON(db.cart)  
+      return newCartItem
     },
-    deleteCart: (_: any, { id }: { id: string }) => {
-      delete cartData[id];
-      return id;
+    deleteCart: (parent, { id, amount }, { db }) => {
+      const existCartIndex = db.cart.findIndex((item) => item.id === id)
+
+      if (existCartIndex < 0) {
+        throw new Error('존재하지 않는 데이터입니다.');
+      }
+      
+      db.cart.splice(existCartIndex, 1)
+      setJSON(db.cart)
+      return id
     },
-    executePay: (_: any, { ids }: { ids: string[] }) => {
-      ids.forEach((id) => {
-        delete cartData[id];
-      });
+    executePay: (parent, { ids }, { db }) => {
+      const newCartData = db.cart.filter((cartItem) => !ids.includes(cartItem.id))
+      db.cart = newCartData
+      setJSON(db.cart)
       return ids;
     },
   },
-}; 
+  Cart: {
+    product: (cartItem, args, { db }) => {
+      const product = db.products.find((product) => product.id === cartItem.id);
+      return product || null;
+    }
+  },
+};

@@ -1,15 +1,12 @@
 export const cartTypeDefs = `#graphql
   type Cart {
     id: ID!
-    title: String!
-    description: String!
-    imageUrl: String!
-    price: Int!
     amount: Int!
+    product: Product!
   }
 
-  type Query {
-    cart: [Cart!]!
+  extend type Query {
+    cart: [Cart!]
   }
 
   type Mutation {
@@ -18,4 +15,4 @@ export const cartTypeDefs = `#graphql
     deleteCart(id: ID!): ID!
     executePay(ids: [ID!]!): [ID!]!
   }
-`; 
+`;
