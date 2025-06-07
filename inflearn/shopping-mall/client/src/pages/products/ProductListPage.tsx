@@ -18,15 +18,13 @@ const ProductListPage: React.FC = () => {
     return observerRef.current
   }, [observerRef.current])
 
-  console.log(intersercting)
-
   useEffect(() => {
     if(fetchMoreRef.current) {
       getObserver().observe(fetchMoreRef.current)
     }
   }, [fetchMoreRef.current])
 
-  const { data, isLoading, error } = useInfiniteQuery<Products>({
+  const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
     queryKey: [QueryKeys.PRODUCTS],
     queryFn: ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
     initialPageParam: 1,
@@ -34,6 +32,12 @@ const ProductListPage: React.FC = () => {
       return lastPage.products.at(-1)?.id
     }
   })
+
+  useEffect(() => { 
+    if(!intersercting || !isSuccess || !hasNextPage || !isFetchingNextPage) {
+      fetchNextPage()
+    }
+  },[intersercting])
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
