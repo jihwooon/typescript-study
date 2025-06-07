@@ -4,7 +4,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import http from 'http';
-import { DBField, readDB, writeDB } from './dbControlelr';
+import { DBField, readDB, writeDB } from './dbController';
 import resolvers from './resolvers';
 import schema from './schema';
 
