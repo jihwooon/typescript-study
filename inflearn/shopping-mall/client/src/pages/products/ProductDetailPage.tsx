@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query"
 import { QueryKeys, graphqlFetcher } from "../../queryClient"
 import { useParams } from "react-router"
 import ProductDetail from "../../compoents/products/ProductDetail"
-import { GET_PRODUCT, type product } from "../../graphql/products"
+import { GET_PRODUCT, type Product } from "../../graphql/products"
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams()
-  const { data, isLoading, error } = useQuery<product>({
+
+  const { data, isLoading, error } = useQuery<{ product: Product }>({
     queryKey: [QueryKeys.PRODUCTS, productId],
     queryFn: () => graphqlFetcher(GET_PRODUCT, { id: productId }),
   })
@@ -18,7 +19,7 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div>
       <h2>상품 상세</h2>
-      <ProductDetail item={data}/> 
+      <ProductDetail item={data.product}/> 
     </div>
   )
 }

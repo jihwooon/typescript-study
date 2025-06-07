@@ -1,6 +1,6 @@
-import type { Cart } from "../../graphql/cart";
+import type { Product } from "../../graphql/products";
 
-const CartItemData = ({imageUrl, price, title}: Pick<Cart, 'imageUrl' | 'price' | 'title'>) => {
+const CartItemData = ({imageUrl, price, title}: Pick<Product, 'imageUrl' | 'price' | 'title'>) => {
 
   return (
     <>

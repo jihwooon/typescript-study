@@ -6,7 +6,7 @@ import { checkedCartState } from "../../recoils/cart";
 import WillPay from "../willPay/willPay";
 import { useNavigate } from "react-router";
 
-const CartList = ({ items } : {items?: Cart[]}) => {
+const CartList = ({ items } : {items: Cart[]}) => {
     const formRef = useRef<HTMLFormElement>(null)
     const [checkedCartData ,setCheckedCartData] = useRecoilState(checkedCartState)
     const [formData, setFormData] = useState<FormData>()
