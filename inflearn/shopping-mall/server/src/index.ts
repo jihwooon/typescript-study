@@ -8,24 +8,24 @@ import { resolvers } from './resolvers/resolvers';
 import { typeDefs } from './schema/schema';
 import { DBField, readDB } from './dbControlelr';
 
+interface MyContext {
+  db: {
+    products: any[];
+    cart: any[];
+  };
+}
+
 (async () => {
   const port = 8000;
 
   const app = express();
   const httpServer = http.createServer(app);
 
-  const server = new ApolloServer({
+  const server = new ApolloServer<MyContext>({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
   });
-
-  context: {
-    db: {
-      products: readDB(DBField.PRODUCTS)
-      cart: readDB(DBField.CART)
-    }
-  }
 
   await server.start();
 
@@ -36,7 +36,14 @@ import { DBField, readDB } from './dbControlelr';
       credentials: true
     }),
     express.json(),
-    expressMiddleware(server)
+    expressMiddleware(server, {
+      context: async () => ({
+        db: {
+          products: readDB(DBField.PRODUCTS),
+          cart: readDB(DBField.CART)
+        }
+      })
+    })
   );
 
   app.get('/', (req, res) => {

@@ -1,18 +1,17 @@
-export const mockProducts = (() => Array.from({ length: 20 }, (_, index) => ({
-  id: index + 1 + '',
-  createdAt: new Date().toISOString(),
-  imageUrl: `https://picsum.photos/id/${index+1}/640/480`,
-  price: 50000,
-  title: `Product ${index+1}`,
-  description: `Description ${index+1}`,
-  category: new Date(1234567890123+(index*1000*60)).toISOString(),
-})))();
+import { Resolver } from "./types";
 
-export const productResolvers = {
+export const productResolvers: Resolver = {
   Query: {
-    products: () => mockProducts,
-    product: (_: any, { id }: { id: string }) => {
-      return mockProducts.find((product) => product.id === id);
+    products: (parent, args, { db }) => {
+      return db.products;
+    },
+    product: (parent, { id }, { db }) => {
+      const found = db.products.find((product: any) => product.id === id);
+      if (!found) {
+        return null
+      }
+
+      return found;
     },
   },
 }; 
