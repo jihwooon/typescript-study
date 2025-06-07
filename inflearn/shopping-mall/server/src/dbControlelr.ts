@@ -3,7 +3,7 @@ import { resolve } from 'path'
 
 export enum DBField {
   CART = 'cart',
-  PRODUCTS = 'proudcts'
+  PRODUCTS = 'products'
 }
 
 const curentPath = resolve()

@@ -4,7 +4,6 @@ import { Resolver } from "./types";
 export const cartResolvers: Resolver = {
   Query: {
     cart: (parent, args, { db }) => {
-      console.log(db)
       return db.cart
     },
   },

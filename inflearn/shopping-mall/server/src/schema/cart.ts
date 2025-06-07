@@ -5,7 +5,7 @@ export const cartTypeDefs = `#graphql
     product: Product!
   }
 
-  type Query {
+  extend type Query {
     cart: [Cart!]!
   }
 
