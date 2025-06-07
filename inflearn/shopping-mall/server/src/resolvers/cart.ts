@@ -4,24 +4,20 @@ import { Resolver } from "./types";
 export const cartResolvers: Resolver = {
   Query: {
     cart: (parent, args, { db }) => {
-      return db.cart.map((item: any) => ({
-        ...item,
-        product: db.products.find((product: any) => product.id === item.id)
-      }))
+      return db.cart
     },
   },
   Mutation: {
     addCart: (parent, { id }, { db }) => {
-      if (!id) {
-        throw new Error('상품 id가 없습니다.')
+      if (!id) { throw new Error('상품 id가 없습니다.')
       }
 
-      const targetProduct = db.products.find((product: any) => product.id === id);
+      const targetProduct = db.products.find((product) => product.id === id);
       if (!targetProduct) {
         throw new Error('상품이 없습니다.')
       }
 
-      const existCartItemIndex = db.cart.findIndex((item: any) => item.id === id)
+      const existCartItemIndex = db.cart.findIndex((item) => item.id === id)
 
       if (existCartItemIndex > -1) {
         const newCartItem = {
@@ -44,7 +40,7 @@ export const cartResolvers: Resolver = {
       return newItem;
     },
     updateCart: (parent, { id, amount }, { db }) => {
-      const existCartIndex = db.cart.findIndex((item: any) => item.id === id)
+      const existCartIndex = db.cart.findIndex((item) => item.id === id)
 
       if (existCartIndex < 0) {
         throw new Error('존재하지 않는 데이터입니다.');
@@ -60,7 +56,7 @@ export const cartResolvers: Resolver = {
       return newCartItem
     },
     deleteCart: (parent, { id, amount }, { db }) => {
-      const existCartIndex = db.cart.findIndex((item: any) => item.id === id)
+      const existCartIndex = db.cart.findIndex((item) => item.id === id)
 
       if (existCartIndex < 0) {
         throw new Error('존재하지 않는 데이터입니다.');
@@ -71,10 +67,16 @@ export const cartResolvers: Resolver = {
       return id
     },
     executePay: (parent, { ids }, { db }) => {
-      const newCartData = db.cart.filter((cartItem: any) => !ids.includes(cartItem.id))
+      const newCartData = db.cart.filter((cartItem) => !ids.includes(cartItem.id))
       db.cart = newCartData
       setJSON(db.cart)
       return ids;
     },
+  },
+  Cart: {
+    product: (cartItem, args, { db }) => {
+      const product = db.products.find((product) => product.id === cartItem.id);
+      return product || null;
+    }
   },
 };

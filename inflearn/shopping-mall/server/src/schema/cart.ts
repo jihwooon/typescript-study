@@ -2,11 +2,11 @@ export const cartTypeDefs = `#graphql
   type Cart {
     id: ID!
     amount: Int!
-    product: Product
+    product: Product!
   }
 
   extend type Query {
-    cart: [Cart!]!
+    cart: [Cart!]
   }
 
   type Mutation {

@@ -4,9 +4,9 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import http from 'http';
-import { resolvers } from './resolvers/resolvers';
-import { typeDefs } from './schema/schema';
 import { DBField, readDB, writeDB } from './dbControlelr';
+import resolvers from './resolvers';
+import schema from './schema';
 
 export const setJSON = (data: any) => {
   return writeDB(DBField.CART, data)
@@ -26,7 +26,7 @@ interface MyContext {
   const httpServer = http.createServer(app);
 
   const server = new ApolloServer<MyContext>({
-    typeDefs,
+    typeDefs: schema,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
   });
