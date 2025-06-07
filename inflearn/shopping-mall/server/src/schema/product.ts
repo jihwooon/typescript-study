@@ -10,7 +10,7 @@ export const productTypeDefs = `#graphql
   }
 
   type Query {
-    products: [Product!]!
+    products(cursor: ID): [Product!]!
     product(id: ID!): Product
   }
 `; 

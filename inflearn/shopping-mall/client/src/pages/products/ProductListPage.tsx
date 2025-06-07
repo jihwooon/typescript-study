@@ -1,13 +1,28 @@
-import { useQuery } from "@tanstack/react-query"
+import { useInfiniteQuery } from "@tanstack/react-query"
 import { graphqlFetcher, QueryKeys } from "../../queryClient"
 import { GET_PRODUCTS, type Products } from "../../graphql/products"
 import ProductList from "../../compoents/products/ProductList"
+import { useEffect, useRef } from "react"
+import useIntersection from "../../hooks/useIntersection"
 
 const ProductListPage: React.FC = () => {
-  const { data, isLoading, error } = useQuery<Products>({
+  const fetchMoreRef = useRef<HTMLDivElement>(null)
+  const intersercting = useIntersection(fetchMoreRef)
+
+  const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
     queryKey: [QueryKeys.PRODUCTS],
-    queryFn: () => graphqlFetcher(GET_PRODUCTS),
+    queryFn: ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.products.at(-1)?.id
+    }
   })
+
+  useEffect(() => { 
+    if(!intersercting || !isSuccess || !hasNextPage || !isFetchingNextPage) {
+      fetchNextPage()
+    }
+  },[intersercting])
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
@@ -15,7 +30,8 @@ const ProductListPage: React.FC = () => {
   return (
     <div>
       <h3>상품 목록</h3> 
-      <ProductList list={data?.products || []}/>
+      <ProductList list={data?.pages || []}/>
+      <div ref={fetchMoreRef}/>
     </div>
   )
 }
