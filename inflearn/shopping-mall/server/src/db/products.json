@@ -1,0 +1,182 @@
+[
+  {
+    "imageUrl": "https://picsum.photos/id/1/640/480",
+    "price": 50000,
+    "title": "Product 1",
+    "category": "2009-02-13T23:31:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.180Z",
+    "description": "Description 1",
+    "id": "1"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/2/640/480",
+    "price": 50000,
+    "title": "Product 2",
+    "category": "2009-02-13T23:32:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 2",
+    "id": "2"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/3/640/480",
+    "price": 50000,
+    "title": "Product 3",
+    "category": "2009-02-13T23:33:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 3",
+    "id": "3"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/4/640/480",
+    "price": 50000,
+    "title": "Product 4",
+    "category": "2009-02-13T23:34:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 4",
+    "id": "4"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/5/640/480",
+    "price": 50000,
+    "title": "Product 5",
+    "category": "2009-02-13T23:35:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 5",
+    "id": "5"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/6/640/480",
+    "price": 50000,
+    "title": "Product 6",
+    "category": "2009-02-13T23:36:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 6",
+    "id": "6"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/7/640/480",
+    "price": 50000,
+    "title": "Product 7",
+    "category": "2009-02-13T23:37:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 7",
+    "id": "7"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/8/640/480",
+    "price": 50000,
+    "title": "Product 8",
+    "category": "2009-02-13T23:38:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 8",
+    "id": "8"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/9/640/480",
+    "price": 50000,
+    "title": "Product 9",
+    "category": "2009-02-13T23:39:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 9",
+    "id": "9"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/10/640/480",
+    "price": 50000,
+    "title": "Product 10",
+    "category": "2009-02-13T23:40:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 10",
+    "id": "10"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/11/640/480",
+    "price": 50000,
+    "title": "Product 11",
+    "category": "2009-02-13T23:41:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 11",
+    "id": "11"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/12/640/480",
+    "price": 50000,
+    "title": "Product 12",
+    "category": "2009-02-13T23:42:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 12",
+    "id": "12"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/13/640/480",
+    "price": 50000,
+    "title": "Product 13",
+    "category": "2009-02-13T23:43:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 13",
+    "id": "13"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/14/640/480",
+    "price": 50000,
+    "title": "Product 14",
+    "category": "2009-02-13T23:44:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 14",
+    "id": "14"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/15/640/480",
+    "price": 50000,
+    "title": "Product 15",
+    "category": "2009-02-13T23:45:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 15",
+    "id": "15"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/16/640/480",
+    "price": 50000,
+    "title": "Product 16",
+    "category": "2009-02-13T23:46:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 16",
+    "id": "16"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/17/640/480",
+    "price": 50000,
+    "title": "Product 17",
+    "category": "2009-02-13T23:47:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 17",
+    "id": "17"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/18/640/480",
+    "price": 50000,
+    "title": "Product 18",
+    "category": "2009-02-13T23:48:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 18",
+    "id": "18"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/19/640/480",
+    "price": 50000,
+    "title": "Product 19",
+    "category": "2009-02-13T23:49:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 19",
+    "id": "19"
+  },
+  {
+    "imageUrl": "https://picsum.photos/id/20/640/480",
+    "price": 50000,
+    "title": "Product 20",
+    "category": "2009-02-13T23:50:30.123Z",
+    "createdAt": "2025-06-07T02:25:15.181Z",
+    "description": "Description 20",
+    "id": "20"
+  }
+]

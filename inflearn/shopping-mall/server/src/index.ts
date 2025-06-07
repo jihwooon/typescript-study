@@ -6,6 +6,7 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import http from 'http';
 import { resolvers } from './resolvers/resolvers';
 import { typeDefs } from './schema/schema';
+import { DBField, readDB } from './dbControlelr';
 
 (async () => {
   const port = 8000;
@@ -18,7 +19,14 @@ import { typeDefs } from './schema/schema';
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
-  
+
+  context: {
+    db: {
+      products: readDB(DBField.PRODUCTS)
+      cart: readDB(DBField.CART)
+    }
+  }
+
   await server.start();
 
   app.use(

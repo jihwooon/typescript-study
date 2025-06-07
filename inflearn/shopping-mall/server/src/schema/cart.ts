@@ -18,4 +18,4 @@ export const cartTypeDefs = `#graphql
     deleteCart(id: ID!): ID!
     executePay(ids: [ID!]!): [ID!]!
   }
-`; 
+`;
