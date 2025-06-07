@@ -4,20 +4,14 @@ import { Resolver } from "./types";
 export const cartResolvers: Resolver = {
   Query: {
     cart: (parent, args, { db }) => {
-      return db.cart
+      return db.cart.map((item: any) => ({
+        ...item,
+        product: db.products.find((product: any) => product.id === item.id)
+      }))
     },
   },
-  Cart: {
-    product: (cartItem, args, { db }) => {
-      const product = db.products.find((product: any) => product.id === cartItem.id);
-      if (!product) {
-        throw new Error(`Product with id ${cartItem.id} not found`);
-      }
-      return product;
-    }
-  },
   Mutation: {
-    addCart: (parent, { id }, { db }, info) => {
+    addCart: (parent, { id }, { db }) => {
       if (!id) {
         throw new Error('상품 id가 없습니다.')
       }
@@ -42,8 +36,9 @@ export const cartResolvers: Resolver = {
 
       const newItem = {
         id,
-        amount: 1,
+        amount: 1
       };
+
       db.cart.push(newItem)
       setJSON(db.cart)
       return newItem;
@@ -82,4 +77,4 @@ export const cartResolvers: Resolver = {
       return ids;
     },
   },
-}; 
+};
