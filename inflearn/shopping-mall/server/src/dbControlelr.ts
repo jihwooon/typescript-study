@@ -1,6 +1,5 @@
 import fs from 'fs'
 import { resolve } from 'path'
-import { cartResolvers } from './resolvers/cart'
 
 export enum DBField {
   CART = 'cart',

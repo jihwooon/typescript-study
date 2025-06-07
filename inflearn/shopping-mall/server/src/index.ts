@@ -6,7 +6,11 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import http from 'http';
 import { resolvers } from './resolvers/resolvers';
 import { typeDefs } from './schema/schema';
-import { DBField, readDB } from './dbControlelr';
+import { DBField, readDB, writeDB } from './dbControlelr';
+
+export const setJSON = (data: any) => {
+  return writeDB(DBField.CART, data)
+}
 
 interface MyContext {
   db: {

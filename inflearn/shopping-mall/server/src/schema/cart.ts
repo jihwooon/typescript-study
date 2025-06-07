@@ -1,11 +1,8 @@
 export const cartTypeDefs = `#graphql
   type Cart {
     id: ID!
-    title: String!
-    description: String!
-    imageUrl: String!
-    price: Int!
     amount: Int!
+    product: Product!
   }
 
   type Query {

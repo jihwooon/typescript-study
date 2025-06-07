@@ -8,7 +8,7 @@ export const productResolvers: Resolver = {
     product: (parent, { id }, { db }) => {
       const found = db.products.find((product: any) => product.id === id);
       if (!found) {
-        return null
+        throw new Error(`Product가 존재하지 않습니다.`);
       }
 
       return found;
