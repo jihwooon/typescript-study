@@ -1,4 +1,11 @@
+import { DBField, writeDB } from '../dbController';
+import { Product } from './../../../client/src/graphql/products';
 import { Resolver } from "./types";
+import { v4 as uuid} from 'uuid'
+
+export const setJSON = (data: any) => {
+  return writeDB(DBField.PRODUCTS, data)
+}
 
 export const productResolvers: Resolver = {
   Query: {
@@ -19,4 +26,50 @@ export const productResolvers: Resolver = {
       return found;
     },
   },
+  Mutation: {
+    addProduct: (parent, { imageUrl, price, title, description}, { db }) => {
+      const newProduct = {
+        id: uuid(),
+        imageUrl,
+        price,
+        title,
+        description,
+        createAt: Date.now()
+      }
+
+      db.products.push(newProduct)
+      setJSON(db.products)
+      return newProduct
+    },
+    updateProduct : (parent, {id, ...data}, { db }) => {
+      const existProductIndex = db.products.findIndex((item) => item.id === id)
+      if (existProductIndex < 0) {
+        throw new Error('없는 상품입니다.')
+      }
+
+      const updatedItem = {
+        ...db.products[existProductIndex],
+        ...data,
+      }
+
+      db.products.splice(existProductIndex, 1, updatedItem)
+
+      setJSON(db.products)
+      return updatedItem
+    },
+    deleteProduct: (parent, { id }, { db }) => {
+      const existProductIndex = db.products.findIndex((item) => item.id === id)
+      if (existProductIndex < 0) {
+        throw new Error('없는 상품입니다.')
+      }
+
+      const updatedItem = {
+        ...db.products[existProductIndex],
+      }
+      delete updatedItem.createdAt
+      db.products.splice(existProductIndex, 1, updatedItem)
+      setJSON(db.products)
+      return id
+    }
+  }
 }; 

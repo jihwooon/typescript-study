@@ -5,7 +5,7 @@ export const productTypeDefs = `#graphql
     description: String!
     imageUrl: String!
     price: Int!
-    createdAt: String!
+    createdAt: Float
     category: String!
   }
 
@@ -13,4 +13,21 @@ export const productTypeDefs = `#graphql
     products(cursor: ID): [Product!]!
     product(id: ID!): Product
   }
-`; 
+  
+  extend type Mutation {
+    addProduct (
+      imageUrl: String!,
+      price: Int!,
+      title: String!,
+      description: String!
+    ): Product!
+    updateProduct(
+      id: ID!
+      imageUrl: String,
+      price: Int,
+      title: String,
+      DESCRIPTION: String
+    ): Product!
+    deleteProduct(id: ID!): ID!
+  }
+`;
