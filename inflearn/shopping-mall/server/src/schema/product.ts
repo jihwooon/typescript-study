@@ -1,16 +1,15 @@
 export const productTypeDefs = `#graphql
   type Product {
     id: ID!
-    title: String!
-    description: String!
     imageUrl: String!
     price: Int!
+    title: String!
+    description: String
     createdAt: Float
-    category: String!
   }
 
   type Query {
-    products(cursor: ID): [Product!]!
+    products(cursor: ID, showDeleted: Boolean): [Product!]!
     product(id: ID!): Product
   }
   

@@ -7,10 +7,10 @@ import useIntersection from "../../hooks/useIntersection"
 
 const ProductListPage: React.FC = () => {
   const fetchMoreRef = useRef<HTMLDivElement>(null)
-  const intersercting = useIntersection(fetchMoreRef)
+  const intersecting = useIntersection(fetchMoreRef)
 
   const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
-    queryKey: [QueryKeys.PRODUCTS],
+    queryKey: [QueryKeys.PRODUCTS, false],
     queryFn: ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -19,10 +19,10 @@ const ProductListPage: React.FC = () => {
   })
 
   useEffect(() => { 
-    if(!intersercting || !isSuccess || !hasNextPage || !isFetchingNextPage) {
+    if(!intersecting || !isSuccess || !hasNextPage || !isFetchingNextPage) {
       fetchNextPage()
     }
-  },[intersercting])
+  },[intersecting])
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>

@@ -1,5 +1,4 @@
 import { DBField, writeDB } from '../dbController';
-import { Product } from './../../../client/src/graphql/products';
 import { Resolver } from "./types";
 import { v4 as uuid} from 'uuid'
 
@@ -9,13 +8,14 @@ export const setJSON = (data: any) => {
 
 export const productResolvers: Resolver = {
   Query: {
-    products: (parent, { cursor = '' }, { db }) => {
+    products: (parent, { cursor = '', showDeleted = false }, { db }) => {
+      const filteredDB = showDeleted ? db.products : db.products.filter((product) => !!product.createdAt)
       const findIndex = db.products.findIndex((product) => product.id === cursor);
       if (findIndex === -1) {
         return [];
       }
 
-      return db.products.slice(findIndex + 1, findIndex + 15);
+      return filteredDB.slice(findIndex + 1, findIndex + 15);
     },
     product: (parent, { id }, { db }) => {
       const found = db.products.find((product: any) => product.id === id);
