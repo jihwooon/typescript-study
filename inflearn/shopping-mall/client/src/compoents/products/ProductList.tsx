@@ -1,10 +1,10 @@
 import type { Product } from "../../graphql/products";
-import ProductItem from "./ProductItem";
 
-const ProductList = ({ list } : { 
+const ProductList = ({ list, ProductItem } : { 
   list: { 
     products: Product[]
-  } []
+  } [],
+  ProductItem: ({ id, imageUrl, price, title}: Product) => JSX.Element
 }) => {
     return (
         <ul className="products">
