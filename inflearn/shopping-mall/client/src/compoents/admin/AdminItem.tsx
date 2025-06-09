@@ -22,29 +22,35 @@ const AdminItem = ({
   startEdit: () => void
   doneEdit: () => void
 }) => {
-  const queryClinet = getQueryClient()
+  const queryClient = getQueryClient()
   const { mutate: updateProduct } = useMutation<{ updateProduct: OmittedProduct }, Error, OmittedProduct>({
     mutationFn: (product) => graphqlFetcher(UPDATE_PRODUCT, { id, ...product }),
     onSuccess: () => {
-      queryClinet.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS], exact: false })
+      queryClient.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS], exact: false })
       doneEdit()
     }
   });
 
   const { mutate: deleteProduct } = useMutation({
     mutationFn: (id: string) => graphqlFetcher(DELETE_PRODUCT, { id }),
-      onSuccess: () => {
-        queryClinet.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS],
-          exact: false,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ 
+        queryKey: [QueryKeys.PRODUCTS], 
+        exact: false 
       })
-    }, 
+    }
   })
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault() 
     const formData = arrToObj([...new FormData(e.target as HTMLFormElement)])
-    formData.price = Number(formData.price)
-    console.log(formData)
+    const price = Number(formData.price)
+      if (isNaN(price) || price < 0) {
+        alert('올바른 가격을 입력해주세요.')
+      return
+    }
+
+    formData.price = price
     updateProduct(formData as OmittedProduct)
   }
 

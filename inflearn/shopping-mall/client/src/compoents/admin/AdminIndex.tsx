@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import ProductList from "../products/ProductList";
 import AdminAddForm from "./AdminAddForm";
 import useIntersection from "../../hooks/useIntersection";
 import { graphqlFetcher, QueryKeys } from "../../queryClient";
@@ -15,7 +14,7 @@ const AdminIndex = () => {
     const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
       queryKey: [QueryKeys.PRODUCTS, 'admin'],
       queryFn: ({ pageParam = '', }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam, showDeleted: true }),
-      initialPageParam: 1,
+      initialPageParam: '',
       getNextPageParam: (lastPage) => {
         return lastPage.products.at(-1)?.id
       }
