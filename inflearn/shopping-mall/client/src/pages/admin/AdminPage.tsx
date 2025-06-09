@@ -4,7 +4,8 @@ import { graphqlFetcher, QueryKeys } from "../../queryClient"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { GET_PRODUCTS, type Products } from "../../graphql/products"
 import ProductList from "../../compoents/products/ProductList"
-import AdminItem from "../../compoents/products/AdminItem"
+import AdminItem from "../../compoents/admin/AdminItem"
+import AdminAddForm from "../../compoents/admin/AdminAddForm"
 
 const AdminPage: React.FC = () => {
   const fetchMoreRef = useRef<HTMLDivElement>(null)
@@ -30,7 +31,8 @@ const AdminPage: React.FC = () => {
 
   return (
     <div>
-      <h3>상품 목록</h3> 
+      <h3>어드민 목록</h3> 
+      <AdminAddForm/>
       <ProductList 
         list={data?.pages || []} 
         ProductItem={({ id, imageUrl, price, title, description, createdAt }) => (
