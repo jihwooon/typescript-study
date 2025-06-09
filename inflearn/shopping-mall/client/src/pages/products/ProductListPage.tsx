@@ -11,7 +11,7 @@ const ProductListPage: React.FC = () => {
   const intersecting = useIntersection(fetchMoreRef)
 
   const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
-    queryKey: [QueryKeys.PRODUCTS, false],
+    queryKey: [QueryKeys.PRODUCTS, 'products'],
     queryFn: ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {

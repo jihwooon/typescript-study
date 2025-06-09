@@ -12,14 +12,16 @@
       "imageUrl": "https://picsum.photos/id/1/640/480",
       "price": 4500,
       "title": "임시저장_1",
-      "description": "임시상세내용1"
+      "description": "임시상세내용1",
+      "createdAt": 1736342643623
   },
   {
       "id": "2",
       "imageUrl": "https://picsum.photos/id/2/640/480",
       "price": 5500,
       "title": "임시저장_2",
-      "description": "임시상세내용2"
+      "description": "임시상세내용2",
+      "createdAt": 1736342643623
   },
   {
       "id": "3",
@@ -803,6 +805,6 @@
       "price": 12312315,
       "title": "어드민",
       "description": "1231251235",
-      "createAt": 1749444722275
+      "createdAt": 1749444722275
   }
 ]

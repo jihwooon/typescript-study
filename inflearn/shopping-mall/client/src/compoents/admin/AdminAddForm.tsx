@@ -1,14 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import type { SyntheticEvent } from "react";
-import { graphqlFetcher } from "../../queryClient";
+import { getQueryClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import { ADD_PRODUCT, type Product } from "../../graphql/products";
 import arrToObj from "../../util/addToObj";
 
 type OmittedProduct = Omit<Product, 'id' | 'createdAt'>
 
 const AdminAddForm = () => {
+    const queryClinet = getQueryClient()
     const { mutate: addProduct } = useMutation<{ addProduct: OmittedProduct }, Error, OmittedProduct>({
-        mutationFn: (product) => graphqlFetcher(ADD_PRODUCT, product), 
+        mutationFn: (product) => graphqlFetcher(ADD_PRODUCT, product),
+        onSuccess: () => {
+          queryClinet.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS], exact: false })
+        }
       });
 
     const handleSubmit = (e: SyntheticEvent) => {

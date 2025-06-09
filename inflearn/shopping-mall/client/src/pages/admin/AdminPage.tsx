@@ -12,13 +12,14 @@ const AdminPage: React.FC = () => {
   const intersecting = useIntersection(fetchMoreRef)
 
   const { data, isSuccess, isLoading, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery<Products>({
-    queryKey: [QueryKeys.PRODUCTS, true],
+    queryKey: [QueryKeys.PRODUCTS, 'admin'],
     queryFn: ({ pageParam = '', }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam, showDeleted: true }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       return lastPage.products.at(-1)?.id
     }
   })
+  console.log(data)
 
   useEffect(() => { 
     if(!intersecting || !isSuccess || !hasNextPage || !isFetchingNextPage) {

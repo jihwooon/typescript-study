@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { graphqlFetcher } from "../../queryClient";
 import { ADD_CART } from "../../graphql/cart";
 
-const AdminItem: React.FC<Product> = ({ id, imageUrl, price, title}) => {
+const AdminItem: React.FC<Product> = ({ id, imageUrl, price, title, createdAt }) => {
   const { mutate: addToCart } = useMutation({
     mutationFn: (id: string) => graphqlFetcher(ADD_CART, { id })
   });
@@ -16,6 +16,7 @@ const AdminItem: React.FC<Product> = ({ id, imageUrl, price, title}) => {
       <img className="product-item__image" src={imageUrl} alt={title} />
       <span className="product-item__price">${price}</span>
     </Link>
+    {!createdAt && <span>삭제된 상품</span>}
     <button type="button" className="product-item__add-cart" onClick={() => addToCart(id)}>어드민</button>
    </li>
   )

@@ -9,13 +9,16 @@ export const setJSON = (data: any) => {
 export const productResolvers: Resolver = {
   Query: {
     products: (parent, { cursor = '', showDeleted = false }, { db }) => {
-      const filteredDB = showDeleted ? db.products : db.products.filter((product) => !!product.createdAt)
-      const findIndex = db.products.findIndex((product) => product.id === cursor);
-      if (findIndex === -1) {
-        return [];
-      }
+      const [hasCreatedAt, noCreatedAt] = [
+        db.products
+          .filter(product => !!product.createdAt)
+          .sort((a, b) => b.createdAt! - a.createdAt!),
+        db.products.filter(product => !product.createdAt),
+      ]
 
-      return filteredDB.slice(findIndex + 1, findIndex + 15);
+      const filteredDB = showDeleted ? [...hasCreatedAt, ...noCreatedAt] : hasCreatedAt
+      const fromIndex = filteredDB.findIndex(product => product.id === cursor) + 1
+      return filteredDB.slice(fromIndex, fromIndex + 15) || []
     },
     product: (parent, { id }, { db }) => {
       const found = db.products.find((product: any) => product.id === id);
