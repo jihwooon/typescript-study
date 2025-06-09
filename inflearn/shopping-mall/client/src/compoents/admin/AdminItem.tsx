@@ -1,24 +1,94 @@
 import { Link } from "react-router"
-import type { Product } from "../../graphql/products"
+import { DELETE_PRODUCT, UPDATE_PRODUCT, type Product } from "../../graphql/products"
 import { useMutation } from "@tanstack/react-query";
-import { graphqlFetcher } from "../../queryClient";
-import { ADD_CART } from "../../graphql/cart";
+import { getQueryClient, graphqlFetcher, QueryKeys } from "../../queryClient";
+import arrToObj from "../../util/addToObj";
+import type { SyntheticEvent } from "react";
 
-const AdminItem: React.FC<Product> = ({ id, imageUrl, price, title, createdAt }) => {
-  const { mutate: addToCart } = useMutation({
-    mutationFn: (id: string) => graphqlFetcher(ADD_CART, { id })
+type OmittedProduct = Omit<Product, 'id' | 'createdAt'>
+
+const AdminItem = ({ 
+  id, 
+  imageUrl, 
+  price, 
+  title, 
+  createdAt,
+  isEditing,
+  description,
+  startEdit,
+  doneEdit
+}: Product & {
+  isEditing: boolean
+  startEdit: () => void
+  doneEdit: () => void
+}) => {
+  const queryClinet = getQueryClient()
+  const { mutate: updateProduct } = useMutation<{ updateProduct: OmittedProduct }, Error, OmittedProduct>({
+    mutationFn: (product) => graphqlFetcher(UPDATE_PRODUCT, { id, ...product }),
+    onSuccess: () => {
+      queryClinet.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS], exact: false })
+      doneEdit()
+    }
   });
 
+  const { mutate: deleteProduct } = useMutation({
+    mutationFn: (id: string) => graphqlFetcher(DELETE_PRODUCT, { id }),
+      onSuccess: () => {
+        queryClinet.invalidateQueries({ queryKey: [QueryKeys.PRODUCTS],
+          exact: false,
+      })
+    }, 
+  })
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault() 
+    const formData = arrToObj([...new FormData(e.target as HTMLFormElement)])
+    formData.price = Number(formData.price)
+    console.log(formData)
+    updateProduct(formData as OmittedProduct)
+  }
+
+  const deleteItem = () => {
+    deleteProduct(id)
+  }
+ 
+  if(isEditing) {
+    return (
+      <li className="product-item">
+        <form onSubmit={handleSubmit}>
+          <label>
+            상품명: <input name="title" type="text" required defaultValue={title} />
+          </label>
+          <label>
+            이미지URL: <input name="imageUrl" type="text" required defaultValue={imageUrl} />
+          </label>
+          <label>
+            상품가격: <input name="price" type="number" required min="1000" defaultValue={price} />
+          </label>
+          <label>
+            상세: <textarea name="description" defaultValue={description} />
+          </label>
+          <button type="submit">저장</button>
+        </form>
+      </li>
+    )
+  }
+  
   return (
-   <li className="product-item">
-    <Link to={`/products/${id}`}>
-      <p className="product-item__title">{title}</p>
-      <img className="product-item__image" src={imageUrl} alt={title} />
-      <span className="product-item__price">${price}</span>
-    </Link>
-    {!createdAt && <span>삭제된 상품</span>}
-    <button type="button" className="product-item__add-cart" onClick={() => addToCart(id)}>어드민</button>
-   </li>
+    <li className="product-item">
+      <Link to={`/products/${id}`}>
+        <p className="product-item__title">{title}</p>
+        <img className="product-item__image" src={imageUrl} />
+        <span className="product-item__price">₩{price}</span>
+      </Link>
+      {!createdAt && <span>삭제된 상품</span>}
+      <button className="product-item__add-cart" onClick={startEdit}>
+        수정
+      </button>
+      <button className="product-item__delete-cart" onClick={deleteItem}>
+        삭제
+      </button>
+    </li>
   )
 }
 

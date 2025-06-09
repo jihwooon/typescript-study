@@ -33,16 +33,6 @@ const ProductListPage: React.FC = () => {
       <h3>상품 목록</h3> 
       <ProductList 
         list={data?.pages || []} 
-        ProductItem={({ id, imageUrl, price, title, description, createdAt }) => (
-          <ProductItem 
-            id={id} 
-            imageUrl={imageUrl} 
-            price={price} 
-            title={title}
-            description={description}
-            createdAt={createdAt}
-          />
-        )}
       />
       <div ref={fetchMoreRef}/>
     </div>

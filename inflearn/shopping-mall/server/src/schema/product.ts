@@ -25,7 +25,7 @@ export const productTypeDefs = `#graphql
       imageUrl: String,
       price: Int,
       title: String,
-      DESCRIPTION: String
+      description: String
     ): Product!
     deleteProduct(id: ID!): ID!
   }
