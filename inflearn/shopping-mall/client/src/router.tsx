@@ -4,6 +4,7 @@ import ProductDetailPage from "./pages/products/ProductDetailPage"
 import ProductListPage from "./pages/products/ProductListPage"
 import CartPage from "./pages/cart/CartPage"
 import PaymentPage from "./pages/payment/PaymentPage"
+import AdminPage from "./pages/admin/AdminPage"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ export const router = createBrowserRouter(
       <Route path="products/:productId" element={<ProductDetailPage />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="payment" element={<PaymentPage/>}/>
+      <Route path="admin" element={<AdminPage/>}/>
     </Route>
   )
 )
