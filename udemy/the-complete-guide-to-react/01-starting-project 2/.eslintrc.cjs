@@ -27,5 +27,6 @@ module.exports = {
       "jsx": "never"
     }],
     'react/react-in-jsx-scope': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/vite.config.js'] }]
   },
 };
