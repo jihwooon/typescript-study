@@ -4,7 +4,7 @@ export default function Player() {
       <h2>Welcome unknown entity</h2>
       <p>
         <input type="text" />
-        <button>Set Name</button>
+        <button type="button">Set Name</button>
       </p>
     </section>
   );
