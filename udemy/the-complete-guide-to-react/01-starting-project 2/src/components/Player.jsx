@@ -5,6 +5,7 @@ export default function Player() {
   const [submiited, setSubmitted] = useState(false);
 
   const handleChage = (event) => {
+    setSubmitted(false);
     setEnteredPlayerName(event.target.value);
   };
 
@@ -15,7 +16,7 @@ export default function Player() {
   return (
     <section id="player">
       <h2>
-        Welcome
+        Welcome&nbsp;
         {submiited ? enteredPlayerName : 'unknown entity'}
       </h2>
       <p>
