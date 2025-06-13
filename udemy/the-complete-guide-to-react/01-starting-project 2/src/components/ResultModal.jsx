@@ -1,6 +1,8 @@
-export default function ResultModal({ result, targetTime }) {
+import { forwardRef } from 'react';
+
+function ModalContent({ result, targetTime }) {
   return (
-    <diglog className="result-modal">
+    <>
       <h2>
         You
         {' '}
@@ -8,6 +10,7 @@ export default function ResultModal({ result, targetTime }) {
       </h2>
       <p>
         The target time was
+        {' '}
         <strong>
           {targetTime}
           {' '}
@@ -15,12 +18,21 @@ export default function ResultModal({ result, targetTime }) {
         </strong>
       </p>
       <p>
-        Tou stopped the timer with
+        You stopped the timer with
+        {' '}
         <strong>X seconds left.</strong>
       </p>
       <form method="dialog">
         <button type="button">Close</button>
       </form>
-    </diglog>
+    </>
   );
 }
+
+const ResultModal = forwardRef(({ result, targetTime }, ref) => (
+  <dialog ref={ref} className="result-modal">
+    <ModalContent result={result} targetTime={targetTime} />
+  </dialog>
+));
+
+export default ResultModal;
