@@ -23,7 +23,7 @@ function ModalContent({ result, targetTime }) {
         <strong>X seconds left.</strong>
       </p>
       <form method="dialog">
-        <button type="button">Close</button>
+        <button type="submit">Close</button>
       </form>
     </>
   );
