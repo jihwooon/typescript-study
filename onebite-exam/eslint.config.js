@@ -20,4 +20,12 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  plugins: {
+    "react-hooks": reactHooks,
+    "react-refresh": reactRefresh
+  },
+  rules: {
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 ])
