@@ -1,4 +1,4 @@
-import { useCountStore, useDecreaseCount, useIncreaseCount } from "@/store/count";
+import { useDecreaseCount, useIncreaseCount } from "@/store/count";
 import { Button } from "../ui/button";
 
 export default function Controller() {

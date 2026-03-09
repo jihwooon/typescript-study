@@ -1,4 +1,4 @@
-import { useCount, useCountStore } from "@/store/count";
+import { useCount } from "@/store/count";
 
 export default function Viwer(){
     const count = useCount()
