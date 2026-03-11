@@ -1,8 +1,10 @@
 import { create } from 'zustand'
 import { combine, persist, subscribeWithSelector, createJSONStorage } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer'
+import { devtools } from 'zustand/middleware'
 
 const useCountStore = create(
+  devtools(
   persist(
   subscribeWithSelector(
     immer(
@@ -29,8 +31,13 @@ const useCountStore = create(
     }),
     storage: createJSONStorage(() => sessionStorage)
   }
-  )
+  ),
+  {
+    name: 'countStore'
+  }
+  ),
 )
+
 
 useCountStore.subscribe((store) => store.count, (count, prevCount) => {
   const store = useCountStore.getState()
